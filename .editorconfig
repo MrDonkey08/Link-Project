@@ -1,0 +1,29 @@
+root = true
+
+# Unix-style newlines with a newline ending every file
+[*]
+end_of_line = lf
+insert_final_newline = true
+trim_trailing_whitespace = true
+
+# Matches multiple files with brace expansion notation
+
+# 4 space indentation
+[*.{css, sass, scss rs}]
+indent_style = space
+indent_size = 4
+
+# 2 space indentation
+[*.{htm, html, json, md, sql, toml, yaml, yml, xml}]
+indent_style = space
+indent_size = 2
+
+# Tab indentation
+[Makefile, *.{bib, bash, c, cpp, cs go, java, js, php, sh, sql, tex, ts, zsh}]
+indent_style = tab
+
+# Windows files
+[*. {bat, cmd, ps, ps1}]
+indent_style = tab
+# Windows-Style newlines
+end_of_line = crlf
