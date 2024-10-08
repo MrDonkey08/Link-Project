@@ -9,4 +9,4 @@ que necesiten encontrar un equipo de trabajo.
 Este sistema permitirá a los estudiantes tanto establecer su propio proyecto
 modular como la posibilidad de incorporarse a uno previamente establecido.
 Asimismo, brindará un medio a los usuarios para administrar el proyecto, en
-cuestiones como planificación y gestión de tareas.
+cuestiones como planificación y gestión de tareas..
