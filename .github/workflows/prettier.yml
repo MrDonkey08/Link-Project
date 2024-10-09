@@ -22,5 +22,5 @@ jobs:
         run: npm prettier . --check
 
       - name: Prettier Write
-        if: $({ failure() })
+        if: ${{ failure() }}
         run: npx prettier . --write --log-level silent
