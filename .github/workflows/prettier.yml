@@ -19,7 +19,7 @@ jobs:
 
       # if prettier find code styles issues, returns 1 (error)
       - name: Prettier Check
-        run: npm prettier . --check
+        run: npx prettier . --check
 
       - name: Prettier Write
         if: ${{ failure() }}
