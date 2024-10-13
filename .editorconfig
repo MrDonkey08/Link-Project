@@ -9,12 +9,12 @@ trim_trailing_whitespace = true
 # Matches multiple files with brace expansion notation
 
 # 4 space indentation
-[*.{css, sass, scss, rs}]
+[*.{css,sass,scss,rs}]
 indent_style = space
 indent_size = 4
 
 # 2 space indentation
-[*.{htm, html, json, md, sql, toml, yaml, yml, xml}]
+[*.{htm,html,json,md,sql,toml,yaml,yml,xml}]
 indent_style = space
 indent_size = 2
 
@@ -23,11 +23,11 @@ indent_size = 2
 indent_style = tab
 
 # Tab indentation
-[*.{bib, bash, c, cpp, cs, go, java, js, php, sh, sql, tex, ts, zsh}]
+[*.{bib,bash,c,cpp,cs,go,java,js,php,sh,sql,tex,ts,zsh}]
 indent_style = tab
 
 # Windows files
-[*.{bat, cmd, ps, ps1}]
+[*.{bat,cmd,ps,ps1}]
 indent_style = tab
 # Windows-Style newlines
 end_of_line = crlf
