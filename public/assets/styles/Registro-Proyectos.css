@@ -1,0 +1,95 @@
+/* --------------------------------------Modificaciones para el fondo de la pagina o cuerpo*/
+body {
+    margin: 0;
+    height: 100vh; /* Ocupa toda la altura de la ventana */
+    display: flex;
+    flex-direction: column; /* Alinea los elementos verticalmente */
+    justify-content: center; /* Centra el contenido verticalmente */
+    align-items: center; /* Centra el contenido horizontalmente */
+    background-color: #f0f0f0; /* Color de fondo opcional */
+}
+/* ---------------------------------------------------------- Cuadro Menu y titulo */
+.Cuadro-Tiulo {
+    position: fixed;
+    top: 0;
+    width: 100% ;
+    height: 70px;
+    text-align: right;
+    border-bottom: #000 solid 1px;
+    background-color: rgba(120, 120, 120); /* Gris  */
+    justify-content: right;
+}
+/* ---------------------------------------------------------- Icono de menu */
+.IconMenu {
+    font-size: 24px;
+    cursor: pointer;
+    font-weight: bold;
+    margin: 30px;
+}
+
+/* ---------------------------------------------------------- Contenedor de los requisitos*/
+.container {
+    border: 30;
+    max-width: 85%;
+    width: 100%;
+    padding: 20px;
+    background-color: rgba(255, 255, 255, 0.4); /* Fondo blanco transparente */
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+    border-radius: 5px;
+    text-align: center;
+}
+/* ------------------------------------------------------------------------------------formato de formulario */
+.form {
+    background-color: white;
+    width: 500px;
+    border-radius: 8px;         /* este se encarga de darle cierto margen redondo*/
+    padding: 20px 40px;
+    box-shadow: 0 10px 25px rgba(92, 99, 105, .8);  /*Se ajusta a cualquier pantalla de dispositivo*/
+}
+/* ---------------------------------------------------------- titulo */
+h1 {
+    font-size: 24px;
+    color: #333333; /* Texto gris oscuro */
+}
+/* ---------------------------------------------------------- Cuadro estilo form para ingresar información */
+form {
+    text-align: center;
+}
+label{
+    text-align: left;
+    padding-top: 5px;
+    padding-bottom: 5px;
+}
+/* ---------------------------------------------------------- Cuadro para ingresar información */
+input{
+    width: 98%;
+    padding: 8px;
+    margin-top: 5px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    background-color: rgba(255, 255, 255, 0.4);
+}
+/* ---------------------------------------------------------- Cuadro para ingresar descripción */
+#description{
+    width: 98%;
+    height: 50px;
+}
+.Selectores {
+    padding: 5px;
+    display: flex;
+    flex-direction: column; 
+    align-items: flex-start; 
+    width: 100%; 
+}
+
+/* ---------------------------------------------------------- Boton para enviar informacion */
+input[type="submit"] {
+    background-color: #0b243f; /* Azul */
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    padding: 10px 20px;
+    cursor: pointer;
+}
+
+
