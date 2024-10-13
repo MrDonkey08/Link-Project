@@ -9,7 +9,7 @@ trim_trailing_whitespace = true
 # Matches multiple files with brace expansion notation
 
 # 4 space indentation
-[*.{css, sass, scss rs}]
+[*.{css, sass, scss, rs}]
 indent_style = space
 indent_size = 4
 
@@ -19,7 +19,11 @@ indent_style = space
 indent_size = 2
 
 # Tab indentation
-[Makefile, *.{bib, bash, c, cpp, cs, go, java, js, php, sh, sql, tex, ts, zsh}]
+[Makefile]
+indent_style = tab
+
+# Tab indentation
+[*.{bib, bash, c, cpp, cs, go, java, js, php, sh, sql, tex, ts, zsh}]
 indent_style = tab
 
 # Windows files
