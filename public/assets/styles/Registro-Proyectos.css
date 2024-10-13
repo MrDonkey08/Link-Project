@@ -12,7 +12,7 @@ body {
 .Cuadro-Tiulo {
     position: fixed;
     top: 0;
-    width: 100% ;
+    width: 100%;
     height: 70px;
     text-align: right;
     border-bottom: #000 solid 1px;
@@ -42,9 +42,9 @@ body {
 .form {
     background-color: white;
     width: 500px;
-    border-radius: 8px;         /* este se encarga de darle cierto margen redondo*/
+    border-radius: 8px; /* este se encarga de darle cierto margen redondo*/
     padding: 20px 40px;
-    box-shadow: 0 10px 25px rgba(92, 99, 105, .8);  /*Se ajusta a cualquier pantalla de dispositivo*/
+    box-shadow: 0 10px 25px rgba(92, 99, 105, 0.8); /*Se ajusta a cualquier pantalla de dispositivo*/
 }
 /* ---------------------------------------------------------- titulo */
 h1 {
@@ -55,13 +55,13 @@ h1 {
 form {
     text-align: center;
 }
-label{
+label {
     text-align: left;
     padding-top: 5px;
     padding-bottom: 5px;
 }
 /* ---------------------------------------------------------- Cuadro para ingresar información */
-input{
+input {
     width: 98%;
     padding: 8px;
     margin-top: 5px;
@@ -70,16 +70,16 @@ input{
     background-color: rgba(255, 255, 255, 0.4);
 }
 /* ---------------------------------------------------------- Cuadro para ingresar descripción */
-#description{
+#description {
     width: 98%;
     height: 50px;
 }
 .Selectores {
     padding: 5px;
     display: flex;
-    flex-direction: column; 
-    align-items: flex-start; 
-    width: 100%; 
+    flex-direction: column;
+    align-items: flex-start;
+    width: 100%;
 }
 
 /* ---------------------------------------------------------- Boton para enviar informacion */
@@ -91,5 +91,3 @@ input[type="submit"] {
     padding: 10px 20px;
     cursor: pointer;
 }
-
-
