@@ -7,14 +7,14 @@ toogle_display()
 tipo_de_usuario.addEventListener("change", toogle_display)
 // Funciones
 function toogle_display() {
-  if (tipo_de_usuario.value === "") {
-    datos_alumno.style.display = "none"
-    datos_asesor.style.display = "none"
-  } else if (tipo_de_usuario.value === "1") {
-    datos_asesor.style.display = "none"
-    datos_alumno.style.display = "block"
-  } else {
-    datos_asesor.style.display = "block"
-    datos_alumno.style.display = "none"
-  }
+	if (tipo_de_usuario.value === "") {
+		datos_alumno.style.display = "none"
+		datos_asesor.style.display = "none"
+	} else if (tipo_de_usuario.value === "1") {
+		datos_asesor.style.display = "none"
+		datos_alumno.style.display = "block"
+	} else {
+		datos_asesor.style.display = "block"
+		datos_alumno.style.display = "none"
+	}
 }
