@@ -19,11 +19,11 @@ indent_style = space
 indent_size = 2
 
 # Tab indentation
-[Makefile, *.{bib, bash, c, cpp, cs go, java, js, php, sh, sql, tex, ts, zsh}]
+[Makefile, *.{bib, bash, c, cpp, cs, go, java, js, php, sh, sql, tex, ts, zsh}]
 indent_style = tab
 
 # Windows files
-[*. {bat, cmd, ps, ps1}]
+[*.{bat, cmd, ps, ps1}]
 indent_style = tab
 # Windows-Style newlines
 end_of_line = crlf
