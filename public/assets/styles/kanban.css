@@ -1,0 +1,44 @@
+#lists {
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.list {
+    width: 230px;
+    height: min-content;
+
+    margin: 15px 10px;
+    padding: 0 15px;
+
+    border: 1px solid black;
+    border-radius: 15px;
+}
+
+.list h2 {
+    margin-bottom: 5px;
+}
+
+.list form {
+    margin-bottom: 15px;
+}
+
+.list div,
+.list form {
+    border-radius: 5px;
+    padding: 5px;
+}
+
+.task,
+.add-task-form > * {
+    border: 1px solid black;
+    border-radius: 10px;
+    padding: 10px;
+}
+
+.add-task-form input {
+    width: 63%;
+}
+
+.add-task-form button {
+    float: right;
+}
