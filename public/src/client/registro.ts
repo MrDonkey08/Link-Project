@@ -1,6 +1,6 @@
 ;(() => {
 	const datos_alumno = document.getElementById(
-		"datos-alumno-di"
+		"datos-alumno-div"
 	) as HTMLElement
 	const datos_asesor = document.getElementById(
 		"datos-asesor-div"
