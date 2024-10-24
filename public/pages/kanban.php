@@ -1,3 +1,7 @@
+<?php
+include '../dist/back-end/conecta.php';
+$con = conecta();
+?>
 <!doctype html>
 <html lang="es">
   <head>
