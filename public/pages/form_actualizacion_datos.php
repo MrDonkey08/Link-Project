@@ -21,25 +21,24 @@ $con = conecta();
                 <label>Nombre</label>
             </div>
 
-            <!-- Campo de perfil -->
+            
             <div class="input-box">
                 <input type="text" required>
                 <label>Apellido Paterno</label>
             </div>
 
-             <!-- Campo de perfil -->
+          
              <div class="input-box">
                 <input type="text" required>
                 <label>Apellido Materno</label>
             </div>
 
-             <!-- Campo de perfil -->
              <div class="input-box">
                 <input type="text" required>
                 <label>Correo</label>
             </div>
 
-             <!-- Campo de perfil -->
+             
              <div class="input-box">
                 <input type="text" required>
                 <label>Numero de contacto</label>
