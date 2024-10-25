@@ -1,7 +1,7 @@
 ;(() => {
 	const lists = document.querySelectorAll<HTMLElement>(".list")
 
-	lists.forEach((list) => {
+	for (const list of lists) {
 		const form = list.querySelector(".add-task-form")
 		const task = list.querySelector(".tasks")
 
@@ -30,5 +30,5 @@
 				}
 			})
 		}
-	})
+	}
 })()

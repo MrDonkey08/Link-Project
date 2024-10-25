@@ -1,7 +1,7 @@
 "use strict"
 ;(() => {
 	const lists = document.querySelectorAll(".list")
-	lists.forEach((list) => {
+	for (const list of lists) {
 		const form = list.querySelector(".add-task-form")
 		const task = list.querySelector(".tasks")
 		if (form) {
@@ -23,5 +23,5 @@
 				}
 			})
 		}
-	})
+	}
 })()
