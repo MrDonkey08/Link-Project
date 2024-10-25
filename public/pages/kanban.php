@@ -11,6 +11,7 @@ $con = conecta();
     <title>Tablero de Kanban</title>
 
     <link href="../assets/styles/kanban.css" rel="stylesheet" />
+    <script async src="../dist/client/kanban/drag_task.js"></script>
   </head>
   <body>
     <div id="board">
@@ -25,7 +26,13 @@ $con = conecta();
           </div>
 
           <form class="add-task-form">
-            <input type="text" name="new-task" placeholder="Nueva tarea" />
+            <input
+              type="text"
+              class="new-task-input"
+              name="new-task"
+              placeholder="Nueva tarea"
+              required
+            />
             <button type="submit">Add</button>
           </form>
         </div>
@@ -40,7 +47,13 @@ $con = conecta();
           </div>
 
           <form class="add-task-form">
-            <input type="text" name="new-task" placeholder="Nueva tarea" />
+            <input
+              type="text"
+              class="new-task-input"
+              name="new-task"
+              placeholder="Nueva tarea"
+              required
+            />
             <button type="submit">Add</button>
           </form>
         </div>
@@ -55,7 +68,13 @@ $con = conecta();
           </div>
 
           <form class="add-task-form">
-            <input type="text" name="new-task" placeholder="Nueva tarea" />
+            <input
+              type="text"
+              class="new-task-input"
+              name="new-task"
+              placeholder="Nueva tarea"
+              required
+            />
             <button type="submit">Add</button>
           </form>
         </div>
