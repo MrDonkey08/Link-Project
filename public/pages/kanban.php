@@ -12,6 +12,7 @@ $con = conecta();
 
     <link href="../assets/styles/kanban.css" rel="stylesheet" />
     <script async src="../dist/client/kanban/drag_task.js"></script>
+    <script async src="../dist/client/kanban/add_task.js"></script>
   </head>
   <body>
     <div id="board">
