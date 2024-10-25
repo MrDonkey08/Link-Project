@@ -3,7 +3,7 @@ body {
     /*background-size: 100%;/* Ancho del patrón---------------------ESTO ES PARA PONERLE FONDO DE COLOR A LA PAGINA
     background-image: url('imagenes-Diseño/fondo-8.jpg'); /* Imagen de fondo */
     height: 100%;
-    background-size: cover;     /* Lograr expandir la imagen a toda la pagina */
+    background-size: cover; /* Lograr expandir la imagen a toda la pagina */
     background-attachment: fixed; /* esto fija la imagen de fondo */
     margin: 0;
 }
@@ -38,13 +38,13 @@ header {
     flex: 2; /* Este div es el más grande */
     padding: 10px;
     text-align: center;
-    border: solid #000 1px;  /*Opcion que suo para revisar diseño de espacio*/
+    border: solid #000 1px; /*Opcion que suo para revisar diseño de espacio*/
 }
 /* -------------------------------------- Tabla de navegacion y espacios*/
 .TablaNav {
     display: flex;
     gap: 10px; /* Espacio entre los divs */
-    border: solid #000 1px;  /*Opcion que suo para revisar diseño de espacio*/
+    border: solid #000 1px; /*Opcion que suo para revisar diseño de espacio*/
 }
 /* -------------------------------------- Cada uno de los 3 divs alineados a la derecha */
 .TablaNav div {
@@ -54,9 +54,8 @@ header {
 }
 /* -------------------------------------- opcines de navegacion (td) */
 .OpNav {
-    
     max-width: 100%;
-    border: solid #000 1px; 
+    border: solid #000 1px;
 }
 /* -------------------------------------- Opciones de navegacion (a) esto hace toda la chamba */
 .OpNav img {
