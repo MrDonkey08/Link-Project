@@ -1,0 +1,331 @@
+<mxfile host="Electron" modified="2024-10-27T18:48:33.670Z" agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) draw.io/24.1.0 Chrome/120.0.6099.109 Electron/28.1.0 Safari/537.36" etag="wWjFqbbpuF_4NoujUOOm" version="24.1.0" type="device">
+  <diagram name="Página-1" id="LlQV2lK7GuKEQAewxUyt">
+    <mxGraphModel dx="1290" dy="621" grid="0" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+        <mxCell id="fpuF3uitfmd_pj-7_AOT-1" value="Asesor" style="shape=umlActor;verticalLabelPosition=bottom;verticalAlign=top;html=1;outlineConnect=0;" vertex="1" parent="1">
+          <mxGeometry x="83" y="89" width="30" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="fpuF3uitfmd_pj-7_AOT-2" value="Alumno" style="shape=umlActor;verticalLabelPosition=bottom;verticalAlign=top;html=1;outlineConnect=0;" vertex="1" parent="1">
+          <mxGeometry x="238" y="89" width="30" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="fpuF3uitfmd_pj-7_AOT-7" value="" style="ellipse;whiteSpace=wrap;html=1;aspect=fixed;" vertex="1" parent="1">
+          <mxGeometry x="732.5" y="95" width="59" height="59" as="geometry" />
+        </mxCell>
+        <mxCell id="fpuF3uitfmd_pj-7_AOT-8" value="" style="endArrow=none;html=1;rounded=0;" edge="1" parent="1">
+          <mxGeometry width="50" height="50" relative="1" as="geometry">
+            <mxPoint x="719" y="154" as="sourcePoint" />
+            <mxPoint x="812" y="154" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="fpuF3uitfmd_pj-7_AOT-9" value="BD" style="text;html=1;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;" vertex="1" parent="1">
+          <mxGeometry x="732.5" y="148" width="60" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="fpuF3uitfmd_pj-7_AOT-10" value="" style="endArrow=none;html=1;rounded=0;" edge="1" parent="1">
+          <mxGeometry width="50" height="50" relative="1" as="geometry">
+            <mxPoint x="385" y="136" as="sourcePoint" />
+            <mxPoint x="385" y="98" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="fpuF3uitfmd_pj-7_AOT-11" value="" style="endArrow=none;html=1;rounded=0;" edge="1" parent="1">
+          <mxGeometry width="50" height="50" relative="1" as="geometry">
+            <mxPoint x="385" y="118" as="sourcePoint" />
+            <mxPoint x="415" y="118" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="fpuF3uitfmd_pj-7_AOT-12" value="" style="ellipse;whiteSpace=wrap;html=1;aspect=fixed;" vertex="1" parent="1">
+          <mxGeometry x="414" y="90" width="54" height="54" as="geometry" />
+        </mxCell>
+        <mxCell id="fpuF3uitfmd_pj-7_AOT-13" value="Software" style="text;html=1;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;" vertex="1" parent="1">
+          <mxGeometry x="404" y="144" width="60" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="fpuF3uitfmd_pj-7_AOT-15" value="" style="ellipse;whiteSpace=wrap;html=1;aspect=fixed;" vertex="1" parent="1">
+          <mxGeometry x="570" y="95" width="54" height="54" as="geometry" />
+        </mxCell>
+        <mxCell id="fpuF3uitfmd_pj-7_AOT-18" value="" style="endArrow=classic;html=1;rounded=0;" edge="1" parent="1">
+          <mxGeometry width="50" height="50" relative="1" as="geometry">
+            <mxPoint x="591" y="95" as="sourcePoint" />
+            <mxPoint x="603" y="95" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="fpuF3uitfmd_pj-7_AOT-19" value="Control" style="text;html=1;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;" vertex="1" parent="1">
+          <mxGeometry x="570" y="144" width="60" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="fpuF3uitfmd_pj-7_AOT-22" value="" style="endArrow=none;dashed=1;html=1;rounded=0;" edge="1" parent="1">
+          <mxGeometry width="50" height="50" relative="1" as="geometry">
+            <mxPoint x="252.5" y="207" as="sourcePoint" />
+            <mxPoint x="252.5" y="167" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="fpuF3uitfmd_pj-7_AOT-23" value="" style="endArrow=none;dashed=1;html=1;rounded=0;" edge="1" parent="1">
+          <mxGeometry width="50" height="50" relative="1" as="geometry">
+            <mxPoint x="97.5" y="208" as="sourcePoint" />
+            <mxPoint x="97.5" y="168" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="fpuF3uitfmd_pj-7_AOT-24" value="" style="endArrow=none;dashed=1;html=1;rounded=0;" edge="1" parent="1">
+          <mxGeometry width="50" height="50" relative="1" as="geometry">
+            <mxPoint x="441" y="211" as="sourcePoint" />
+            <mxPoint x="440.5" y="166" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="fpuF3uitfmd_pj-7_AOT-25" value="" style="endArrow=none;dashed=1;html=1;rounded=0;exitX=0.5;exitY=0;exitDx=0;exitDy=0;" edge="1" parent="1" source="fpuF3uitfmd_pj-7_AOT-36">
+          <mxGeometry width="50" height="50" relative="1" as="geometry">
+            <mxPoint x="599.5" y="205" as="sourcePoint" />
+            <mxPoint x="599.5" y="165" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="fpuF3uitfmd_pj-7_AOT-26" value="" style="endArrow=none;dashed=1;html=1;rounded=0;" edge="1" parent="1">
+          <mxGeometry width="50" height="50" relative="1" as="geometry">
+            <mxPoint x="762" y="206" as="sourcePoint" />
+            <mxPoint x="762" y="166" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="fpuF3uitfmd_pj-7_AOT-27" value="" style="rounded=1;whiteSpace=wrap;html=1;rotation=-90;fillColor=#FFEE59;" vertex="1" parent="1">
+          <mxGeometry x="75.5" y="222" width="45" height="14" as="geometry" />
+        </mxCell>
+        <mxCell id="fpuF3uitfmd_pj-7_AOT-28" value="" style="rounded=1;whiteSpace=wrap;html=1;rotation=-90;fillColor=#FFEE59;" vertex="1" parent="1">
+          <mxGeometry x="230.5" y="222" width="45" height="14" as="geometry" />
+        </mxCell>
+        <mxCell id="fpuF3uitfmd_pj-7_AOT-32" value="" style="endArrow=none;dashed=1;html=1;rounded=0;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" edge="1" parent="1" source="fpuF3uitfmd_pj-7_AOT-27" target="fpuF3uitfmd_pj-7_AOT-28">
+          <mxGeometry width="50" height="50" relative="1" as="geometry">
+            <mxPoint x="387" y="347" as="sourcePoint" />
+            <mxPoint x="437" y="297" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="fpuF3uitfmd_pj-7_AOT-33" value="Crear cuenta()" style="text;html=1;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;" vertex="1" parent="1">
+          <mxGeometry x="135" y="206" width="82" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="fpuF3uitfmd_pj-7_AOT-34" value="Solitar Datos" style="text;html=1;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;" vertex="1" parent="1">
+          <mxGeometry x="407" y="214" width="77" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="fpuF3uitfmd_pj-7_AOT-35" value="" style="endArrow=none;dashed=1;html=1;rounded=0;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" edge="1" parent="1">
+          <mxGeometry width="50" height="50" relative="1" as="geometry">
+            <mxPoint x="264" y="228.5" as="sourcePoint" />
+            <mxPoint x="405" y="228.5" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="fpuF3uitfmd_pj-7_AOT-36" value="Consular BD" style="text;html=1;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;" vertex="1" parent="1">
+          <mxGeometry x="561.5" y="214" width="77" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="fpuF3uitfmd_pj-7_AOT-37" value="" style="endArrow=none;dashed=1;html=1;rounded=0;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;" edge="1" parent="1" target="fpuF3uitfmd_pj-7_AOT-36">
+          <mxGeometry width="50" height="50" relative="1" as="geometry">
+            <mxPoint x="480" y="228.5" as="sourcePoint" />
+            <mxPoint x="548" y="229" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="fpuF3uitfmd_pj-7_AOT-38" value="Revisar Datos" style="text;html=1;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;" vertex="1" parent="1">
+          <mxGeometry x="738" y="214" width="60" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="fpuF3uitfmd_pj-7_AOT-39" value="" style="endArrow=none;dashed=1;html=1;rounded=0;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;" edge="1" parent="1" target="fpuF3uitfmd_pj-7_AOT-38">
+          <mxGeometry width="50" height="50" relative="1" as="geometry">
+            <mxPoint x="634" y="228.5" as="sourcePoint" />
+            <mxPoint x="716" y="229" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="fpuF3uitfmd_pj-7_AOT-41" value="" style="endArrow=none;dashed=1;html=1;rounded=0;" edge="1" parent="1">
+          <mxGeometry width="50" height="50" relative="1" as="geometry">
+            <mxPoint x="805" y="229" as="sourcePoint" />
+            <mxPoint x="805" y="753" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="fpuF3uitfmd_pj-7_AOT-42" value="" style="endArrow=none;dashed=1;html=1;rounded=0;exitX=0.5;exitY=1;exitDx=0;exitDy=0;" edge="1" parent="1">
+          <mxGeometry width="50" height="50" relative="1" as="geometry">
+            <mxPoint x="786" y="228.5" as="sourcePoint" />
+            <mxPoint x="806" y="228.5" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="fpuF3uitfmd_pj-7_AOT-43" value="" style="endArrow=none;dashed=1;html=1;rounded=0;" edge="1" parent="1">
+          <mxGeometry width="50" height="50" relative="1" as="geometry">
+            <mxPoint x="790.5" y="753" as="sourcePoint" />
+            <mxPoint x="804" y="753" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="fpuF3uitfmd_pj-7_AOT-44" value="Datos Correctos" style="text;html=1;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;" vertex="1" parent="1">
+          <mxGeometry x="737" y="739" width="60" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="fpuF3uitfmd_pj-7_AOT-45" value="Actualizar BD" style="text;html=1;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;" vertex="1" parent="1">
+          <mxGeometry x="569.5" y="739" width="77" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="fpuF3uitfmd_pj-7_AOT-46" value="" style="endArrow=none;dashed=1;html=1;rounded=0;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;" edge="1" parent="1">
+          <mxGeometry width="50" height="50" relative="1" as="geometry">
+            <mxPoint x="643" y="753.5" as="sourcePoint" />
+            <mxPoint x="747" y="754" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="fpuF3uitfmd_pj-7_AOT-47" value="Cuenta Creada Exitosamente" style="text;html=1;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;" vertex="1" parent="1">
+          <mxGeometry x="406.5" y="739" width="87" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="fpuF3uitfmd_pj-7_AOT-48" value="" style="endArrow=none;dashed=1;html=1;rounded=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;" edge="1" parent="1">
+          <mxGeometry width="50" height="50" relative="1" as="geometry">
+            <mxPoint x="495.5" y="754" as="sourcePoint" />
+            <mxPoint x="570.5" y="754" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="fpuF3uitfmd_pj-7_AOT-49" value="" style="endArrow=none;dashed=1;html=1;rounded=0;" edge="1" parent="1">
+          <mxGeometry width="50" height="50" relative="1" as="geometry">
+            <mxPoint x="98" y="314" as="sourcePoint" />
+            <mxPoint x="97.5" y="247" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="fpuF3uitfmd_pj-7_AOT-50" value="" style="endArrow=none;dashed=1;html=1;rounded=0;" edge="1" parent="1">
+          <mxGeometry width="50" height="50" relative="1" as="geometry">
+            <mxPoint x="257.5" y="755" as="sourcePoint" />
+            <mxPoint x="254" y="510" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="fpuF3uitfmd_pj-7_AOT-51" value="" style="endArrow=none;dashed=1;html=1;rounded=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" edge="1" parent="1">
+          <mxGeometry width="50" height="50" relative="1" as="geometry">
+            <mxPoint x="103.5" y="756" as="sourcePoint" />
+            <mxPoint x="408.5" y="753.5" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="fpuF3uitfmd_pj-7_AOT-52" value="Cuenta Creada" style="text;html=1;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;" vertex="1" parent="1">
+          <mxGeometry x="135" y="725" width="91" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="fpuF3uitfmd_pj-7_AOT-53" value="" style="endArrow=none;dashed=1;html=1;rounded=0;exitX=0.5;exitY=1;exitDx=0;exitDy=0;" edge="1" parent="1">
+          <mxGeometry width="50" height="50" relative="1" as="geometry">
+            <mxPoint x="101" y="311" as="sourcePoint" />
+            <mxPoint x="264" y="311" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="fpuF3uitfmd_pj-7_AOT-54" value="Validar correo()" style="text;html=1;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;" vertex="1" parent="1">
+          <mxGeometry x="130.5" y="288" width="91" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="fpuF3uitfmd_pj-7_AOT-55" value="" style="endArrow=none;dashed=1;html=1;rounded=0;" edge="1" parent="1">
+          <mxGeometry width="50" height="50" relative="1" as="geometry">
+            <mxPoint x="253" y="309" as="sourcePoint" />
+            <mxPoint x="252.5" y="251" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="fpuF3uitfmd_pj-7_AOT-56" value="Mostar pantalla de validacion" style="text;html=1;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;" vertex="1" parent="1">
+          <mxGeometry x="408" y="297" width="77" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="fpuF3uitfmd_pj-7_AOT-57" value="" style="endArrow=none;dashed=1;html=1;rounded=0;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" edge="1" parent="1">
+          <mxGeometry width="50" height="50" relative="1" as="geometry">
+            <mxPoint x="265" y="311.5" as="sourcePoint" />
+            <mxPoint x="406" y="311.5" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="fpuF3uitfmd_pj-7_AOT-58" value="" style="endArrow=none;dashed=1;html=1;rounded=0;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;" edge="1" parent="1">
+          <mxGeometry width="50" height="50" relative="1" as="geometry">
+            <mxPoint x="481" y="311.5" as="sourcePoint" />
+            <mxPoint x="563" y="312" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="fpuF3uitfmd_pj-7_AOT-59" value="Enviar link de validacion" style="text;html=1;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;" vertex="1" parent="1">
+          <mxGeometry x="561.5" y="297" width="77" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="fpuF3uitfmd_pj-7_AOT-61" value="" style="endArrow=none;dashed=1;html=1;rounded=0;" edge="1" parent="1">
+          <mxGeometry width="50" height="50" relative="1" as="geometry">
+            <mxPoint x="600" y="389" as="sourcePoint" />
+            <mxPoint x="599.5" y="331" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="fpuF3uitfmd_pj-7_AOT-62" value="" style="endArrow=none;dashed=1;html=1;rounded=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;" edge="1" parent="1">
+          <mxGeometry width="50" height="50" relative="1" as="geometry">
+            <mxPoint x="484" y="408" as="sourcePoint" />
+            <mxPoint x="561.5" y="408" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="fpuF3uitfmd_pj-7_AOT-63" value="Recibir validación de usuario" style="text;html=1;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;" vertex="1" parent="1">
+          <mxGeometry x="561.5" y="393" width="77" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="fpuF3uitfmd_pj-7_AOT-64" value="Validación Exitosa" style="text;html=1;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;" vertex="1" parent="1">
+          <mxGeometry x="418.5" y="391" width="77" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="fpuF3uitfmd_pj-7_AOT-65" value="" style="endArrow=none;dashed=1;html=1;rounded=0;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" edge="1" parent="1">
+          <mxGeometry width="50" height="50" relative="1" as="geometry">
+            <mxPoint x="277.5" y="407.5" as="sourcePoint" />
+            <mxPoint x="418.5" y="407.5" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="fpuF3uitfmd_pj-7_AOT-67" value="" style="endArrow=none;dashed=1;html=1;rounded=0;" edge="1" parent="1">
+          <mxGeometry width="50" height="50" relative="1" as="geometry">
+            <mxPoint x="106" y="758" as="sourcePoint" />
+            <mxPoint x="98" y="297" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="fpuF3uitfmd_pj-7_AOT-68" value="" style="endArrow=none;dashed=1;html=1;rounded=0;exitX=0.5;exitY=1;exitDx=0;exitDy=0;" edge="1" parent="1">
+          <mxGeometry width="50" height="50" relative="1" as="geometry">
+            <mxPoint x="103.5" y="407" as="sourcePoint" />
+            <mxPoint x="284" y="407" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="fpuF3uitfmd_pj-7_AOT-69" value="Correo Validado" style="text;html=1;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;" vertex="1" parent="1">
+          <mxGeometry x="133" y="384" width="91" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="fpuF3uitfmd_pj-7_AOT-70" value="" style="endArrow=none;dashed=1;html=1;rounded=0;" edge="1" parent="1">
+          <mxGeometry width="50" height="50" relative="1" as="geometry">
+            <mxPoint x="252.5" y="407" as="sourcePoint" />
+            <mxPoint x="252.5" y="307" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="fpuF3uitfmd_pj-7_AOT-71" value="" style="endArrow=none;dashed=1;html=1;rounded=0;" edge="1" parent="1">
+          <mxGeometry width="50" height="50" relative="1" as="geometry">
+            <mxPoint x="252.5" y="510" as="sourcePoint" />
+            <mxPoint x="252.5" y="410" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="fpuF3uitfmd_pj-7_AOT-74" value="" style="endArrow=none;dashed=1;html=1;rounded=0;exitX=0.5;exitY=1;exitDx=0;exitDy=0;" edge="1" parent="1" target="fpuF3uitfmd_pj-7_AOT-75">
+          <mxGeometry width="50" height="50" relative="1" as="geometry">
+            <mxPoint x="257" y="510" as="sourcePoint" />
+            <mxPoint x="398" y="510" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="fpuF3uitfmd_pj-7_AOT-75" value="Elegir rol" style="text;html=1;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;" vertex="1" parent="1">
+          <mxGeometry x="418.5" y="494" width="77" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="fpuF3uitfmd_pj-7_AOT-76" value="Rol()" style="text;html=1;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;" vertex="1" parent="1">
+          <mxGeometry x="275.5" y="482" width="91" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="fpuF3uitfmd_pj-7_AOT-77" value="" style="endArrow=none;dashed=1;html=1;rounded=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;" edge="1" parent="1">
+          <mxGeometry width="50" height="50" relative="1" as="geometry">
+            <mxPoint x="485" y="509" as="sourcePoint" />
+            <mxPoint x="562.5" y="509" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="fpuF3uitfmd_pj-7_AOT-78" value="Recibe elección de rol" style="text;html=1;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;" vertex="1" parent="1">
+          <mxGeometry x="562.5" y="494" width="77" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="fpuF3uitfmd_pj-7_AOT-79" value="" style="endArrow=none;dashed=1;html=1;rounded=0;" edge="1" parent="1">
+          <mxGeometry width="50" height="50" relative="1" as="geometry">
+            <mxPoint x="600" y="664" as="sourcePoint" />
+            <mxPoint x="599.5" y="531" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="fpuF3uitfmd_pj-7_AOT-80" value="" style="endArrow=none;dashed=1;html=1;rounded=0;" edge="1" parent="1">
+          <mxGeometry width="50" height="50" relative="1" as="geometry">
+            <mxPoint x="492.5" y="585" as="sourcePoint" />
+            <mxPoint x="596" y="585" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="fpuF3uitfmd_pj-7_AOT-81" value="Lider" style="text;html=1;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;" vertex="1" parent="1">
+          <mxGeometry x="424" y="570" width="77" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="fpuF3uitfmd_pj-7_AOT-82" value="" style="endArrow=none;dashed=1;html=1;rounded=0;" edge="1" parent="1">
+          <mxGeometry width="50" height="50" relative="1" as="geometry">
+            <mxPoint x="495.5" y="663" as="sourcePoint" />
+            <mxPoint x="599" y="663" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="fpuF3uitfmd_pj-7_AOT-83" value="Integrante" style="text;html=1;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;" vertex="1" parent="1">
+          <mxGeometry x="424" y="647" width="77" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="fpuF3uitfmd_pj-7_AOT-84" value="" style="endArrow=none;dashed=1;html=1;rounded=0;exitX=0.5;exitY=1;exitDx=0;exitDy=0;" edge="1" parent="1" target="fpuF3uitfmd_pj-7_AOT-81">
+          <mxGeometry width="50" height="50" relative="1" as="geometry">
+            <mxPoint x="252" y="585" as="sourcePoint" />
+            <mxPoint x="414" y="584" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="fpuF3uitfmd_pj-7_AOT-85" value="" style="endArrow=none;dashed=1;html=1;rounded=0;exitX=0.5;exitY=1;exitDx=0;exitDy=0;" edge="1" parent="1">
+          <mxGeometry width="50" height="50" relative="1" as="geometry">
+            <mxPoint x="257" y="661.5" as="sourcePoint" />
+            <mxPoint x="429" y="661.5" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>
