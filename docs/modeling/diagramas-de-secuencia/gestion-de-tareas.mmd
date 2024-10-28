@@ -1,0 +1,33 @@
+sequenceDiagram
+    actor Lider
+    actor Integrante
+    actor App
+    actor BD
+
+    rect rgb(254, 236, 55)
+        Lider ->> App: Asignar tarea
+        App ->> BD: Registrar tarea a integrante
+        BD ->> BD: Actualizar BD
+        App -->> Integrante: Cambios guardados correctamente
+    end
+
+    rect rgb(255, 162, 76)
+        Lider ->> App: Editar tarea
+        App ->> BD: Actualizar tarea a integrante
+        BD ->> BD: Actualizar BD
+        App -->> Integrante: Cambios guardados correctamente
+    end
+
+    rect rgb(211, 238, 152)
+        Lider ->> App: Eliminar tarea
+        App ->> BD: Eliminar tarea a integrante
+        BD ->> BD: Actualizar BD
+        App -->> Lider: Cambios guardados correctamente
+    end
+
+    rect rgb(255, 119, 183)
+        Integrante ->> App: Mover tarea de lista
+        App ->> BD: Actualizar listas
+        BD ->> BD: Actualizar BD
+        App -->> Integrante: Cambios guardados correctamente
+    end
