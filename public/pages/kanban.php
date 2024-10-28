@@ -1,4 +1,3 @@
-<?php
 include '../dist/back-end/conecta.php';
 $con = conecta();
 ?>
@@ -20,11 +19,7 @@ $con = conecta();
         <div class="list" id="todo-list">
           <h2>Por Hacer</h2>
 
-          <div class="tasks" id="todo-tasks">
-            <p class="task" draggable="true">Task 1</p>
-            <p class="task" draggable="true">Task 2</p>
-            <p class="task" draggable="true">Task 3</p>
-          </div>
+          <div class="tasks" id="todo-tasks"></div>
 
           <form class="add-task-form">
             <input
@@ -41,11 +36,7 @@ $con = conecta();
         <div class="list" id="in-progress-list">
           <h2>En Proceso</h2>
 
-          <div class="tasks" id="in-progress-tasks">
-            <p class="task" draggable="true">Task 4</p>
-            <p class="task" draggable="true">Task 5</p>
-            <p class="task" draggable="true">Task 6</p>
-          </div>
+          <div class="tasks" id="in-progress-tasks"></div>
 
           <form class="add-task-form">
             <input
@@ -62,11 +53,7 @@ $con = conecta();
         <div class="list" id="done-list">
           <h2>Hechos</h2>
 
-          <div class="tasks" id="done-tasks">
-            <p class="task" draggable="true">Task 7</p>
-            <p class="task" draggable="true">Task 8</p>
-            <p class="task" draggable="true">Task 9</p>
-          </div>
+          <div class="tasks" id="done-tasks"></div>
 
           <form class="add-task-form">
             <input
@@ -82,4 +69,4 @@ $con = conecta();
       </div>
     </div>
   </body>
-</html>
+</html><?php

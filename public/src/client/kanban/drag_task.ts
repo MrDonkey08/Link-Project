@@ -1,18 +1,16 @@
 ;(() => {
-	const draggables = document.querySelectorAll<HTMLElement>(".task")
+	const draggables = document.querySelectorAll<HTMLElement>(".task-box")
 	const droppables = document.querySelectorAll<HTMLElement>(".tasks")
 
-	// Replacing forEach with for...of for draggables
-	for (const task of draggables) {
-		task.addEventListener("dragstart", () => {
-			task.classList.add("is-dragging")
+	for (const task_box of draggables) {
+		task_box.addEventListener("dragstart", () => {
+			task_box.classList.add("is-dragging")
 		})
-		task.addEventListener("dragend", () => {
-			task.classList.remove("is-dragging")
+		task_box.addEventListener("dragend", () => {
+			task_box.classList.remove("is-dragging")
 		})
 	}
 
-	// Replacing forEach with for...of for droppables
 	for (const zone of droppables) {
 		zone.addEventListener("dragover", (e: DragEvent) => {
 			e.preventDefault()
@@ -30,23 +28,24 @@
 		})
 	}
 
-	// Replacing forEach with for...of inside insertAboveTask
 	const insertAboveTask = (
 		zone: HTMLElement,
 		mouseY: number
 	): HTMLElement | null => {
-		const els = zone.querySelectorAll<HTMLElement>(".task:not(.is-dragging)")
+		const els = zone.querySelectorAll<HTMLElement>(
+			".task-box:not(.is-dragging)"
+		)
 
 		let closest_task: HTMLElement | null = null
 		let closest_offset = Number.NEGATIVE_INFINITY
 
-		for (const task of els) {
-			const { top } = task.getBoundingClientRect()
+		for (const task_box of els) {
+			const { top } = task_box.getBoundingClientRect()
 			const offset = mouseY - top
 
 			if (offset < 0 && offset > closest_offset) {
 				closest_offset = offset
-				closest_task = task
+				closest_task = task_box
 			}
 		}
 
