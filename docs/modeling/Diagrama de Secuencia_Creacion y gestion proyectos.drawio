@@ -202,18 +202,7 @@
           <mxGeometry y="53.00276150627615" width="60" height="17.740585774058577" as="geometry" />
         </mxCell>
         <mxCell id="hbTt9w611gEUicapbNtO-110" value="" style="html=1;points=[[0,0,0,0,5],[0,1,0,0,-5],[1,0,0,0,5],[1,1,0,0,-5]];perimeter=orthogonalPerimeter;outlineConnect=0;targetShapes=umlLifeline;portConstraint=eastwest;newEdgeStyle={&quot;curved&quot;:0,&quot;rounded&quot;:0};fillColor=#e3c800;fontColor=#000000;strokeColor=#B09500;" vertex="1" parent="hbTt9w611gEUicapbNtO-60">
-          <mxGeometry x="25" y="175.04044630404462" width="10" height="37.8465829846583" as="geometry" />
-        </mxCell>
-        <mxCell id="hbTt9w611gEUicapbNtO-114" value="" style="endArrow=open;endFill=1;endSize=12;html=1;rounded=0;" edge="1" parent="hbTt9w611gEUicapbNtO-60" target="hbTt9w611gEUicapbNtO-27">
-          <mxGeometry width="160" relative="1" as="geometry">
-            <mxPoint x="35" y="205.7907949790795" as="sourcePoint" />
-            <mxPoint x="195" y="205.7907949790795" as="targetPoint" />
-          </mxGeometry>
-        </mxCell>
-        <mxCell id="hbTt9w611gEUicapbNtO-115" value="Acepta solicitud" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];" vertex="1" connectable="0" parent="hbTt9w611gEUicapbNtO-114">
-          <mxGeometry x="-0.2303" y="1" relative="1" as="geometry">
-            <mxPoint x="-35" as="offset" />
-          </mxGeometry>
+          <mxGeometry x="25" y="297" width="10" height="55" as="geometry" />
         </mxCell>
         <mxCell id="hbTt9w611gEUicapbNtO-160" value="" style="shape=umlDestroy;whiteSpace=wrap;html=1;strokeWidth=3;targetShapes=umlLifeline;" vertex="1" parent="hbTt9w611gEUicapbNtO-60">
           <mxGeometry x="15" y="408" width="30" height="30" as="geometry" />
@@ -452,6 +441,17 @@
         </mxCell>
         <mxCell id="hbTt9w611gEUicapbNtO-159" value="Alt" style="shape=umlFrame;whiteSpace=wrap;html=1;pointerEvents=0;strokeColor=#3399FF;" vertex="1" parent="1">
           <mxGeometry x="12" y="511" width="828" height="199" as="geometry" />
+        </mxCell>
+        <mxCell id="hbTt9w611gEUicapbNtO-114" value="" style="endArrow=open;endFill=1;endSize=12;html=1;rounded=0;" edge="1" parent="1">
+          <mxGeometry width="160" relative="1" as="geometry">
+            <mxPoint x="62.5" y="398.0007949790795" as="sourcePoint" />
+            <mxPoint x="373" y="398.0007949790796" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="hbTt9w611gEUicapbNtO-115" value="Acepta solicitud" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];" vertex="1" connectable="0" parent="hbTt9w611gEUicapbNtO-114">
+          <mxGeometry x="-0.2303" y="1" relative="1" as="geometry">
+            <mxPoint x="-35" as="offset" />
+          </mxGeometry>
         </mxCell>
       </root>
     </mxGraphModel>
