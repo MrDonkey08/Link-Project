@@ -1,3 +1,4 @@
+<?php
 include '../dist/back-end/conecta.php';
 $con = conecta();
 ?>

@@ -3,7 +3,7 @@
 //funciones/conecta.php
 
 define ("HOST", 'localhost');
-define ("BD", 'proyecto01');
+define ("BD", 'link-project');
 define ("USER_BD", 'root');
 define ("PASS_BD", '');
 
