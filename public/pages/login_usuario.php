@@ -1,5 +1,5 @@
 <?php
-include '../dist/back-end/conecta.php';
+require '../src/server/conecta.php';
 $con = conecta();
 ?>
 <!doctype html>
@@ -9,7 +9,7 @@ $con = conecta();
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Login</title>
     <link rel="stylesheet" href="../assets/styles/login.css" />
-    <script src="../dist/back-end/jquery-3.3.1.min.js"></script>
+    <script src="../src/server/jquery-3.3.1.min.js"></script>
     <script>
       // Funcion para validar y enviar datos
       function ValidarDatos() {
@@ -24,7 +24,7 @@ $con = conecta();
           // Realizar la solicitud AJAX
           $.ajax({
             type: "POST",
-            url: "../dist/back-end/Verifica_Usuario.php",
+            url: "../src/server/Verifica_Usuario.php",
             dataType: "text",
             data: { Correo: Correo, Pass: Pass },
             success: function (res) {

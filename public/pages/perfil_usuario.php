@@ -1,5 +1,5 @@
 <?php
-include '../dist/back-end/conecta.php';
+include '../src/server/conecta.php';
 $con = conecta();
 ?>
 <!doctype html>

@@ -1,5 +1,5 @@
 <?php
-include '../dist/back-end/conecta.php';
+require '../src/server/conecta.php';
 $con = conecta();
 ?>
 <!doctype html>
@@ -12,7 +12,7 @@ $con = conecta();
 
     <link href="css/style.css" rel="stylesheet" />
 
-    <script async src="../dist/client/registro.js"></script>
+    <script async src="../src/client/registro.js"></script>
   </head>
   <body>
     <h1>Registro de Usuario</h1>

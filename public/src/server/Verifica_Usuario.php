@@ -1,4 +1,5 @@
 <?php
+
 //VerificaCorreo.php
 session_start();
 require "conecta.php";
@@ -13,7 +14,7 @@ $sql = "SELECT * FROM usuarios WHERE Correo = '$correo' AND Pass = '$pass' AND S
 $res = $con->query($sql);
 $num = $res->num_rows;
 
-if($num == 1) {
+if ($num == 1) {
     $row        = $res->fetch_array();
     $id         = $row["ID"];
     $nombre     = $row["Nombre"];
@@ -27,5 +28,3 @@ if($num == 1) {
 
 echo $num;
 
-
-?>
