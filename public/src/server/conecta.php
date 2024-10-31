@@ -2,14 +2,14 @@
 
 define("HOST", 'localhost');
 define("BD", 'link-project');
-define("USER_BD", 'root');
-define("PASS_BD", getenv('DB_PASSWORD'));
+define("USER_BD", 'postgres');
+define("PASS_BD", 'root');
 
 define(
     "CONNECTION_STRING",
     "host=" . HOST .
     " dbname=" . BD .
-    " user=" . USERBD .
+    " user=" . USER_BD .
     " password=" . PASS_BD
 );
 
