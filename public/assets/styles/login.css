@@ -35,7 +35,7 @@ header {
 
 /* -------------------------------------- Espacio central de la barra de opciones */
 .Central {
-    flex: 2; 
+    flex: 2;
     padding: 10px;
     text-align: center;
     /*border: solid #000 1px; /*Opcion que suo para revisar diseño de espacio*/
@@ -44,13 +44,13 @@ header {
 /* -------------------------------------- Tabla de navegacion */
 .TablaNav {
     display: flex;
-    gap: 10px; 
+    gap: 10px;
     /*border: solid #000 1px; /*Opcion que suo para revisar diseño de espacio*/
 }
 
 /* -------------------------------------- Cada uno de los 3 divs alineados a la derecha */
 .TablaNav div {
-    flex: 0 1 100px; 
+    flex: 0 1 100px;
     padding: 10px;
     text-align: center;
 }
@@ -73,10 +73,10 @@ header {
 
 /* -------------------------------------- Diseño de tabla central para la informacion de usuario*/
 .Contenido {
-    display: flex; 
-    justify-content: center; 
-    align-items: center; 
-    min-height: calc(100vh - 60px); 
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: calc(100vh - 60px);
     background-color: #f8f9fa;
 }
 
@@ -91,14 +91,14 @@ footer {
     text-align: center;
     font-size: 18px;
     padding: 10px;
-    box-shadow: 0 -2px 5px rgba(0, 0, 0, 0.1); 
+    box-shadow: 0 -2px 5px rgba(0, 0, 0, 0.1);
 }
 
 .iconos {
     width: 50px;
     height: 50px;
     filter: grayscale(100%);
-} 
+}
 
 /* Container for login form */
 .login-container {
