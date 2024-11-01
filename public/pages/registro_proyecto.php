@@ -1,22 +1,22 @@
 <?php
-include '../dist/back-end/conecta.php';
+require '../src/server/conecta.php';
 $con = conecta();
 ?>
 <!doctype html>
 <html>
   <head>
     <title>Registro Proyectos</title>
-    <link rel="stylesheet" href="../assets/styles/Registro-Proyectos.css" />
+    <link rel="stylesheet" href="../assets/styles/registro_proyectos.css" />
   </head>
   <body>
-    <!----------------------------------------------- Cuadro superior de la pagina ------------------------------------------------------->
+    <!----------------------------------------- Cuadro superior de la pagina -->
     <div class="Cuadro-Tiulo">
       <div class="IconMenu" id="MenuIcon">&#9776;</div>
     </div>
-    <!----------------------------------------------- Cuadro form para registro ------------------------------------------------------->
+    <!-------------------------------------------- Cuadro form para registro -->
     <div class="container">
       <h1>Registro de Proyecto</h1>
-      <!-- ------------------------------------------------------- Requisitos del registro ----------------------------------------------->
+      <!-- ----------------------------------------- Requisitos del registro -->
       <form id="registroProyect" method="post" enctype="multipart/form-data">
         <input
           type="text"
@@ -95,7 +95,7 @@ $con = conecta();
       </form>
     </div>
 
-    <!-- ------------------------------------------------------- Validación (función) mediante Jquery ----------------------------------------------->
+    <!-- ------------------------------ Validación (función) mediante Jquery -->
     <script src="js/jquery-3.3.1.min.js"></script>
     <script>
       function validarFormulario() {
