@@ -24,13 +24,13 @@ $con = conecta();
           // Realizar la solicitud AJAX
           $.ajax({
             type: "POST",
-            url: "../src/server/Verifica_Usuario.php",
+            url: "../src/server/verifica_usuario.php",
             dataType: "text",
             data: { Correo: Correo, Pass: Pass },
             success: function (res) {
               console.log("Correo: ", Correo)
               if (res === "1") {
-                window.location.replace("perfilUsuario.php")
+                window.location.replace("perfil_usuario.php")
               } else {
                 $("#mensaje").html("El usuario o la contraseña son incorrectos")
                 console.log("Respuesta:", res)
