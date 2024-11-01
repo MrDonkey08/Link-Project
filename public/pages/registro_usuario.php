@@ -12,7 +12,7 @@ $con = conecta();
 
     <link href="css/style.css" rel="stylesheet" />
 
-    <script async src="../src/client/registro.js"></script>
+    <script async src="../dist/client/registro.js"></script>
   </head>
   <body>
     <h1>Registro de Usuario</h1>

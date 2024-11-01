@@ -6,7 +6,7 @@ $con = conecta();
 <html>
   <head>
     <title>Registro Proyectos</title>
-    <link rel="stylesheet" href="../assets/styles/Registro-Proyectos.css" />
+    <link rel="stylesheet" href="../assets/styles/registro_proyectos.css" />
   </head>
   <body>
     <!----------------------------------------- Cuadro superior de la pagina -->

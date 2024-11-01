@@ -8,8 +8,8 @@ $con = conecta();
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>Mi perfil de LIk-Proyect</title>
-    <link href="css/style.css" rel="stylesheet" />
-    <link rel="stylesheet" href="../assets/styles/perfilUsuario.css" />
+    <link href="../assets/styles/style.css" rel="stylesheet" />
+    <link href="../assets/styles/perfil_usuario.css" rel="stylesheet"/>
   </head>
   <body>
     <div class="wrapper">

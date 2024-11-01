@@ -11,8 +11,9 @@ $con = conecta();
     <title>Tablero de Kanban</title>
 
     <link href="../assets/styles/kanban.css" rel="stylesheet" />
-    <script async src="../src/client/kanban/drag_task.js"></script>
-    <script async src="../src/client/kanban/add_task.js"></script>
+
+    <script async src="../dist/client/kanban/drag_task.js"></script>
+    <script async src="../dist/client/kanban/add_task.js"></script>
   </head>
   <body>
     <div id="board">
