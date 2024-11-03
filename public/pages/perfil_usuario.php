@@ -1,5 +1,5 @@
 <?php
-include '../src/server/conecta.php';
+require '../src/server/conecta.php';
 $con = conecta();
 ?>
 <!doctype html>
@@ -9,7 +9,7 @@ $con = conecta();
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>Mi perfil de LIk-Proyect</title>
     <link href="../assets/styles/style.css" rel="stylesheet" />
-    <link href="../assets/styles/perfil_usuario.css" rel="stylesheet"/>
+    <link href="../assets/styles/perfil_usuario.css" rel="stylesheet" />
   </head>
   <body>
     <div class="wrapper">

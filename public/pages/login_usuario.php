@@ -100,8 +100,10 @@ $con = conecta();
               <input type="password" id="password-input" name="Pass" required />
               <label for="password-input">Contraseña</label>
             </div>
-            <div >
-            <p>¿No tienes cuenta? <a href="eleccionusuario.php">Regístrate</a></p>
+            <div>
+              <p>
+                ¿No tienes cuenta? <a href="eleccionusuario.php">Regístrate</a>
+              </p>
             </div>
             <button
               type="submit"
