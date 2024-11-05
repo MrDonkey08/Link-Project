@@ -4,87 +4,79 @@ $con = conecta();
 ?>
 <!doctype html>
 <html lang="es">
-  <head>
+<head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Login</title>
     <link rel="stylesheet" href="../assets/styles/login.css" />
     <script src="../src/server/jquery-3.3.1.min.js"></script>
     <script>
-      // Funcion para validar y enviar datos
+      // Función para validar y enviar datos
       function ValidarDatos() {
-        var Correo = $('[name="Correo"]').val().trim()
-        var Pass = $('[name="Pass"]').val().trim()
+        var Correo = $('[name="correo"]').val().trim(); // Corregido: debe ser 'correo'
+        var Pass = $('[name="pass"]').val().trim(); // Corregido: debe ser 'pass'
 
         if (Correo === "" || Pass === "") {
-          //alert("¡Felicidadades! Todos los campos estan llenos");
-          $("#mensaje").html("Faltan campos por llenar")
-          setTimeout("$('#mensaje').html('')", 5000)
+          $("#mensaje").html("Faltan campos por llenar");
+          setTimeout(function() {
+            $('#mensaje').html('');
+          }, 5000);
         } else {
           // Realizar la solicitud AJAX
           $.ajax({
             type: "POST",
-            url: "../src/server/login.php",
+            url: "../src/server/verifica_usuario.php",
             dataType: "text",
             data: { Correo: Correo, Pass: Pass },
-            success: function (res) {
-              console.log("Correo: ", Correo)
+            success: function(res) {
+              console.log("Correo: ", Correo);
               if (res === "1") {
-                window.location.replace("perfil_usuario.php")
+                window.location.replace("perfil_usuario.php");
               } else {
-                $("#mensaje").html("El usuario o la contraseña son incorrectos")
-                console.log("Respuesta:", res)
-                setTimeout(function () {
-                  $("#mensaje").html("")
-                }, 5000)
+                $("#mensaje").html("El usuario o la contraseña son incorrectos");
+                console.log("Respuesta:", res);
+                setTimeout(function() {
+                  $("#mensaje").html("");
+                }, 5000);
               }
             },
-            error: function () {
-              $("#mensaje").html("Error en la solicitud AJAX.")
-              setTimeout(function () {
-                $("#mensaje").html("")
-              }, 5000)
+            error: function() {
+              $("#mensaje").html("Error en la solicitud AJAX.");
+              setTimeout(function() {
+                $("#mensaje").html("");
+              }, 5000);
             },
-          })
+          });
         }
       }
     </script>
-  </head>
-  <body>
+</head>
+<body>
     <div class="wrapper">
-      <!-- ------------------------------------ Encabezado de pagina Inicial -->
+      <!-- Encabezado de página Inicial -->
       <header>
         <div class="Logo">
-          <a href="???"> Logotipo</a>
+          <a href="#"> Logotipo</a> <!-- Corregido el href -->
         </div>
         <div class="Central"></div>
         <div class="TablaNav">
           <div class="OpNav">
-            <a href="???">
-              <img
-                class="icono"
-                src="../assets/pictures/chat_icon-icons.com_67748.png"
-              />
+            <a href="#">
+              <img class="icono" src="../assets/pictures/chat_icon-icons.com_67748.png" />
             </a>
           </div>
           <div class="OpNav">
-            <a href="???">
-              <img
-                class="icono"
-                src="../assets/pictures/notifications_icon_124898.png"
-              />
+            <a href="#">
+              <img class="icono" src="../assets/pictures/notifications_icon_124898.png" />
             </a>
           </div>
           <div class="OpNav">
-            <a href="???">
-              <img
-                class="icono"
-                src="../assets/pictures/profile_icon_183860.png"
-              />
+            <a href="#">
+              <img class="icono" src="../assets/pictures/profile_icon_183860.png" />
             </a>
           </div>
           <div class="OpNav">
-            <a href="???"><img class="icono" src="Por si las dudas" /></a>
+            <a href="#"><img class="icono" src="../assets/pictures/other_icon.png" /></a> <!-- Actualiza la ruta -->
           </div>
         </div>
       </header>
@@ -105,32 +97,21 @@ $con = conecta();
                 ¿No tienes cuenta? <a href="eleccionusuario.php">Regístrate</a>
               </p>
             </div>
-            <button
-              type="submit"
-              value="Salvar"
-              onclick=" ValidarDatos(); return false;"
-            >
+            <button type="submit" value="Salvar" onclick="ValidarDatos(); return false;">
               Ingresar
             </button>
           </form>
+          <div id="mensaje"></div> <!-- Agregamos un div para mostrar mensajes -->
         </div>
       </div>
       <footer>
-        Todos los derechos reservados 2024 | terminos y condiciones | <br />
+        Todos los derechos reservados 2024 | términos y condiciones | <br />
         | Política de privacidad | Redes sociales | <br />
-        <a href="#"
-          ><img class="iconos" src="Diseños/imagenes-Diseño/Correo.png"
-        /></a>
-        <a href="#"
-          ><img class="iconos" src="Diseños/imagenes-Diseño/Facebook.png"
-        /></a>
-        <a href="#"
-          ><img class="iconos" src="Diseños/imagenes-Diseño/Insta.png"
-        /></a>
-        <a href="#"
-          ><img class="iconos" src="Diseños/imagenes-Diseño/X.png"
-        /></a>
+        <a href="#"><img class="iconos" src="../assets/images/email_icon.png" /></a> <!-- Actualiza las rutas -->
+        <a href="#"><img class="iconos" src="../assets/images/facebook_icon.png" /></a>
+        <a href="#"><img class="iconos" src="../assets/images/instagram_icon.png" /></a>
+        <a href="#"><img class="iconos" src="../assets/images/x_icon.png" /></a>
       </footer>
     </div>
-  </body>
+</body>
 </html>
