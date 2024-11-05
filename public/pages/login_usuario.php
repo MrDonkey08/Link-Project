@@ -93,11 +93,11 @@ $con = conecta();
           <h2>Iniciar Sesión</h2>
           <form>
             <div class="input-box">
-              <input type="text" id="email-input" name="Correo" required />
+              <input type="text" id="email-input" name="correo" required />
               <label for="email-input">Correo Electrónico</label>
             </div>
             <div class="input-box">
-              <input type="password" id="password-input" name="Pass" required />
+              <input type="password" id="password-input" name="pass" required />
               <label for="password-input">Contraseña</label>
             </div>
             <div>
