@@ -1,0 +1,12 @@
+:root{
+    --color1: #143c8c;
+    --color2: #91b0d5;
+    --color3: #1f4077;
+    --color4: #6487b1;
+    --color5: #b5c7da;
+
+}
+.head{
+    text-align: center;
+    background-color: var(--color2);
+}
