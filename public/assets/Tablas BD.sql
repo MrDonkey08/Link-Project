@@ -1,8 +1,7 @@
 CREATE TABLE estudiante (
     ID SERIAL PRIMARY KEY,
     Nombre VARCHAR(50) NOT NULL,
-    Apellido_pat VARCHAR(50) NOT NULL,
-    Apellido_mat VARCHAR(50) NOT NULL,
+    Apellidos VARCHAR(128) NOT NULL,
     Correo_institucional VARCHAR(100) UNIQUE NOT NULL,
     Num_tel VARCHAR(10),
     Codigo_estudiante VARCHAR(9) UNIQUE NOT NULL,
@@ -18,8 +17,7 @@ CREATE TABLE estudiante (
 CREATE TABLE asesor (
     ID SERIAL PRIMARY KEY,
     Nombre VARCHAR(50) NOT NULL,
-    Apellido_pat VARCHAR(50) NOT NULL,
-    Apellido_mat VARCHAR(50) NOT NULL,
+    Apellidos VARCHAR(128) NOT NULL,
     Codigo VARCHAR(9) UNIQUE NOT NULL,
     Correo_institucional VARCHAR(100) UNIQUE NOT NULL,
     Departamento VARCHAR(100) NOT NULL,
@@ -35,7 +33,7 @@ CREATE TABLE proyecto (
     Area VARCHAR(100) NOT NULL,
     Cupos INT CHECK (Cupos <= 3) NOT NULL,
     Estado VARCHAR(20) DEFAULT 'activo',
-    Asesor VARCHAR(100) NOT NULL,
+    Asesor VARCHAR(100),
     Conocimientos_requeridos TEXT,
     Nivel_innovacion VARCHAR(20) NOT NULL,
     Logo BYTEA
