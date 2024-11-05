@@ -2,7 +2,7 @@
 require '../src/server/conecta.php';
 $con = conecta();
 ?>
-<!doctype html>
+<!DOCTYPE html>
 <html lang="es">
   <head>
     <meta charset="UTF-8" />
@@ -14,8 +14,9 @@ $con = conecta();
 
     <script async src="../dist/client/registro.js"></script>
   </head>
+
   <body>
-    <h1 class="head">Registro de Usuario</h1>
+    <h1>Registro de Usuario</h1>
     <form method="post" action="">
       <fieldset>
         <h2>Datos Personales</h2>
