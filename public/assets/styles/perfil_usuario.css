@@ -5,12 +5,8 @@ body {
     height: 100%;
     background-size: cover; /* Lograr expandir la imagen a toda la pagina */
     background-attachment: fixed; /* esto fija la imagen de fondo */
+    justify-content: center;
     margin: 0;
-}
-/* -------------------------------------- Se refiere al contenido de pagina*/
-.content {
-    flex: 1; /* Toma el espacio disponible */
-    padding: 20px;
 }
 /* -------------------------------------- Se refiere a la base del sitio*/
 .wrapper {
@@ -26,25 +22,25 @@ header {
     align-items: center;
     padding: 10px;
 }
-
+/* -------------------------------------- Espacio para el logo */
 .logo {
     flex: 0 1 100px; /* Toma solo el espacio necesario para el logo */
     background-color: lightgray;
     padding: 10px;
     text-align: center;
 }
-
+/* -------------------------------------- Espacio central de la barra de opciones */
 .Central {
     flex: 2; /* Este div es el más grande */
     padding: 10px;
     text-align: center;
-    border: solid #000 1px; /*Opcion que suo para revisar diseño de espacio*/
+    /*border: solid #000 1px; /*Opcion que suo para revisar diseño de espacio*/
 }
-/* -------------------------------------- Tabla de navegacion y espacios*/
+/* -------------------------------------- Tabla de navegacion */
 .TablaNav {
     display: flex;
     gap: 10px; /* Espacio entre los divs */
-    border: solid #000 1px; /*Opcion que suo para revisar diseño de espacio*/
+    /*border: solid #000 1px; /*Opcion que suo para revisar diseño de espacio*/
 }
 /* -------------------------------------- Cada uno de los 3 divs alineados a la derecha */
 .TablaNav div {
@@ -52,10 +48,10 @@ header {
     padding: 10px;
     text-align: center;
 }
-/* -------------------------------------- opcines de navegacion (td) */
+/* -------------------------------------- opcines de navegacion */
 .OpNav {
     max-width: 100%;
-    border: solid #000 1px;
+    /*border: solid #000 1px;*/
 }
 /* -------------------------------------- Opciones de navegacion (a) esto hace toda la chamba */
 .OpNav img {
@@ -66,96 +62,104 @@ header {
     /* border: solid #000 1px; */
     transition: 0.3s;
 }
-/* -------------------------------------- Movimiento de opciones al acercar el cursor */
-.OpNav:hover {
-    transform: scale(1.1);
-}
-/* -------------------------------------- Limites y diseño del promocional*/
-.Promocional {
-    margin-top: 30px;
-    text-align: center;
-}
-/* -------------------------------------- Banner promocional cambiante al inicio de pagina*/
-.Imagen-Promo {
-    width: 90%;
-    height: 400px;
-    border-radius: 1%;
-}
-/* -------------------------------------- tabla de productos*/
-.Tabla-Productos {
+/* -------------------------------------- Diseño de tabla central para la informacion de usuario*/
+.Contenido {
+    font-family: Arial, sans-serif;
     display: flex;
-    flex-wrap: wrap;
-    justify-content: space-around;
-    font-size: 18px;
-    margin: 40px;
-    /* border: solid #000 1px; */
+    justify-content: center;
+    margin: 0;
+    padding: 0;
+    background-color: #f8f9fa;
 }
-/* -------------------------------------- Casillas de productos e informacion*/
-.Casilla-Producto {
-    width: 25%; /* Ancho de cada producto */
-    height: auto;
-    margin-top: 40px;
-    background-color: rgba(255, 255, 255, 0.75);
+/* -------------------------------------- Diseño de contenedor central para la informacion de usuario*/
+.contenedor {
+    max-width: 600px;
+    width: 100%;
+    padding: 20px;
+    background-color: #ffffff;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    border-radius: 8px;
+    margin-top: 20px;
+}
+/* -------------------------------------- Header secundario, para el espaciado del inicio */
+.Header {
+    display: flex;
+    align-items: center;
+    margin-bottom: 20px;
+}
+/* -------------------------------------- parte de foto */
+.avatar {
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    background-color: #333;
+    color: white;
+    font-size: 24px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-right: 20px;
+}
+/* -------------------------------------- Espacio para el logo */
+h1 {
+    margin: 0;
+    font-size: 24px;
+}
+/* -------------------------------------- Espacio para el logo */
+.contact-info {
+    font-size: 14px;
+    color: #555;
+    margin-bottom: 20px;
+}
+/* -------------------------------------- Espacio para el logo */
+.contact-info p {
+    margin: 5px 0;
+}
+/* -------------------------------------- Espacio para el logo */
+.section-title {
+    font-weight: bold;
+    font-size: 16px;
+    color: #333;
+    margin-top: 20px;
+    margin-bottom: 10px;
+}
+/* -------------------------------------- Espacio para el logo */
+.cv-item {
+    display: flex;
+    align-items: center;
     padding: 15px;
-    border-radius: 10px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.788);
-    /*border: solid #000 1px;  */
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    margin-bottom: 10px;
 }
-.Casilla-Producto a {
-    text-decoration: none;
-    font-family: "lato", sans-serif;
-    color: #000;
-    font-size: 18px;
+/* -------------------------------------- Espacio para el logo */
+.cv-item img {
+    width: 24px;
+    height: 24px;
+    margin-right: 10px;
 }
-/* -------------------------------------- Imagen de articulo o producto*/
-.Casilla-Producto img {
-    width: 60%;
-    height: auto;
-    margin: 10px;
-    padding: 10px;
-    /* border: solid #000 1px; */
+/* -------------------------------------- Espacio para el logo */
+.cv-item div {
+    font-size: 14px;
 }
-/* -------------------------------------- Diseño de los precios*/
-.Precio {
-    font-family: "lato", sans-serif;
-    font-size: 36px;
-    margin: 2px;
+/* -------------------------------------- Espacio para el logo */
+.cv-item span {
+    color: #666;
+    font-size: 12px;
 }
-/* -------------------------------------- Diseño de las palabras pequeñas like codigo*/
-.Code {
-    font-family: "lato", sans-serif;
-    font-size: 16px;
-    margin: 2px;
+/* -------------------------------------- Espacio para el logo */
+.settings-item {
+    padding: 15px;
+    border-top: 1px solid #ddd;
+    font-size: 14px;
+    display: flex;
+    justify-content: space-between;
+    color: #333;
 }
-/* -------------------------------------- Boton para agregar a carrito*/
-.Boton {
-    display: inline-block;
-    background-color: #ffff00;
-    color: #000;
-    font-family: monospace;
-    font-weight: 600;
-    padding: 8px 16px;
-    text-align: center;
-    text-decoration: none;
-    font-size: 16px;
-    margin: 2px;
+/* -------------------------------------- Espacio para el logo */
+.settings-item:hover {
+    background-color: #f1f1f1;
     cursor: pointer;
-    border-radius: 3%;
-    transition: 0.3s;
-    border: 0px;
-}
-.Boton:hover {
-    transform: scale(1.1);
-}
-/* -------------------------------------- espacio para seleccionar cantidaes*/
-.Pzs {
-    width: auto;
-    padding: 9px;
-    font-size: 16px;
-    border: 1px solid #7180b633;
-    border-radius: 10%;
-    margin: 15px;
-    background-color: #fff;
 }
 /* -------------------------------------- Se refiere al cuadro del menu o encabezado de pagina final*/
 footer {
