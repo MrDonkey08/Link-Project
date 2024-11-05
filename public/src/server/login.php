@@ -9,6 +9,12 @@
 require_once 'conecta.php';
 session_start();
 
+$correo = $_POST["correo"];
+$pass = $_POST["pass"];
+$tipo_de_usuario = $_POST["tipo-de-usuario"];
+
+login($correo, $pass, $tipo_de_usuario);
+
 /**
  * Verifica que las credenciales sean correctas, si lo son, inicia sesión en
  * dicha cuenta.

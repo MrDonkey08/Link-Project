@@ -24,7 +24,7 @@ $con = conecta();
           // Realizar la solicitud AJAX
           $.ajax({
             type: "POST",
-            url: "../src/server/verifica_usuario.php",
+            url: "../src/server/login.php",
             dataType: "text",
             data: { Correo: Correo, Pass: Pass },
             success: function (res) {
