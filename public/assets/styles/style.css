@@ -1,46 +1,51 @@
-:root{
+:root {
     --color1: #143c8c;
     --color2: #91b0d5;
     --color3: #1f4077;
     --color4: #6487b1;
     --color5: #b5c7da;
-
 }
-h1{
+
+h1 {
     text-align: center;
     color: var(--color2);
     font-size: 2rem;
 }
-.formulario{
+
+.formulario {
     scroll-snap-align: center;
     scroll-snap-stop: always;
 }
-.input-text{
+
+.input-text {
     width: 95%;
     border: none;
     padding: 1rem;
-    border-radius: .8rem; 
+    border-radius: 0.8rem;
 }
-.formulario{
+
+.formulario {
     background-color: var(--color2);
-    width: min( 80rem, 100% ); /**Utilizar el valor mas pequeño **/
+    width: min(80rem, 100%); /**Utilizar el valor mas pequeño **/
     margin: 0 auto;
     padding: 1rem;
     border-radius: 1rem;
 }
-.campo{
-    margin-bottom: .5rem;
+
+.campo {
+    margin-bottom: 0.5rem;
 }
-.boton{
+
+.boton {
     background-color: var(--color1);
     color: var(--blanco);
-    padding: .5rem 1rem;
+    padding: 0.5rem 1rem;
     margin-top: 1rem;
     font-size: 1rem;
     text-decoration: none;
     text-transform: uppercase;
     font-weight: bold;
-    border-radius: .5rem;
+    border-radius: 0.5rem;
     width: 30%;
     text-align: center;
     border: none;
