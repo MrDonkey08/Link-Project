@@ -103,6 +103,7 @@ Backup of *.doc*
 ~$*.ppt*
 
 ### VSCode ###
+.vscode/
 .vscode/*
 !.vscode/settings.json
 !.vscode/tasks.json
