@@ -23,9 +23,9 @@
 			datos_asesor.style.display = "none"
 		} else if (tipo_de_usuario.value === "1") {
 			datos_asesor.style.display = "none"
-			datos_alumno.style.display = "block"
+			datos_alumno.style.display = "grid"
 		} else {
-			datos_asesor.style.display = "block"
+			datos_asesor.style.display = "grid"
 			datos_alumno.style.display = "none"
 		}
 	}
