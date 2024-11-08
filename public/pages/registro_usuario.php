@@ -51,7 +51,10 @@ $con = conecta();
               id="contacto-input"
               name="contacto"
               placeholder="12-3456-7890"
-              pattern="\d{2}(-\d{4}){2}"
+              pattern="(\d{2}([\- ]?\d{4}){2}|(\d{3}[\- ]){2}\d{4})"
+              title='El número telefónico debe ser de 10 dígitos,
+                preferentemente separados con guiones "-" o espacios " ", tal
+                como se muestra en el ejemplo'
               required
             />
           </div>
@@ -61,7 +64,7 @@ $con = conecta();
 
         <div class="campo">
           <label for="tipo-de-usuario">Tipo de Usuario</label>
-          <select name="tipo-de-usuario" id="tipo-de-usuario-select">
+          <select name="tipo-de-usuario" id="tipo-de-usuario-select" required>
             <option value="">--Por favor, selecciona un tipo de usuario</option>
             <option value="1">Estudiante</option>
             <option value="2">Profesor</option>
@@ -122,7 +125,7 @@ $con = conecta();
               name="codigo-estudiante"
               placeholder="123456789"
               pattern="\d{9}"
-              required
+              title="El código debe contener 9 dígitos"
             />
           </div>
         </div>
@@ -190,8 +193,8 @@ $con = conecta();
               placeholder="123456789"
               minlength="9"
               maxlength="9"
-              pattern="\d{9}"
-              required
+              pattern="\d{5,9}"
+              title="El código debe contener entre 5 y 9 dígitos"
             />
           </div>
         </div>
@@ -205,8 +208,9 @@ $con = conecta();
               type="email"
               id="email-input"
               name="email"
-              placeholder="correo@dominio.com"
-              pattern="\w[\w\.]{0,30}@[\w\.]+\.[a-z]{2,5}"
+              placeholder="correo@alumnos.udg.mx"
+              pattern="\w[\w\.]{0,30}@(alumnos|academicos)\.udg\.mx"
+              title="El correo debe ser institucional, perteneciente a la UDG"
               required
             />
           </div>
@@ -218,7 +222,9 @@ $con = conecta();
               id="password-input"
               name="password"
               pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[\W_]).{8,40}"
-              title='La contraseña debe ser de una longitud de 8-40 caracteres y contener al menos un dígito, una mayúscula, una minúscula y un carácter especial "/*+&..."'
+              title='La contraseña debe ser de una longitud de 8-40 caracteres
+                y contener al menos un dígito, una mayúscula, una minúscula y un
+                carácter especial "/*+&..."'
               required
             />
           </div>
@@ -230,7 +236,9 @@ $con = conecta();
               id="password-input-2"
               name="password-2"
               pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[\W_]).{8,40}"
-              title='La contraseña debe ser de una longitud de 8-40 caracteres y contener al menos un dígito, una mayúscula, una minúscula y un carácter especial "/*+&..."'
+              title='La contraseña debe ser de una longitud de 8-40 caracteres
+                y contener al menos un dígito, una mayúscula, una minúscula y un
+                carácter especial "/*+&..."'
               required
             />
           </div>
