@@ -7,9 +7,9 @@ $con = conecta();
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>Mi perfil de LIk-Proyect</title>
-    <link href="../assets/styles/style.css" rel="stylesheet" />
-    <link href="../assets/styles/perfil_usuario.css" rel="stylesheet" />
+    <title>Mi perfil de Link-Proyect</title>
+    <link rel="stylesheet" href="../assets/styles/normalize.css" />
+    <link rel="stylesheet" href="../assets/styles/perfil_usuario.css" />
   </head>
   <body>
     <div class="wrapper">

@@ -4,6 +4,8 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Elige tu tipo de cuenta</title>
+    <link rel="stylesheet" href="../assets/styles/normalize.css" />
+    <link rel="stylesheet" href="../assets/styles/style.css" />
   </head>
   <body>
     <h1>Elige tu tipo de cuenta</h1>

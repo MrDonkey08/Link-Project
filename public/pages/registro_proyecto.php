@@ -3,9 +3,12 @@ require '../src/server/conecta.php';
 $con = conecta();
 ?>
 <!doctype html>
-<html>
+<html lang="es">
   <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>Registro Proyectos</title>
+    <link rel="stylesheet" href="../assets/styles/normalize.css" />
     <link rel="stylesheet" href="../assets/styles/registro_proyectos.css" />
   </head>
   <body>

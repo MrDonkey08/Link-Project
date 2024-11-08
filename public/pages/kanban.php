@@ -10,7 +10,8 @@ $con = conecta();
 
     <title>Tablero de Kanban</title>
 
-    <link href="../assets/styles/kanban.css" rel="stylesheet" />
+    <link rel="stylesheet" href="../assets/styles/normalize.css" />
+    <link rel="stylesheet" href="../assets/styles/kanban.css" />
 
     <script async src="../dist/client/kanban/drag_task.js"></script>
     <script async src="../dist/client/kanban/add_task.js"></script>

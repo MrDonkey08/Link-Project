@@ -10,6 +10,7 @@ $con = conecta();
 
     <title>Registro de Estudiante</title>
 
+    <link rel="stylesheet" href="../assets/styles/normalize.css" />
     <link rel="stylesheet" href="../assets/styles/style.css" />
 
     <script async src="../dist/client/registro.js"></script>
@@ -59,7 +60,7 @@ $con = conecta();
         />
 
         <h2>Datos Escolares</h2>
-   
+
         </select>
 
         <div id="datos-alumno-div">

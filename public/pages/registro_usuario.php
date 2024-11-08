@@ -10,6 +10,7 @@ $con = conecta();
 
     <title>Registro de Usuario</title>
 
+    <link rel="stylesheet" href="../assets/styles/normalize.css" />
     <link rel="stylesheet" href="../assets/styles/style.css" />
 
     <script async src="../dist/client/registro.js"></script>
