@@ -2,6 +2,7 @@
 require '../src/server/conecta.php';
 $con = conecta();
 ?>
+
 <!doctype html>
 <html lang="es">
   <head>

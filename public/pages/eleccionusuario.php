@@ -12,7 +12,7 @@
     <div>
       <div style="display: inline-block; margin: 10px">
         <a
-          href="registro_estudiante.html"
+          href="registro_estudiante.php"
           style="
             display: block;
             width: 150px;
@@ -27,7 +27,7 @@
       </div>
       <div style="display: inline-block; margin: 10px">
         <a
-          href="registro_asesor.html"
+          href="registro_asesor.php"
           style="
             display: block;
             width: 150px;
