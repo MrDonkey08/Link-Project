@@ -1,85 +1,91 @@
-
 <?php
-session_start();
-
-// Inicializar variables de sesión
-if (!isset($_SESSION['verification_code'])) $_SESSION['verification_code'] = "";
-if (!isset($_SESSION['email'])) $_SESSION['email'] = "";
-if (!isset($_SESSION['verified'])) $_SESSION['verified'] = false;
-
-// Enviar código
-if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['send_code'])) {
-    $email = $_POST['email'];
-
-    if (filter_var($email, FILTER_VALIDATE_EMAIL)) {
-        $_SESSION['verification_code'] = rand(1000, 9999); // Generar código aleatorio de 4 dígitos
-        $_SESSION['email'] = $email;
-
-        // Simula el envío del correo
-        echo "<script>alert('Código enviado a $email: {$_SESSION['verification_code']}');</script>";
-    } else {
-        echo "<script>alert('Correo electrónico inválido.');</script>";
-    }
-}
-
-// Verificar código
-if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['verify_code'])) {
-    $userCode = $_POST['code'];
-
-    if ($userCode == $_SESSION['verification_code']) {
-        $_SESSION['verified'] = true;
-        echo "<script>alert('Código verificado correctamente.');</script>";
-    } else {
-        echo "<script>alert('El código es incorrecto.');</script>";
-    }
-}
-
-// Actualizar contraseña
-if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['update_password'])) {
-    $newPassword = $_POST['new_password'];
-    $confirmPassword = $_POST['confirm_password'];
-
-    if ($newPassword && $confirmPassword && $newPassword === $confirmPassword) {
-        // Aquí puedes agregar la lógica para actualizar la contraseña en la base de datos
-        echo "<script>alert('Contraseña actualizada con éxito.');</script>";
-        session_destroy(); // Limpia la sesión para reiniciar el flujo
-        echo "<script>window.location.href='index.php';</script>";
-        exit();
-    } else {
-        echo "<script>alert('Las contraseñas no coinciden o están vacías.');</script>";
-    }
-}
+require '../src/server/conecta.php';
+$con = conecta();
 ?>
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="../assets/styles/normalize.css" />
-    <link rel="stylesheet" href="../assets/styles/RecuperarContra.css" />
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Recuperar Contraseña</title>
+  <link rel="stylesheet" href="../assets/styles/normalize.css" />
+  <link rel="stylesheet" href="../assets/styles/RecuperarContra.css" />
 </head>
 <body>
+  <div class="container">
     <h1>Recuperar Contraseña</h1>
-    <form method="POST" action="">
-        <!-- Sección de email -->
-        <?php if (!$_SESSION['verification_code'] && !$_SESSION['verified']): ?>
-            <input type="email" name="email" placeholder="Introduce tu correo" required>
-            <button type="submit" name="send_code">Enviar Código</button>
-        <?php endif; ?>
-
-        <!-- Sección de código -->
-        <?php if ($_SESSION['verification_code'] && !$_SESSION['verified']): ?>
-            <input type="text" name="code" placeholder="Introduce el código" maxlength="4" required>
-            <button type="submit" name="verify_code">Verificar Código</button>
-        <?php endif; ?>
-
-        <!-- Sección de actualización de contraseña -->
-        <?php if ($_SESSION['verified']): ?>
-            <input type="password" name="new_password" placeholder="Nueva Contraseña" required>
-            <input type="password" name="confirm_password" placeholder="Confirmar Contraseña" required>
-            <button type="submit" name="update_password">Actualizar Contraseña</button>
-        <?php endif; ?>
+    <form id="recover-form">
+      <div id="email-section">
+        <input type="email" id="email" placeholder="Introduce tu correo" required>
+        <button type="button" onclick="sendCode()">Enviar Código</button>
+      </div>
+      <div id="code-section" class="hidden">
+        <input type="text" id="code" placeholder="Introduce el código" maxlength="4" required>
+        <button type="button" onclick="verifyCode()">Verificar Código</button>
+      </div>
+      <div id="password-section" class="hidden">
+        <input type="password" id="new-password" placeholder="Nueva Contraseña" disabled required>
+        <input type="password" id="confirm-password" placeholder="Confirmar Contraseña" disabled required>
+        <button type="button" onclick="updatePassword()" disabled id="update-btn">Actualizar Contraseña</button>
+      </div>
     </form>
+  </div>
+
+  <script>
+    let verificationCode = "";
+
+    function sendCode() {
+      const email = document.getElementById("email").value;
+      if (!email) {
+        alert("Por favor, introduce un correo electrónico válido.");
+        return;
+      }
+
+      verificationCode = Math.floor(1000 + Math.random() * 9000).toString();
+      alert(`Código enviado a ${email}: ${verificationCode}`); // Simulación del envío del correo
+      document.getElementById("email-section").classList.add("hidden");
+      document.getElementById("code-section").classList.remove("hidden");
+    }
+
+    function verifyCode() {
+      const userCode = document.getElementById("code").value;
+      const newPasswordField = document.getElementById("new-password");
+      const confirmPasswordField = document.getElementById("confirm-password");
+      const updateButton = document.getElementById("update-btn");
+
+      if (userCode === verificationCode) {
+        alert("Código verificado correctamente.");
+        document.getElementById("password-section").classList.remove("hidden");
+        newPasswordField.disabled = false;
+        confirmPasswordField.disabled = false;
+        updateButton.disabled = false;
+      } else {
+        alert("El código es incorrecto.");
+        newPasswordField.disabled = true;
+        confirmPasswordField.disabled = true;
+        updateButton.disabled = true;
+      }
+    }
+
+    function updatePassword() {
+      const newPassword = document.getElementById("new-password").value;
+      const confirmPassword = document.getElementById("confirm-password").value;
+
+      if (!newPassword || !confirmPassword) {
+        alert("Por favor, rellena todos los campos.");
+        return;
+      }
+
+      if (newPassword !== confirmPassword) {
+        alert("Las contraseñas no coinciden.");
+        return;
+      }
+
+      alert("Contraseña actualizada con éxito.");
+      // Aquí puedes enviar la contraseña actualizada al servidor.
+    }
+  </script>
 </body>
 </html>
+
+
