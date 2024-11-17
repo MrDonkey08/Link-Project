@@ -7,13 +7,13 @@ $con = conecta();
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Registro de Alumno</title>
+    <title>Solicitud de admision de proyecto</title>
     <link rel="stylesheet" href="../assets/styles/normalize.css" />
     <link rel="stylesheet" href="../assets/styles/Alumno_sinPro.css" />
 </head>
 <body>
     <div class="container">
-        <h1>Registro de Alumno</h1>
+        <h1>Solicitud de admision de proyecto</h1>
         <form action="process.php" method="post" enctype="multipart/form-data">
             <div class="form-group">
                 <label for="nombre">Nombre completo:</label>
