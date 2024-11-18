@@ -36,23 +36,23 @@ $con = conecta();
           </div>
 
           <div class="campo">
-            <label for="apellido-paterno-input">Apellidos</label>
+            <label for="apellido-paterno-input">Apellido Paterno</label>
             <input
               type="text"
               id="apellido-paterno-input"
               name="apellido-paterno"
-              placeholder="Apellido-paterno"
+              placeholder="Primer Apellido"
               required
             />
           </div>
 
           <div class="campo">
-            <label for="apellido-materno-input">Apellidos</label>
+            <label for="apellido-materno-input">Apellido Materno</label>
             <input
               type="text"
               id="apellido-materno-input"
               name="apellido-materno"
-              placeholder="Apellido-materno"
+              placeholder="Segundo Apellido"
               required
             />
           </div>

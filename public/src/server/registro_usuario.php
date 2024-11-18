@@ -16,7 +16,13 @@ $apellido_materno  = $_POST["apellido-materno"];
 $contacto          = $_POST["contacto"];
 $email             = $_POST["email"];
 $password          = $_POST["password"];
+$password_2        = $_POST["password-2"];
 $tipo_de_usuario   = $_POST["tipo-de-usuario"];
+
+if ($password != $password_2) {
+    echo "Las contraseñas no coinciden. Inténtalo de nuevo";
+    return;
+}
 
 $result = null;
 
