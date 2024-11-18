@@ -1,57 +1,73 @@
+/* styles.css */
 body {
     font-family: Arial, sans-serif;
-    background-color: #b5c7da; /* Color 5 */
     margin: 0;
     padding: 0;
+    background-color: #b5c7da;
 }
 
-.container {
-    max-width: 600px;
-    margin: 50px auto;
-    background-color: #91b0d5; /* Color 2 */
-    border-radius: 8px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-    padding: 20px;
-}
-
-h1 {
+.header {
+    background-color: #143c8c;
+    color: #ffffff;
     text-align: center;
-    color: #143c8c; /* Color 1 */
+    padding: 1rem;
 }
 
-.form-group {
-    margin-bottom: 15px;
+.main-content {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    padding: 2rem;
+    gap: 1.5rem;
 }
 
-label {
-    display: block;
-    color: #1f4077; /* Color 3 */
-    margin-bottom: 5px;
-}
-
-input, textarea, button {
-    width: 100%;
-    padding: 10px;
-    margin-top: 5px;
-    border: 1px solid #6487b1; /* Color 4 */
-    border-radius: 4px;
-    box-sizing: border-box;
-}
-
-button {
-    background-color: #143c8c; /* Color 1 */
-    color: #fff;
-    font-size: 16px;
-    cursor: pointer;
-    border: none;
-}
-
-button:hover {
-    background-color: #1f4077; /* Color 3 */
-}
-
-img {
-    display: block;
-    margin-top: 20px;
+.project-card {
+    background-color: #91b0d5;
+    border: 1px solid #1f4077;
     border-radius: 8px;
+    width: 300px;
+    padding: 1rem;
+    box-shadow: 2px 2px 6px rgba(0, 0, 0, 0.1);
+    text-align: center;
 }
+
+.project-card h2 {
+    color: #1f4077;
+    font-size: 1.2rem;
+    margin-bottom: 0.5rem;
+}
+
+.project-card p {
+    color: #143c8c;
+    font-size: 0.9rem; /* Tamaño reducido */
+    text-align: center;
+    margin: 0.5rem 0 1rem;
+}
+
+.project-card button {
+    background-color: #1f4077;
+    color: #ffffff;
+    border: none;
+    padding: 0.4rem 0.8rem; /* Tamaño reducido */
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 0.9rem; /* Tamaño de letra reducido */
+    transition: background-color 0.3s ease;
+    display: inline-block;
+    margin: 0 auto; /* Centra el botón */
+}
+
+.project-card button:hover {
+    background-color: #6487b1;
+}
+
+.footer {
+    background-color: #143c8c;
+    color: #ffffff;
+    text-align: center;
+    padding: 1rem;
+    position: fixed;
+    width: 100%;
+    bottom: 0;
+}
+
