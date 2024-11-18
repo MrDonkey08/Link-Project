@@ -19,7 +19,7 @@ $con = conecta();
 
   <body>
     <h1>Registro de Usuario</h1>
-    <form method="post" action="">
+    <form method="post" action="../src/server/registro_usuario.php">
       <fieldset>
         <h2>Datos Personales</h2>
 
@@ -36,12 +36,23 @@ $con = conecta();
           </div>
 
           <div class="campo">
-            <label for="apellidos-input">Apellidos</label>
+            <label for="apellido-paterno-input">Apellidos</label>
             <input
               type="text"
-              id="apellidos-input"
-              name="apellidos"
-              placeholder="Apellidos"
+              id="apellido-paterno-input"
+              name="apellido-paterno"
+              placeholder="Apellido-paterno"
+              required
+            />
+          </div>
+
+          <div class="campo">
+            <label for="apellido-materno-input">Apellidos</label>
+            <input
+              type="text"
+              id="apellido-materno-input"
+              name="apellido-materno"
+              placeholder="Apellido-materno"
               required
             />
           </div>
