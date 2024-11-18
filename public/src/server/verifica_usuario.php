@@ -9,7 +9,7 @@ $correo = $_REQUEST['Correo'];
 $pass   = $_REQUEST['Pass'];
 
 // Ejecuta la consulta con pg_query
-$sql = "SELECT * FROM Usuario WHERE Correo = '$correo' AND Pass = '$pass' AND status = 1 AND eliminado = 0";
+$sql = "SELECT * FROM usuario WHERE correo = '$correo' AND clave = '$pass' AND activo = TRUE";
 $res = pg_query($con, $sql);
 
 if ($res) {
