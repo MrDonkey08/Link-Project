@@ -18,17 +18,19 @@ CREATE TABLE usuario (
 
 -- Tabla hija para estudiantes (heredada de tb usuarios)
 CREATE TABLE estudiante (
+    id_estudiante SERIAL PRIMARY KEY,
     carrera VARCHAR(50) NOT NULL,
     habilidades TEXT
 ) INHERITS (usuario);
 
 -- Tabla hija para asesores (heredada de tb usuarios)
 CREATE TABLE asesor (
+    id_asesor SERIAL PRIMARY KEY,
     departamento VARCHAR(255)
 ) INHERITS (usuario);
 
 -- ## Tablas para proyectos
---
+
 -- Tabla de Proyecto
 CREATE TABLE proyecto (
     id SERIAL PRIMARY KEY,
@@ -46,25 +48,24 @@ CREATE TABLE proyecto (
 
 -- Tabla para integrantes del equipo
 CREATE TABLE integrante (
-    integrante_id SERIAL PRIMARY KEY,
-    estudiante_id INT REFERENCES usuario (id_usuario) ON DELETE CASCADE,
-    proyecto_id INT REFERENCES proyecto (id) ON DELETE CASCADE,
-    UNIQUE (estudiante_id, proyecto_id)
+    id SERIAL PRIMARY KEY,
+    id_estudiante INT REFERENCES estudiante (id_estudiante) ON DELETE CASCADE,
+    id_proyecto INT REFERENCES proyecto (id) ON DELETE CASCADE
 );
 
 -- Table for Project Leaders
 CREATE TABLE lider (
-    lider_id SERIAL PRIMARY KEY,
-    estudiante_id INT REFERENCES usuario (id_usuario) ON DELETE CASCADE,
-    proyecto_id INT REFERENCES proyecto (id) ON DELETE CASCADE,
-    UNIQUE (estudiante_id, proyecto_id)
+    id SERIAL PRIMARY KEY,
+    id_estudiante INT REFERENCES estudiante (id_estudiante) ON DELETE CASCADE,
+    id_proyecto INT REFERENCES proyecto (id) ON DELETE CASCADE,
+    UNIQUE (id_estudiante, id_proyecto)
 );
 
 -- Table for Project Advisors
 CREATE TABLE proyecto_asesor (
-    proyecto_id INT REFERENCES proyecto (id) ON DELETE CASCADE,
-    asesor_id INT REFERENCES usuario (id_usuario) ON DELETE CASCADE,
-    PRIMARY KEY (proyecto_id, asesor_id)
+    id_asesor INT REFERENCES asesor (id_asesor) ON DELETE CASCADE,
+    id_proyecto INT REFERENCES proyecto (id) ON DELETE CASCADE,
+    PRIMARY KEY (id_proyecto, id_asesor)
 );
 
 -- # Inserción de Datos
@@ -143,21 +144,21 @@ INSERT INTO proyecto (
 );
 
 INSERT INTO integrante (
-    estudiante_id,
-    proyecto_id
+    id_estudiante,
+    id_proyecto
 ) VALUES
     (1, 1),
     (2, 1);
 
 INSERT INTO lider (
-    estudiante_id,
-    proyecto_id
+    id_estudiante,
+    id_proyecto
 ) VALUES (2, 1);
 
 INSERT INTO proyecto_asesor (
-    asesor_id,
-    proyecto_id
-) VALUES (3, 1);
+    id_asesor,
+    id_proyecto
+) VALUES (1, 1);
 
 -- # Muestreo de Tablas
 
@@ -172,5 +173,5 @@ SELECT * FROM proyecto_asesor;
 -- # Eliminación de Tablas
 
 -- Vacía las tablas y reinicia las secuencias recursivamente
-TRUNCATE TABLE usuario RESTART IDENTITY CASCADE;
-TRUNCATE TABLE proyecto RESTART IDENTITY CASCADE;
+--TRUNCATE TABLE usuario RESTART IDENTITY CASCADE;
+--TRUNCATE TABLE proyecto RESTART IDENTITY CASCADE;
