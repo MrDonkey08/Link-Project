@@ -31,8 +31,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 }
 ?>
 
-
-<!DOCTYPE html>
+<!doctype html>
 <html lang="es">
   <head>
     <meta charset="UTF-8" />
@@ -41,7 +40,6 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
     <link rel="stylesheet" href="../assets/styles/normalize.css" />
     <link rel="stylesheet" href="../assets/styles/style.css" />
-  
 
     <script async src="../dist/client/crear_proyecto.js"></script>
   </head>
@@ -104,16 +102,10 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         </select>
 
         <label for="logo-input">Logo del Proyecto</label>
-        <input
-          type="file"
-          id="logo-input"
-          name="logo"
-          accept="image/*"
-        />
+        <input type="file" id="logo-input" name="logo" accept="image/*" />
 
         <label for="activo-input">Activo</label>
         <input type="checkbox" id="activo-input" name="activo" checked />
-
       </fieldset>
 
       <button type="submit">Crear Proyecto</button>

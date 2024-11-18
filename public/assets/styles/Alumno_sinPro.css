@@ -29,7 +29,9 @@ label {
     margin-bottom: 5px;
 }
 
-input, textarea, button {
+input,
+textarea,
+button {
     width: 100%;
     padding: 10px;
     margin-top: 5px;

@@ -1,4 +1,5 @@
 <?php
+
 session_start();
 require "conecta.php";
 $con = conecta();
@@ -20,7 +21,7 @@ if ($res) {
         $nombre = $row["nombre"];
         $apellidos = $row["apellidos"];
         $correo = $row["correo"];
-        
+
         $_SESSION['IDUser'] = $id;
         $_SESSION['NombreUser'] = $nombre;
         $_SESSION['CorreoUser'] = $correo;

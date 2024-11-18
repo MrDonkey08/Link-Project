@@ -1,25 +1,22 @@
-"use strict";
-;
-(() => {
-    const datos_alumno = document.getElementById("datos-alumno-div");
-    const datos_asesor = document.getElementById("datos-asesor-div");
-    const tipo_de_usuario = document.getElementById("tipo-de-usuario-select");
-    toogle_display();
-    // Event Listeners
-    tipo_de_usuario.addEventListener("change", toogle_display);
-    // Funciones
-    function toogle_display() {
-        if (tipo_de_usuario.value === "") {
-            datos_alumno.style.display = "none";
-            datos_asesor.style.display = "none";
-        }
-        else if (tipo_de_usuario.value === "1") {
-            datos_asesor.style.display = "none";
-            datos_alumno.style.display = "grid";
-        }
-        else {
-            datos_asesor.style.display = "grid";
-            datos_alumno.style.display = "none";
-        }
-    }
-})();
+"use strict"
+;(() => {
+	const datos_alumno = document.getElementById("datos-alumno-div")
+	const datos_asesor = document.getElementById("datos-asesor-div")
+	const tipo_de_usuario = document.getElementById("tipo-de-usuario-select")
+	toogle_display()
+	// Event Listeners
+	tipo_de_usuario.addEventListener("change", toogle_display)
+	// Funciones
+	function toogle_display() {
+		if (tipo_de_usuario.value === "") {
+			datos_alumno.style.display = "none"
+			datos_asesor.style.display = "none"
+		} else if (tipo_de_usuario.value === "1") {
+			datos_asesor.style.display = "none"
+			datos_alumno.style.display = "grid"
+		} else {
+			datos_asesor.style.display = "grid"
+			datos_alumno.style.display = "none"
+		}
+	}
+})()
