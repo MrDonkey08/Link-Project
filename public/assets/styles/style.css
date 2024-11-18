@@ -44,7 +44,8 @@ p {
 }
 
 input,
-select {
+select,
+textarea {
     border: none;
     padding: 1rem;
     border-radius: 0.8rem;
@@ -116,8 +117,13 @@ button:hover {
 }
 
 .campo input,
-.campo select {
+.campo select,
+.campo textarea {
     padding: 12px;
+}
+
+.campo textarea {
+    height: 100px;
 }
 
 /* Media Querys */
