@@ -15,50 +15,49 @@ if ($result) {
 }
 ?>
 
-<!DOCTYPE html>
+<!doctype html>
 <html lang="es">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Link-Project</title>
     <link rel="stylesheet" href="../assets/styles/normalize.css" />
     <link rel="stylesheet" href="../assets/styles/style.css" />
     <link rel="stylesheet" href="../assets/styles/inicio.css" />
-</head>
-<body>
-
+  </head>
+  <body>
     <header>
-        <h1>Link-Project</h1>
+      <h1>Link-Project</h1>
     </header>
 
     <div class="button-container">
-        <a href="crear_proyecto.php" class="btn">Crear Proyecto</a>
+      <a href="crear_proyecto.php" class="btn">Crear Proyecto</a>
     </div>
 
     <!-- Barra de búsqueda -->
     <div class="search-container">
-        <input type="text" id="search" placeholder="Buscar proyecto..." />
+      <input type="text" id="search" placeholder="Buscar proyecto..." />
     </div>
 
     <!-- Mostrar los proyectos -->
     <div class="projects-list">
-        <h2>Proyectos Disponibles</h2>
-        <?php if (!empty($proyectos)): ?>
-            <div class="projects-grid">
-                <?php foreach ($proyectos as $proyecto): ?>
-                    <div class="project-card">
-                        <a href="detalles_proyecto.php?id=<?php echo $proyecto['id']; ?>">
-                            <h3><?php echo $proyecto['nombre']; ?></h3>
-                            <p>Cupos disponibles: <?php echo $proyecto['cupos']; ?></p>
-                        </a>
-                    </div>
-                <?php endforeach; ?>
-            </div>
-        <?php else: ?>
-            <p>No hay proyectos disponibles.</p>
-        <?php endif; ?>
+      <h2>Proyectos Disponibles</h2>
+      <?php if (!empty($proyectos)): ?>
+      <div class="projects-grid">
+        <?php foreach ($proyectos as $proyecto): ?>
+        <div class="project-card">
+          <a href="detalles_proyecto.php?id=<?php echo $proyecto['id']; ?>">
+            <h3><?php echo $proyecto['nombre']; ?></h3>
+            <p>Cupos disponibles: <?php echo $proyecto['cupos']; ?></p>
+          </a>
+        </div>
+        <?php endforeach; ?>
+      </div>
+      <?php else: ?>
+      <p>No hay proyectos disponibles.</p>
+      <?php endif; ?>
     </div>
 
     <script src="../dist/inicio.js"></script>
-</body>
+  </body>
 </html>
