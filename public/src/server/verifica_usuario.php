@@ -17,9 +17,10 @@ if ($res) {
 
     if ($num == 1) {
         $row = pg_fetch_array($res);
-        $id = $row["id"];
-        $nombre = $row["nombre"];
-        $apellidos = $row["apellidos"];
+        $id = $row["id_usuario"];
+        $nombre = $row["nombres"];
+        $apellidos = $row["apellido_pat"];
+        $apellidos = $row["apellido_mat"];
         $correo = $row["correo"];
 
         $_SESSION['IDUser'] = $id;

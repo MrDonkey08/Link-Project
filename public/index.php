@@ -1,5 +1,5 @@
 <?php
-require '../src/server/conecta.php';
+require 'src/server/conecta.php';
 $con = conecta();
 ?>
 <!doctype html>
@@ -8,9 +8,9 @@ $con = conecta();
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Login</title>
-    <link rel="stylesheet" href="../assets/styles/normalize.css" />
-    <link rel="stylesheet" href="../assets/styles/login.css" />
-    <script src="../src/server/jquery-3.3.1.min.js"></script>
+    <link rel="stylesheet" href="assets/styles/normalize.css" />
+    <link rel="stylesheet" href="assets/styles/login.css" />
+    <script src="src/server/jquery-3.3.1.min.js"></script>
     <script>
       // Función para validar y enviar datos
       function ValidarDatos() {
@@ -26,7 +26,7 @@ $con = conecta();
           // Realizar la solicitud AJAX
           $.ajax({
             type: "POST",
-            url: "../src/server/verifica_usuario.php",
+            url: "src/server/verifica_usuario.php",
             dataType: "text",
             data: { Correo: Correo, Pass: Pass },
             success: function (res) {
@@ -66,7 +66,7 @@ $con = conecta();
             <a href="#">
               <img
                 class="icono"
-                src="../assets/pictures/chat_icon-icons.com_67748.png"
+                src="assets/pictures/chat_icon-icons.com_67748.png"
               />
             </a>
           </div>
@@ -74,7 +74,7 @@ $con = conecta();
             <a href="#">
               <img
                 class="icono"
-                src="../assets/pictures/notifications_icon_124898.png"
+                src="assets/pictures/notifications_icon_124898.png"
               />
             </a>
           </div>
@@ -82,13 +82,13 @@ $con = conecta();
             <a href="#">
               <img
                 class="icono"
-                src="../assets/pictures/profile_icon_183860.png"
+                src="assets/pictures/profile_icon_183860.png"
               />
             </a>
           </div>
           <div class="OpNav">
             <a href="#"
-              ><img class="icono" src="../assets/pictures/other_icon.png"
+              ><img class="icono" src="assets/pictures/other_icon.png"
             /></a>
             <!-- Actualiza la ruta -->
           </div>
@@ -127,16 +127,16 @@ $con = conecta();
         Todos los derechos reservados 2024 | términos y condiciones | <br />
         | Política de privacidad | Redes sociales | <br />
         <a href="#"
-          ><img class="iconos" src="../assets/images/email_icon.png"
+          ><img class="iconos" src="assets/images/email_icon.png"
         /></a>
         <!-- Actualiza las rutas -->
         <a href="#"
-          ><img class="iconos" src="../assets/images/facebook_icon.png"
+          ><img class="iconos" src="assets/images/facebook_icon.png"
         /></a>
         <a href="#"
-          ><img class="iconos" src="../assets/images/instagram_icon.png"
+          ><img class="iconos" src="assets/images/instagram_icon.png"
         /></a>
-        <a href="#"><img class="iconos" src="../assets/images/x_icon.png" /></a>
+        <a href="#"><img class="iconos" src="assets/images/x_icon.png" /></a>
       </footer>
     </div>
   </body>
