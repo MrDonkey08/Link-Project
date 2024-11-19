@@ -124,7 +124,7 @@ h1 {
     margin-bottom: 10px;
 }
 /* -------------------------------------- Espacio para el logo */
-.cv-item {
+.pr-item {
     display: flex;
     align-items: center;
     padding: 15px;
@@ -133,17 +133,17 @@ h1 {
     margin-bottom: 10px;
 }
 /* -------------------------------------- Espacio para el logo */
-.cv-item img {
+.pr-item img {
     width: 24px;
     height: 24px;
     margin-right: 10px;
 }
 /* -------------------------------------- Espacio para el logo */
-.cv-item div {
+.pr-item div {
     font-size: 14px;
 }
 /* -------------------------------------- Espacio para el logo */
-.cv-item span {
+.pr-item span {
     color: #666;
     font-size: 12px;
 }

@@ -1,4 +1,5 @@
 <?php
+session_start();
 require 'src/server/conecta.php';
 $con = conecta();
 ?>
@@ -32,7 +33,7 @@ $con = conecta();
             success: function (res) {
               console.log("Correo: ", Correo)
               if (res === "1") {
-                window.location.replace("perfil_usuario.php")
+                window.location.replace("pages/gestion_proyectos.php")
               } else {
                 $("#mensaje").html("El usuario o la contraseña son incorrectos")
                 console.log("Respuesta:", res)

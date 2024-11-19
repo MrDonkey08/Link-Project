@@ -1,10 +1,10 @@
 <?php
 require '../src/server/conecta.php';
 $con = conecta();
-
 $projectId = $_GET['id'];
 
 $query = "SELECT * FROM proyecto WHERE id = $1";
+
 $result = pg_query_params($con, $query, array($projectId));
 
 if ($result && pg_num_rows($result) > 0) {
