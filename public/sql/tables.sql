@@ -46,26 +46,60 @@ CREATE TABLE proyecto (
 
 -- ## Tablas intermedias
 
+--- ### Tablas para participantes del equipo
+
 -- Tabla para integrantes del equipo
 CREATE TABLE integrante (
     id SERIAL PRIMARY KEY,
     id_estudiante INT REFERENCES estudiante (id_estudiante) ON DELETE CASCADE,
-    id_proyecto INT REFERENCES proyecto (id) ON DELETE CASCADE
-);
-
--- Table for Project Leaders
-CREATE TABLE lider (
-    id SERIAL PRIMARY KEY,
-    id_estudiante INT REFERENCES estudiante (id_estudiante) ON DELETE CASCADE,
     id_proyecto INT REFERENCES proyecto (id) ON DELETE CASCADE,
-    UNIQUE (id_estudiante, id_proyecto)
+    lider BOOLEAN DEFAULT FALSE
 );
 
 -- Table for Project Advisors
 CREATE TABLE proyecto_asesor (
+    id SERIAL PRIMARY KEY,
     id_asesor INT REFERENCES asesor (id_asesor) ON DELETE CASCADE,
-    id_proyecto INT REFERENCES proyecto (id) ON DELETE CASCADE,
-    PRIMARY KEY (id_proyecto, id_asesor)
+    id_proyecto INT REFERENCES proyecto (id) ON DELETE CASCADE
+);
+
+-- ### Tablas para reuniones
+
+-- Tabla para reuniones
+CREATE TABLE reunion (
+    id SERIAL PRIMARY KEY,
+    titulo VARCHAR(100) NOT NULL,
+    fecha DATE NOT NULL,
+    hora TIME NOT NULL,
+    id_proyecto INT REFERENCES proyecto (id) ON DELETE CASCADE
+);
+
+-- Tabla para participantes de reuniones
+CREATE TABLE reunion_participante (
+    id SERIAL PRIMARY KEY,
+    id_reunion INT REFERENCES reunion (id) ON DELETE CASCADE,
+    id_integrante INT REFERENCES integrante (id) ON DELETE CASCADE,
+    id_asesor INT REFERENCES asesor (id_asesor) ON DELETE CASCADE,
+    UNIQUE (id_reunion, id_integrante),
+    UNIQUE (id_reunion, id_asesor)
+);
+
+-- ### Tablas para kaban
+
+-- Tabla para tareas asignadas por líder
+CREATE TABLE tarea (
+    id SERIAL PRIMARY KEY,
+    descripcion TEXT NOT NULL,
+    -- 1: pendiente, 2: en proceso y 3: finalizado
+    fase SMALLINT CHECK (cupos <= 3) DEFAULT 1,
+    id_proyecto INT REFERENCES proyecto (id) ON DELETE CASCADE
+);
+
+-- Tabla para integrantes que pertenecen a dicha tarea
+CREATE TABLE tarea_integrantes (
+    id SERIAL PRIMARY KEY,
+    id_integrante INT REFERENCES integrante (id) ON DELETE CASCADE,
+    id_tarea INT REFERENCES tarea (id) ON DELETE CASCADE,
 );
 
 -- # Inserción de Datos
@@ -169,6 +203,10 @@ SELECT * FROM proyecto;
 SELECT * FROM integrante;
 SELECT * FROM lider;
 SELECT * FROM proyecto_asesor;
+SELECT * FROM reunion;
+SELECT * FROM reunion_participante;
+SELECT * FROM tarea;
+SELECT * FROM tarea_integrantes;
 
 -- # Eliminación de Tablas
 
