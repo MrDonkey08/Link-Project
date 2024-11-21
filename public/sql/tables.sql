@@ -12,6 +12,7 @@ CREATE TABLE usuario (
     correo VARCHAR(128) UNIQUE NOT NULL,
     clave VARCHAR(255) NOT NULL,
     codigo_escolar VARCHAR(9) UNIQUE NOT NULL,
+    token VARCHAR(8) UNIQUE,
     activo BOOLEAN DEFAULT TRUE,
     foto BYTEA
 );
@@ -91,7 +92,7 @@ CREATE TABLE tarea (
     id SERIAL PRIMARY KEY,
     descripcion TEXT NOT NULL,
     -- 1: pendiente, 2: en proceso y 3: finalizado
-    fase SMALLINT CHECK (cupos <= 3) DEFAULT 1,
+    fase SMALLINT CHECK (fase <= 3) DEFAULT 1,
     id_proyecto INT REFERENCES proyecto (id) ON DELETE CASCADE
 );
 
@@ -99,7 +100,7 @@ CREATE TABLE tarea (
 CREATE TABLE tarea_integrantes (
     id SERIAL PRIMARY KEY,
     id_integrante INT REFERENCES integrante (id) ON DELETE CASCADE,
-    id_tarea INT REFERENCES tarea (id) ON DELETE CASCADE,
+    id_tarea INT REFERENCES tarea (id) ON DELETE CASCADE
 );
 
 -- # Inserción de Datos
