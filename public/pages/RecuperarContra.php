@@ -1,78 +1,121 @@
-<!DOCTYPE html>
+<?php
+require '../src/server/conecta.php';
+$con = conecta();
+?>
+<!doctype html>
 <html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Recuperar Contraseña</title>
-  <link rel="stylesheet" href="../assets/styles/normalize.css" />
-  <link rel="stylesheet" href="../assets/styles/RecuperarContra.css" />
-</head>
-<body>
-  <div class="container">
-    <h1>Recuperar Contraseña</h1>
-    <div id="email-section">
-      <input type="email" id="email" placeholder="Introduce tu correo" required>
-      <button onclick="sendToken()">Enviar Token</button>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Recuperar Contraseña</title>
+    <link rel="stylesheet" href="../assets/styles/normalize.css" />
+    <link rel="stylesheet" href="../assets/styles/RecuperarContra.css" />
+  </head>
+  <body>
+    <div class="container">
+      <h1>Recuperar Contraseña</h1>
+      <form id="recover-form">
+        <div id="email-section">
+          <input
+            type="email"
+            id="email"
+            placeholder="Introduce tu correo"
+            required
+          />
+          <button type="button" onclick="sendCode()">Enviar Código</button>
+        </div>
+        <div id="code-section" class="hidden">
+          <input
+            type="text"
+            id="code"
+            placeholder="Introduce el código"
+            maxlength="4"
+            required
+          />
+          <button type="button" onclick="verifyCode()">Verificar Código</button>
+        </div>
+        <div id="password-section" class="hidden">
+          <input
+            type="password"
+            id="new-password"
+            placeholder="Nueva Contraseña"
+            disabled
+            required
+          />
+          <input
+            type="password"
+            id="confirm-password"
+            placeholder="Confirmar Contraseña"
+            disabled
+            required
+          />
+          <button
+            type="button"
+            onclick="updatePassword()"
+            disabled
+            id="update-btn"
+          >
+            Actualizar Contraseña
+          </button>
+        </div>
+      </form>
     </div>
-    <div id="code-section" class="hidden">
-      <input type="text" id="token" placeholder="Introduce el token" maxlength="4" required>
-      <button onclick="verifyToken()">Verificar Token</button>
-    </div>
-    <div id="password-section" class="hidden">
-      <input type="password" id="new-password" placeholder="Nueva Contraseña" disabled required>
-      <input type="password" id="confirm-password" placeholder="Confirmar Contraseña" disabled required>
-      <button onclick="updatePassword()" disabled id="update-btn">Actualizar Contraseña</button>
-    </div>
-  </div>
 
-  <script>
-    async function sendToken() {
-      const email = document.getElementById('email').value;
+    <script>
+      let verificationCode = ""
 
-      const response = await fetch('enviar_token.php', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ correo: email })
-      });
+      function sendCode() {
+        const email = document.getElementById("email").value
+        if (!email) {
+          alert("Por favor, introduce un correo electrónico válido.")
+          return
+        }
 
-      const result = await response.json();
-      alert(result.message);
-
-      if (result.status === 'success') {
-        document.getElementById('email-section').classList.add('hidden');
-        document.getElementById('code-section').classList.remove('hidden');
+        verificationCode = Math.floor(1000 + Math.random() * 9000).toString()
+        alert(`Código enviado a ${email}: ${verificationCode}`) // Simulación del envío del correo
+        document.getElementById("email-section").classList.add("hidden")
+        document.getElementById("code-section").classList.remove("hidden")
       }
-    }
 
-    async function verifyToken() {
-      const email = document.getElementById('email').value;
-      const token = document.getElementById('token').value;
+      function verifyCode() {
+        const userCode = document.getElementById("code").value
+        const newPasswordField = document.getElementById("new-password")
+        const confirmPasswordField = document.getElementById("confirm-password")
+        const updateButton = document.getElementById("update-btn")
 
-      const response = await fetch('verificar_token.php', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ correo: email, token: token })
-      });
-
-      const result = await response.json();
-      alert(result.message);
-
-      if (result.status === 'success') {
-        document.getElementById('password-section').classList.remove('hidden');
-        document.getElementById('new-password').disabled = false;
-        document.getElementById('confirm-password').disabled = false;
-        document.getElementById('update-btn').disabled = false;
-      } else {
-        document.getElementById('new-password').disabled = true;
-        document.getElementById('confirm-password').disabled = true;
-        document.getElementById('update-btn').disabled = true;
+        if (userCode === verificationCode) {
+          alert("Código verificado correctamente.")
+          document.getElementById("password-section").classList.remove("hidden")
+          newPasswordField.disabled = false
+          confirmPasswordField.disabled = false
+          updateButton.disabled = false
+        } else {
+          alert("El código es incorrecto.")
+          newPasswordField.disabled = true
+          confirmPasswordField.disabled = true
+          updateButton.disabled = true
+        }
       }
-    }
 
-    function updatePassword() {
-      alert("Implementa la actualización de contraseña en otro archivo PHP.");
-    }
-  </script>
-</body>
+      function updatePassword() {
+        const newPassword = document.getElementById("new-password").value
+        const confirmPassword =
+          document.getElementById("confirm-password").value
+
+        if (!newPassword || !confirmPassword) {
+          alert("Por favor, rellena todos los campos.")
+          return
+        }
+
+        if (newPassword !== confirmPassword) {
+          alert("Las contraseñas no coinciden.")
+          return
+        }
+
+        alert("Contraseña actualizada con éxito.")
+        // Aquí puedes enviar la contraseña actualizada al servidor.
+      }
+    </script>
+  </body>
 </html>
 
