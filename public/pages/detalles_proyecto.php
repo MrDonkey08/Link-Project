@@ -21,36 +21,57 @@ if ($result && pg_num_rows($result) > 0) {
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Detalles del Proyecto</title>
+    <link rel="stylesheet" href="../assets/styles/normalize.css" />
+    <link rel="stylesheet" href="../assets/styles/style.css" />
   </head>
   <body>
     <header>
-      <h1>Detalles del Proyecto: <?php echo $project['nombre']; ?></h1>
+      <h1>Proyecto: <?php echo $project['nombre']; ?></h1>
     </header>
-    <link rel="stylesheet" href="../assets/styles/normalize.css" />
-    <link rel="stylesheet" href="../assets/styles/style.css" />
 
-    <div class="project-details">
-      <h2>Descripción:</h2>
-      <p><?php echo $project['descripcion']; ?></p>
+    <section class="container">
+      <form method="" action="">
+        <fieldset>
+          <div class="campo">
+            <label>Descripción:</label>
+            <textarea readonly><?php echo $project['descripcion']; ?></textarea>
+          </div>
+          <div class="campos-2">
+            <div class="campo">
+              <label>Área:</label>
+              <input value="<?php echo $project['area']; ?>" readonly />
+            </div>
 
-      <h3>Área:</h3>
-      <p><?php echo $project['area']; ?></p>
+            <div class="campo">
+              <label>Cupos Disponibles:</label>
+              <input value="<?php echo $project['cupos']; ?>" readonly />
+            </div>
 
-      <h3>Cupos Disponibles:</h3>
-      <p><?php echo $project['cupos']; ?></p>
+            <div class="campo">
+              <label>Conocimientos Requeridos:</label>
+              <input
+                value="<?php echo $project['conocimientos_requeridos']; ?>"
+                readonly
+              />
+            </div>
 
-      <h3>Conocimientos Requeridos:</h3>
-      <p><?php echo $project['conocimientos_requeridos']; ?></p>
+            <div class="campo">
+              <label>Nivel de Innovación:</label>
+              <input
+                value="<?php echo $project['nivel_de_innovacion']; ?>"
+                readonly
+              />
+            </div>
 
-      <h3>Nivel de Innovación:</h3>
-      <p><?php echo $project['nivel_de_innovacion']; ?></p>
-
-      <?php if ($project['logo']) : ?>
-      <img
-        src="data:image/jpeg;base64,<?php echo base64_encode($project['logo']); ?>"
-        alt="Logo del Proyecto"
-      />
-      <?php endif; ?>
-    </div>
+            <?php if ($project['logo']) : ?>
+            <img
+              src="data:image/jpeg;base64,<?php echo base64_encode($project['logo']); ?>"
+              alt="Logo del Proyecto"
+            />
+            <?php endif; ?>
+          </div>
+        </fieldset>
+      </form>
+    </section>
   </body>
 </html>
