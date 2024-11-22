@@ -2,10 +2,11 @@
 
 :root {
     --color1: #143c8c;
-    --color2: #91b0d5;
+    --color2: #80a8d8;
     --color3: #1f4077;
     --color4: #6487b1;
     --color5: #b5c7da;
+    --color6: #c5d3e8;
 }
 
 /* Global styles (all elements) */
@@ -23,19 +24,21 @@ html {
     box-sizing: border-box;
 }
 
+/* Estilo general */
 body {
-    font-size: 1rem;
-    background-color: #e8e5f0;
+    background: linear-gradient(var(--color6), var(--color5));
+    height: 100vh;
+    margin: 0;
 }
 
 h1,
 h2,
 h3 {
     text-align: center;
+    color: var(--color1);
 }
 
 h1 {
-    color: var(--color2);
     font-size: 2rem;
 }
 
@@ -46,9 +49,13 @@ p {
 input,
 select,
 textarea {
-    border: none;
-    padding: 1rem;
-    border-radius: 0.8rem;
+    width: 100%;
+    max-width: inherit;
+
+    border: 1px solid var(--color4);
+    padding: 10px;
+    border-radius: 5px;
+    box-sizing: border-box;
 }
 
 fieldset {
@@ -59,23 +66,12 @@ fieldset button {
     float: right;
 }
 
-form {
-    scroll-snap-align: center;
-    scroll-snap-stop: always;
-
-    background-color: var(--color2);
-    width: min(80rem, 100%); /**Utilizar el valor mas pequeño **/
-    margin: 0 auto;
-    padding: 2rem;
-    border-radius: 1rem;
-}
-
 button {
-    background-color: var(--color5);
-    color: var(--blanco);
+    background-color: var(--color3);
+    color: white;
 
     padding: 0.5rem 1rem;
-    margin-top: 1rem;
+    margin: 1rem 0;
     border-radius: 0.5rem;
     border: none;
 
@@ -84,7 +80,6 @@ button {
     text-transform: uppercase;
     font-weight: bold;
 
-    width: 30%;
     text-align: center;
 }
 
@@ -92,18 +87,6 @@ button:hover {
     box-shadow:
         0 12px 16px 0 rgba(0, 0, 0, 0.24),
         0 17px 50px 0 rgba(0, 0, 0, 0.5);
-}
-
-.fila {
-    display: grid;
-}
-
-.columna-2 {
-    grid-template-columns: repeat(2, 1fr);
-}
-
-.columna-3 {
-    grid-template-columns: repeat(3, 1fr);
 }
 
 .campo {
@@ -116,19 +99,32 @@ button:hover {
     margin-bottom: 8px;
 }
 
-.campo input,
-.campo select,
-.campo textarea {
-    padding: 12px;
-}
-
 .campo textarea {
     height: 100px;
 }
 
+.center {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.container {
+    scroll-snap-align: center;
+    scroll-snap-stop: always;
+
+    background-color: var(--color2);
+    width: 70%;
+    max-width: inherit;
+
+    margin: 0 auto;
+    padding: 2rem;
+    border-radius: 1rem;
+}
+
 /* Media Querys */
 
-@media (min-width: 1000px) {
+@media (min-width: 1250px) {
     .campos-3 {
         display: grid;
         grid-template-columns: repeat(3, 1fr);
@@ -137,7 +133,7 @@ button:hover {
     }
 }
 
-@media (max-width: 1000px) {
+@media (max-width: 1250px) {
     .campos-3 {
         display: grid;
         grid-template-columns: repeat(2, 1fr);
@@ -146,7 +142,7 @@ button:hover {
     }
 }
 
-@media (min-width: 700px) {
+@media (min-width: 950px) {
     .campos-2 {
         display: grid;
         grid-template-columns: repeat(2, 1fr);
@@ -155,7 +151,7 @@ button:hover {
     }
 }
 
-@media (max-width: 750px) {
+@media (max-width: 950px) {
     .campos-2,
     .campos-3 {
         display: flex;
