@@ -43,95 +43,95 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
     <script async src="../dist/client/crear_proyecto.js"></script>
   </head>
-  <body>
+  <body class="center">
     <section class="container">
-    <h1>Crear Proyecto</h1>
-    <form method="post" action="">
-      <fieldset>
-        <h2>Datos del Proyecto</h2>
+      <h1>Crear Proyecto</h1>
+      <form method="post" action="">
+        <fieldset>
+          <h2>Datos del Proyecto</h2>
 
-        <div class="campos-3">
-          <div class="campo">
-            <label for="nombre-input">Nombre del Proyecto</label>
-            <input
-              type="text"
-              id="nombre-input"
-              name="nombre"
-              placeholder="Nombre del Proyecto"
-              required
-            />
+          <div class="campos-3">
+            <div class="campo">
+              <label for="nombre-input">Nombre del Proyecto</label>
+              <input
+                type="text"
+                id="nombre-input"
+                name="nombre"
+                placeholder="Nombre del Proyecto"
+                required
+              />
+            </div>
+
+            <div class="campo">
+              <label for="area-input">Área del Proyecto</label>
+              <input
+                type="text"
+                id="area-input"
+                name="area"
+                placeholder="Área del Proyecto"
+                required
+              />
+            </div>
+
+            <div class="campo">
+              <label for="cupos-input">Cupos Disponibles</label>
+              <input
+                type="number"
+                id="cupos-input"
+                name="cupos"
+                placeholder="Número de cupos (máximo 3)"
+                min="1"
+                max="3"
+                required
+              />
+            </div>
           </div>
 
-          <div class="campo">
-            <label for="area-input">Área del Proyecto</label>
-            <input
-              type="text"
-              id="area-input"
-              name="area"
-              placeholder="Área del Proyecto"
-              required
-            />
+          <div class="campos-2">
+            <div class="campo">
+              <label for="descripcion-input">Descripción</label>
+              <textarea
+                id="descripcion-input"
+                name="descripcion"
+                placeholder="Descripción del proyecto"
+                required
+              ></textarea>
+            </div>
+
+            <div class="campo">
+              <label for="conocimientos-input">Conocimientos Requeridos</label>
+              <textarea
+                id="conocimientos-input"
+                name="conocimientos_requeridos"
+                placeholder="Conocimientos necesarios para el proyecto"
+              ></textarea>
+            </div>
           </div>
 
-          <div class="campo">
-            <label for="cupos-input">Cupos Disponibles</label>
-            <input
-              type="number"
-              id="cupos-input"
-              name="cupos"
-              placeholder="Número de cupos (máximo 3)"
-              min="1"
-              max="3"
-              required
-            />
-          </div>
-        </div>
+          <div class="campos-3">
+            <div class="campo">
+              <label for="innovacion-input">Nivel de Innovación</label>
+              <select name="nivel_de_innovacion" id="innovacion-input" required>
+                <option value="">--Selecciona el nivel de innovación</option>
+                <option value="Bajo">Bajo</option>
+                <option value="Medio">Medio</option>
+                <option value="Alto">Alto</option>
+              </select>
+            </div>
 
-        <div class="campos-2">
-          <div class="campo">
-            <label for="descripcion-input">Descripción</label>
-            <textarea
-              id="descripcion-input"
-              name="descripcion"
-              placeholder="Descripción del proyecto"
-              required
-            ></textarea>
-          </div>
+            <div class="campo">
+              <label for="logo-input">Logo del Proyecto</label>
+              <input type="file" id="logo-input" name="logo" accept="image/*" />
+            </div>
 
-          <div class="campo">
-            <label for="conocimientos-input">Conocimientos Requeridos</label>
-            <textarea
-              id="conocimientos-input"
-              name="conocimientos_requeridos"
-              placeholder="Conocimientos necesarios para el proyecto"
-            ></textarea>
+            <div class="campo">
+              <input type="checkbox" id="activo-input" name="activo" checked />
+              <label for="activo-input">Activo</label>
+            </div>
           </div>
-        </div>
-
-        <div class="campos-3">
-          <div class="campo">
-            <label for="innovacion-input">Nivel de Innovación</label>
-            <select name="nivel_de_innovacion" id="innovacion-input" required>
-              <option value="">--Selecciona el nivel de innovación</option>
-              <option value="Bajo">Bajo</option>
-              <option value="Medio">Medio</option>
-              <option value="Alto">Alto</option>
-            </select>
-          </div>
-
-          <div class="campo">
-            <label for="logo-input">Logo del Proyecto</label>
-            <input type="file" id="logo-input" name="logo" accept="image/*" />
-          </div>
-
-          <div class="campo">
-            <input type="checkbox" id="activo-input" name="activo" checked />
-            <label for="activo-input">Activo</label>
-          </div>
-        </div>
-        <button type="submit">Crear Proyecto</button>
-      </fieldset>
-    </form>
+          <button type="submit">Crear Proyecto</button>
+        </fieldset>
+      </form>
     </section>
   </body>
 </html>
