@@ -3,16 +3,20 @@
  * Archivo para el registro de cuentas de estudiantes
  *
  * @category Recuperacion
- * @author   MrDonkey08 <alan.juarez5178@alumnos.udg.mx>
- *
- * TODO: Sustituir `echo`s por `alert`s u otra alternativa mejor
+ * @author   MrDonkey08
  */
 
 require_once 'conecta.php';
+require '../../phpmailer/src/PHPMailer.php';
+require '../../phpmailer/src/Exception.php'; 
+require '../../phpmailer/src/SMTP.php';
+
+use PHPMailer\PHPMailer\PHPMailer;
+use PHPMailer\PHPMailer\Exception;
+
 session_start();
 $con = conecta();
 
-// Check which form was submitted
 if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['submit'])) {
     switch ($_POST['submit']) {
         case 'generarToken':
@@ -31,14 +35,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['submit'])) {
     }
 }
 
-/**
- * Verifica que el correo le pertenece a algun usuario
- *
- * @param object $con    Conexión a la BD
- * @param string $correo Correo ingresado por el usuario
- *
- * @return object|null Objeto del usuario si existe, null si no
- */
 function verificarCorreo($con, $correo)
 {
     $query = "SELECT id_usuario, correo, token" .
@@ -55,16 +51,47 @@ function verificarCorreo($con, $correo)
     return null;
 }
 
-/**
- * Genera un token y se le envia al correo ingresado
- *
- * @param object $con    Conexión a la BD
- * @param string $correo Correo ingresado por el usuario
- *
- * @return object|null Objeto del usuario si existe, null si no
- *
- * TODO: Enviar el correo al usuario
- */
+function enviarCorreo($correo, $token)
+{
+    $mail = new PHPMailer(true);
+
+    try {
+        // Configuración para el envio del correo
+        $mail->isSMTP();
+        $mail->Host = 'smtp.gmail.com'; // Se cambia en el video del kike
+        $mail->SMTPAuth = true;
+        $mail->Username = 'juanendiaz07@gmail.com'; // Cambiar por el correo que pusieron
+        $mail->Password = 'ppvjltfkchksxpvn';       // Contraseña de la aplicacion para que charche
+        $mail->SMTPSecure = PHPMailer::ENCRYPTION_STARTTLS;
+        $mail->Port = 587;
+
+        $mail->SMTPOptions = array(
+            'ssl' => array(
+                'verify_peer' => false,
+                'verify_peer_name' => false,
+                'allow_self_signed' => true
+            )
+        );
+
+        $mail->setFrom('juanendiaz07@gmail.com', 'Link-project'); // Remitente
+        $mail->addAddress($correo); // Destinatario
+
+        $mail->isHTML(true);
+        $mail->Subject = 'Token de recuperación';
+        $mail->Body = "
+            <h1>Link-project</h1>
+            <p>Hola, este es tu token para restablecer tu password:</p>
+            <h2>$token</h2>
+            <p>Por favor, usa este token para completar el proceso en la página.</p>
+        ";
+
+        $mail->send();
+        echo "Correo enviado exitosamente.";
+    } catch (Exception $e) {
+        echo "Error al enviar el correo: {$mail->ErrorInfo}";
+    }
+}
+
 function generarToken($con, $correo)
 {
     $usuario_registrado = verificarCorreo($con, $correo);
@@ -75,27 +102,19 @@ function generarToken($con, $correo)
     }
 
     $id_usuario = $usuario_registrado->id_usuario;
-
-    $token = bin2hex(random_bytes(3));
+    $token = bin2hex(random_bytes(3)); // Genera un token de 6 caracteres
 
     $query = "UPDATE usuario" .
         " SET token = $1" .
         " WHERE id_usuario = $2 AND activo = True";
 
-    pg_query_params($con, $query, [$token, $id_usuario]);
-
-    echo $token;
-
+    if (pg_query_params($con, $query, [$token, $id_usuario])) {
+        enviarCorreo($correo, $token); // Llama a la función para enviar el correo
+    } else {
+        echo "Error al generar el token.";
+    }
 }
 
-/**
- * Vefirifica que el token ingresado pertenezca a un usuario
- *
- * @param object $con   Conexión a la BD
- * @param string $token ingresado por el usuario
- *
- * @return void
- */
 function verificarToken($con, $token)
 {
     $query = "SELECT token" .
@@ -112,17 +131,6 @@ function verificarToken($con, $token)
     return ($token === $usuario->token);
 }
 
-/**
- * Valida que ambas contraseñas ingresadas sean iguales y si lo son, actualiza
- * la contraseña del usuario
- *
- * @param object $con    Conexión a la BD
- * @param string $token  ingresado por el usuario
- * @param string $pass_1 ingresado por el usuario
- * @param string $pass_2 ingresado por el usuario
- *
- * @return void
- */
 function restablecerClave($con, $token, $pass_1, $pass_2)
 {
     if (!verificarToken($con, $token)) {
@@ -139,12 +147,10 @@ function restablecerClave($con, $token, $pass_1, $pass_2)
         " SET clave = $1" .
         " WHERE token = $2 AND activo = True";
 
-    pg_query_params($con, $query, [$pass_1, $token]);
-
-    echo "Contraseña reestablecida con éxito";
+    if (pg_query_params($con, $query, [$pass_1, $token])) {
+        echo "Contraseña reestablecida con éxito";
+    }
 }
 
 desconecta($con);
-// TODO: Regresar a la página sin recargar, sin borrar los datos del formulario
-//header("Location: ../../pages/RecuperarContra.html");
-exit();
+?>
