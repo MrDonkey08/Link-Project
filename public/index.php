@@ -33,7 +33,7 @@ $con = conecta();
             success: function (res) {
               console.log("Correo: ", Correo)
               if (res === "1") {
-                window.location.replace("pages/gestion_proyectos.php")
+                window.location.replace("pages/inicio.php")
               } else {
                 $("#mensaje").html("El usuario o la contraseña son incorrectos")
                 console.log("Respuesta:", res)
@@ -109,7 +109,7 @@ $con = conecta();
             </div>
             <div>
               <p>
-                ¿No tienes cuenta? <a href="eleccionusuario.php">Regístrate</a>
+                ¿No tienes cuenta? <a href="pages/registro_usuario.php">Regístrate</a>
               </p>
             </div>
             <button

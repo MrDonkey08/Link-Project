@@ -79,9 +79,9 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                 type="number"
                 id="cupos-input"
                 name="cupos"
-                placeholder="Número de cupos (máximo 3)"
+                placeholder="Número de cupos (máximo 2)"
                 min="1"
-                max="3"
+                max="2"
                 required
               />
             </div>
