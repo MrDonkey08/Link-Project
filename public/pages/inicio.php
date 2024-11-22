@@ -44,6 +44,7 @@ if ($result_proyectos) {
     <div class="projects-list">
       <h2>Proyectos Disponibles</h2>
       <?php if (!empty($proyectos)): ?>
+       <div class = campos1> 
       <div class="projects-grid">
         <?php foreach ($proyectos as $proyecto): ?>
         <div class="project-card">
@@ -63,6 +64,7 @@ if ($result_proyectos) {
             
             <p>Cupos disponibles: <?php echo htmlspecialchars($proyecto['cupos']); ?></p>
           </a>
+        </div>
         </div>
         <?php endforeach; ?>
       </div>

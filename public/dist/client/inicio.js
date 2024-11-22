@@ -6,9 +6,9 @@ function filtrarProyectos() {
     projects.forEach((project) => {
       const name = project.querySelector("h3").textContent.toLowerCase();
       if (name.includes(filter)) {
-        project.style.display = "block"; // Mostrar si coincide
+        project.style.display = "block";
       } else {
-        project.style.display = "none"; // Ocultar si no coincide
+        project.style.display = "none"; 
       }
     });
   }
