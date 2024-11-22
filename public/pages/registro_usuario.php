@@ -17,7 +17,8 @@ $con = conecta();
     <script async src="../dist/client/registro.js"></script>
   </head>
 
-  <body>
+  <body class="center">
+    <section class="container">
     <h1>Registro de Usuario</h1>
     <form method="post" action="../src/server/registro_usuario.php">
       <fieldset>
@@ -76,7 +77,7 @@ $con = conecta();
         <h2>Datos Escolares</h2>
 
         <div class="campo">
-          <label for="tipo-de-usuario">Tipo de Usuario</label>
+          <label for="tipo-de-usuario-select">Tipo de Usuario</label>
           <select name="tipo-de-usuario" id="tipo-de-usuario-select" required>
             <option value="">--Por favor, selecciona un tipo de usuario</option>
             <option value="1">Estudiante</option>
@@ -86,7 +87,7 @@ $con = conecta();
 
         <div class="campos-2" id="datos-alumno-div">
           <div class="campo">
-            <label for="carrera">Carrera</label>
+            <label for="carrera-select">Carrera</label>
             <select name="carrera" id="carrera-select">
               <option value="">--Por favor, selecciona una carrera</option>
 
@@ -145,7 +146,7 @@ $con = conecta();
 
         <div class="campos-2" id="datos-asesor-div">
           <div class="campo">
-            <label for="departamento">Departamento</label>
+            <label for="departamento-select">Departamento</label>
             <select name="departamento" id="departamento-select">
               <option value="">--Por favor, selecciona un departamento</option>
 
@@ -224,6 +225,7 @@ $con = conecta();
               placeholder="correo@alumnos.udg.mx"
               pattern="\w[\w\.]{0,30}@(alumnos|academicos)\.udg\.mx"
               title="El correo debe ser institucional, perteneciente a la UDG"
+              autocomplete="on"
               required
             />
           </div>
@@ -259,5 +261,6 @@ $con = conecta();
         <button type="submit">Enviar</button>
       </fieldset>
     </form>
+    </section>
   </body>
 </html>

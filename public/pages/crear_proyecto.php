@@ -44,6 +44,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     <script async src="../dist/client/crear_proyecto.js"></script>
   </head>
   <body>
+    <section class="container">
     <h1>Crear Proyecto</h1>
     <form method="post" action="">
       <fieldset>
@@ -131,5 +132,6 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         <button type="submit">Crear Proyecto</button>
       </fieldset>
     </form>
+    </section>
   </body>
 </html>
