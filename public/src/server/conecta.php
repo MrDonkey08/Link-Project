@@ -9,7 +9,7 @@
 define("HOST", 'localhost'); // Dirección del servidor de base de datos
 define("BD", 'link-project'); // Nombre de la base de datos
 define("USER_BD", 'postgres'); // Usuario de la base de datos
-define("PASS_BD", ''); // Contraseña del usuario
+define("PASS_BD", 'root'); // Contraseña del usuario
 
 // Definimos la cadena de conexión utilizando las constantes anteriores
 define(
