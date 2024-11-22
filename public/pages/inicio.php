@@ -1,6 +1,4 @@
 <?php
-session_start();
-
 require '../src/server/conecta.php';
 $con = conecta();
 
@@ -51,16 +49,11 @@ if ($result_proyectos) {
         <div class="project-card">
           <a href="detalles_proyecto.php?id=<?php echo $proyecto['id']; ?>">
             <h3><?php echo htmlspecialchars($proyecto['nombre']); ?></h3>
-            
-            <!-- Recortar la descripción a 10 caracteres y agregar "..." si es necesario -->
             <p>
               Descripción: 
               <?php 
-                // Obtener la descripción del proyecto
                 $descripcion_larga = isset($proyecto['descripcion']) ? $proyecto['descripcion'] : '';
-                // Recortar a 10 caracteres
                 $descripcion_recortada = substr($descripcion_larga, 0, 40);
-                // Verificar si la descripción es mayor a 10 caracteres y agregar "..."
                 if (strlen($descripcion_larga) > 40) {
                   $descripcion_recortada .= '...';
                 }

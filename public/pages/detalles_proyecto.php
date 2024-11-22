@@ -13,6 +13,13 @@ if ($result && pg_num_rows($result) > 0) {
     echo "Proyecto no encontrado.";
     exit;
 }
+
+// Verifica si el logo tiene datos
+if (!empty($project['logo'])) {
+    $logo_size = strlen($project['logo']); // Longitud de los datos del logo
+} else {
+    $logo_size = 0; // No hay logo
+}
 ?>
 
 <!doctype html>
@@ -50,7 +57,7 @@ if ($result && pg_num_rows($result) > 0) {
             <div class="campo">
               <label>Conocimientos Requeridos:</label>
               <input
-                value="<?php echo $project['conocimientos_requeridos']; ?>"
+                value="<?php echo $project['conocimientos_requeridos']; ?> "
                 readonly
               />
             </div>
@@ -63,13 +70,23 @@ if ($result && pg_num_rows($result) > 0) {
               />
             </div>
 
-            <?php if ($project['logo']) : ?>
-            <img
-              src="data:image/jpeg;base64,<?php echo base64_encode($project['logo']); ?>"
-              alt="Logo del Proyecto"
-            />
+            <?php if ($logo_size > 0) : ?>
+                <p>Logo tamaño: <?php echo $logo_size; ?> bytes</p>
+                <img
+                  src="data:image/jpeg;base64,<?php echo base64_encode($project['logo']); ?>"
+                  alt="Logo del Proyecto"
+                />
+            <?php else: ?>
+                <p>No hay logo disponible.</p>
             <?php endif; ?>
+
           </div>
+          
+          <!-- Botón de regreso -->
+          <div class="button-container">
+            <a href="inicio.php" class="btn">Regresar</a>
+          </div>
+
         </fieldset>
       </form>
     </section>

@@ -10,23 +10,19 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     $conocimientos_requeridos = $_POST['conocimientos_requeridos'];
     $nivel_de_innovacion = $_POST['nivel_de_innovacion'];
 
-
     $logo = null;
-    if (isset($_FILES['logo']['tmp_name'])) {
-        $logo = file_get_contents($_FILES['logo']['tmp_name']);
-    }
 
-    $query = "INSERT INTO proyecto (nombre, descripcion, area, cupos, activo, conocimientos_requeridos, nivel_de_innovacion, logo)
-              VALUES ('$nombre', '$descripcion', '$area', $cupos, TRUE, '$conocimientos_requeridos', '$nivel_de_innovacion', $1)";
+    $query = "INSERT INTO proyecto (nombre, descripcion, area, cupos, activo, conocimientos_requeridos, nivel_de_innovacion)
+              VALUES ($1, $2, $3, $4, TRUE, $5, $6)";
 
-
-    $result = pg_query_params($con, $query, array($logo));
-
+    $result = pg_query_params($con, $query, array($nombre, $descripcion, $area, $cupos, $conocimientos_requeridos, $nivel_de_innovacion));
 
     if ($result) {
-        echo "Proyecto creado con éxito.";
+        $mensaje = "Proyecto creado con éxito.";
+        $clase = "success";
     } else {
-        echo "Error al crear el proyecto.";
+        $mensaje = "Error al crear el proyecto.";
+        $clase = "error";
     }
 }
 ?>
@@ -37,16 +33,18 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>Crear Proyecto</title>
-
     <link rel="stylesheet" href="../assets/styles/normalize.css" />
     <link rel="stylesheet" href="../assets/styles/style.css" />
-
     <script async src="../dist/client/crear_proyecto.js"></script>
   </head>
   <body class="center">
     <section class="container">
       <h1>Crear Proyecto</h1>
-      <form method="post" action="">
+      <?php if (isset($mensaje)): ?>
+        <div class="<?= $clase; ?>"><?= $mensaje; ?></div>
+      <?php endif; ?>
+
+      <form method="post" action="" enctype="multipart/form-data">
         <fieldset>
           <h2>Datos del Proyecto</h2>
 
@@ -120,11 +118,6 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             </div>
 
             <div class="campo">
-              <label for="logo-input">Logo del Proyecto</label>
-              <input type="file" id="logo-input" name="logo" accept="image/*" />
-            </div>
-
-            <div class="campo">
               <input type="checkbox" id="activo-input" name="activo" checked />
               <label for="activo-input">Activo</label>
             </div>
@@ -132,6 +125,10 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
           <button type="submit">Crear Proyecto</button>
         </fieldset>
       </form>
+
+      <div class=".button-container">
+        <a href="inicio.php" class="btn">Regresar</a>
+      </div>
     </section>
   </body>
 </html>
