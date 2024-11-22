@@ -46,6 +46,7 @@ p {
     text-align: justify;
 }
 
+p,
 input,
 select,
 textarea {
