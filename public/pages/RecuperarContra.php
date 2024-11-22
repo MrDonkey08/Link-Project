@@ -9,7 +9,9 @@ $con = conecta();
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Recuperar Contraseña</title>
     <link rel="stylesheet" href="../assets/styles/normalize.css" />
-    <link rel="stylesheet" href="../assets/styles/RecuperarContra.css" />
+    <link rel="stylesheet" href="../assets/styles/style.css" />
+    <link rel="stylesheet" href="../assets/styles/small_form.css" />
+
   </head>
   <body>
     <div class="container">
