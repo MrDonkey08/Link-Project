@@ -1,0 +1,36 @@
+/* Estilo general */
+body {
+    background-color: var(--color5);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    margin: 0;
+}
+
+/* Campos de entrada */
+input {
+    margin: 10px 0;
+}
+
+/* Botones */
+button {
+    width: 100%;
+    padding: 10px;
+    background-color: var(--color3);
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+/* Contenedor */
+.container {
+    background-color: var(--color2);
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
+    width: 350px;
+    text-align: center;
+}
