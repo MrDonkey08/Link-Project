@@ -1,4 +1,9 @@
 <?php
+$Nombre = $_SESSION['NombreUser'];
+if (!isset($_SESSION['NombreUser'])) {
+    header("Location: ../index.php");
+    exit();
+}
 require '../src/server/conecta.php';
 $con = conecta();
 
