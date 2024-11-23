@@ -2,19 +2,19 @@
 require '../src/server/conecta.php';
 $con = conecta();
 
-$query = "SELECT id, nombre, cupos FROM proyecto WHERE activo = TRUE";
-$result = pg_query($con, $query);
+// Consulta los proyectos con sus descripciones
+$query_proyectos = "SELECT id, nombre, cupos, descripcion FROM proyecto WHERE activo = TRUE";
+$result_proyectos = pg_query($con, $query_proyectos);
 
 $proyectos = [];
-if ($result) {
-    while ($row = pg_fetch_assoc($result)) {
+if ($result_proyectos) {
+    while ($row = pg_fetch_assoc($result_proyectos)) {
         $proyectos[] = $row;
     }
 } else {
     echo "Error al obtener los proyectos.";
 }
 ?>
-
 <!doctype html>
 <html lang="es">
   <head>
@@ -36,20 +36,35 @@ if ($result) {
 
     <!-- Barra de búsqueda -->
     <div class="search-container">
-      <input type="text" id="search" placeholder="Buscar proyecto..." />
+      <input type="text" id="search" placeholder="Buscar proyectos...">
+      <button id="search-btn">Buscar</button>
     </div>
 
     <!-- Mostrar los proyectos -->
     <div class="projects-list">
       <h2>Proyectos Disponibles</h2>
       <?php if (!empty($proyectos)): ?>
+      <div class = campos1> 
       <div class="projects-grid">
         <?php foreach ($proyectos as $proyecto): ?>
         <div class="project-card">
           <a href="detalles_proyecto.php?id=<?php echo $proyecto['id']; ?>">
-            <h3><?php echo $proyecto['nombre']; ?></h3>
-            <p>Cupos disponibles: <?php echo $proyecto['cupos']; ?></p>
+            <h3><?php echo htmlspecialchars($proyecto['nombre']); ?></h3>
+            <p>
+              Descripción: 
+              <?php 
+                $descripcion_larga = isset($proyecto['descripcion']) ? $proyecto['descripcion'] : '';
+                $descripcion_recortada = substr($descripcion_larga, 0, 40);
+                if (strlen($descripcion_larga) > 40) {
+                  $descripcion_recortada .= '...';
+                }
+                echo htmlspecialchars($descripcion_recortada);
+              ?>
+            </p>
+            
+            <p>Cupos disponibles: <?php echo htmlspecialchars($proyecto['cupos']); ?></p>
           </a>
+        </div>
         </div>
         <?php endforeach; ?>
       </div>
@@ -58,6 +73,6 @@ if ($result) {
       <?php endif; ?>
     </div>
 
-    <script src="../dist/inicio.js"></script>
+    <script src="../dist/client/inicio.js"></script>
   </body>
 </html>

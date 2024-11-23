@@ -20,7 +20,7 @@ $con = conecta();
   <body class="center">
     <section class="container">
       <h1>Registro de Usuario</h1>
-      <form method="post" action="../src/server/registro_usuario.php">
+      <form method="post" action="../src/server/usuario_salva.php">
         <fieldset>
           <h2>Datos Personales</h2>
 
