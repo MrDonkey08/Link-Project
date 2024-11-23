@@ -9,7 +9,7 @@ $con = conecta();
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Login</title>
-    <link rel="stylesheet" href="assets/styles/normalize.css" />
+    <link rel="stylesheet" href="assets/styles/style.css" />
     <link rel="stylesheet" href="assets/styles/login.css" />
     <script src="src/server/jquery-3.3.1.min.js"></script>
     <script>
@@ -109,7 +109,8 @@ $con = conecta();
             </div>
             <div>
               <p>
-                ¿No tienes cuenta? <a href="pages/registro_usuario.php">Regístrate</a>
+                ¿No tienes cuenta?
+                <a href="pages/registro_usuario.php">Regístrate</a>
               </p>
             </div>
             <button

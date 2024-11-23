@@ -2,11 +2,9 @@
 body {
     /*background-size: 100%;/* Ancho del patrón---------------------ESTO ES PARA PONERLE FONDO DE COLOR A LA PAGINA
     background-image: url('imagenes-Diseño/fondo-8.jpg'); /* Imagen de fondo */
-    height: 100%;
     background-size: cover; /* Lograr expandir la imagen a toda la pagina */
     background-attachment: fixed; /* esto fija la imagen de fondo */
     justify-content: center;
-    margin: 0;
 }
 
 /* -------------------------------------- Se refiere a la base del sitio*/
@@ -63,7 +61,6 @@ header {
 
 /* -------------------------------------- Opciones de navegacion (a) esto hace toda la chamba */
 .OpNav img {
-    font-family: "lato", sans-serif;
     max-width: 100%;
     height: 30px;
     color: #000;
@@ -150,21 +147,6 @@ footer {
 .input-box input:valid ~ label {
     top: -20px;
     left: 0;
-    color: #74ebd5;
+    color: var(--color1);
     font-size: 12px;
-}
-
-/* Button styles */
-button {
-    background-color: #74ebd5;
-    color: white;
-    border: none;
-    padding: 10px 20px;
-    border-radius: 25px;
-    cursor: pointer;
-    transition: background-color 0.3s ease;
-}
-
-button:hover {
-    background-color: #acb6e5;
 }

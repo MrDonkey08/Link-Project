@@ -13,57 +13,61 @@ $con = conecta();
     <link rel="stylesheet" href="../assets/styles/small_form.css" />
   </head>
   <body>
-    <section class="container">
+    <section class="container small-container">
       <h1>Recuperar Contraseña</h1>
       <form method="POST" action="../src/server/recuperar_clave.php">
-        <input
-          type="email"
-          id="email-input"
-          name="email"
-          placeholder="Introduce tu correo"
-          pattern="\w[\w\.]{0,30}@(alumnos|academicos)\.udg\.mx"
-          title="El correo debe ser institucional, perteneciente a la UDG"
-          autocomplete="on"
-          required
-        />
+        <div class="input-box">
+          <input
+            type="email"
+            id="email-input"
+            name="email"
+            title="El correo debe ser institucional, perteneciente a la UDG"
+            autocomplete="on"
+            required
+          />
+          <label for="email-input">Correo Electrónico</label>
+        </div>
 
         <button type="submit" name="submit" value="generarToken">
           Enviar Código
         </button>
       </form>
       <form method="POST" action="../src/server/recuperar_clave.php">
-        <input
-          type="text"
-          id="token-input"
-          name="token"
-          placeholder="Introduce el código"
-          maxlength="6"
-          required
-        />
+        <div class="input-box">
+          <input
+            type="text"
+            id="token-input"
+            name="token"
+            maxlength="6"
+            required
+          /><label for="token-input">Código</label>
+        </div>
 
-        <input
-          type="password"
-          id="password-input"
-          name="password"
-          placeholder="Nueva Contraseña"
-          pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[\W_]).{8,40}"
-          title='La contraseña debe ser de una longitud de 8-40 caracteres
+        <div class="input-box">
+          <input
+            type="password"
+            id="password-input"
+            name="password"
+            pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[\W_]).{8,40}"
+            title='La contraseña debe ser de una longitud de 8-40 caracteres
                 y contener al menos un dígito, una mayúscula, una minúscula y un
                 carácter especial "/*+&..."'
-          required
-        />
+            required
+          /><label for="password-input">Nueva Contraseña</label>
+        </div>
 
-        <input
-          type="password"
-          id="password-input-2"
-          name="password-2"
-          placeholder="Confirmar Contraseña"
-          pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[\W_]).{8,40}"
-          title='La contraseña debe ser de una longitud de 8-40 caracteres
+        <div class="input-box">
+          <input
+            type="password"
+            id="password-input-2"
+            name="password-2"
+            pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[\W_]).{8,40}"
+            title='La contraseña debe ser de una longitud de 8-40 caracteres
                 y contener al menos un dígito, una mayúscula, una minúscula y un
                 carácter especial "/*+&..."'
-          required
-        />
+            required
+          /><label for="password-input-2">Confirmar Contraseña</label>
+        </div>
 
         <button type="submit" name="submit" value="restablecerClave">
           Actualizar Contraseña
