@@ -29,7 +29,6 @@ if ($result_proyectos) {
     <header>
       <h1>Link-Project</h1>
     </header>
-
     <div class="button-container">
       <a href="crear_proyecto.php" class="btn">Crear Proyecto</a>
     </div>

@@ -60,8 +60,8 @@ function enviarCorreo($correo, $token)
         $mail->isSMTP();
         $mail->Host = 'smtp.gmail.com'; // Se cambia en el video del kike
         $mail->SMTPAuth = true;
-        $mail->Username = 'juanendiaz07@gmail.com'; // Cambiar por el correo que pusieron
-        $mail->Password = 'ppvjltfkchksxpvn';       // Contraseña de la aplicacion para que charche
+        $mail->Username = 'linkproject.aje@gmail.com'; // Correo link project
+        $mail->Password = 'dzguqntohqoojfwm';       // Contraseña de la aplicacion para que charche
         $mail->SMTPSecure = PHPMailer::ENCRYPTION_STARTTLS;
         $mail->Port = 587;
 
