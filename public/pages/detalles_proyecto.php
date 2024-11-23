@@ -31,14 +31,12 @@ if (!empty($project['logo'])) {
     <link rel="stylesheet" href="../assets/styles/normalize.css" />
     <link rel="stylesheet" href="../assets/styles/style.css" />
   </head>
-  <body>
-    <header>
-      <h1>Proyecto: <?php echo $project['nombre']; ?></h1>
-    </header>
+  <body class="center">
 
     <section class="container">
       <form method="" action="">
         <fieldset>
+      <h1>Proyecto: <?php echo $project['nombre']; ?></h1>
           <div class="campo">
             <label>Descripción:</label>
             <textarea readonly><?php echo $project['descripcion']; ?></textarea>
@@ -81,7 +79,7 @@ if (!empty($project['logo'])) {
             <?php endif; ?>
 
           </div>
-          
+
           <!-- Botón de regreso -->
           <div class="button-container">
             <a href="inicio.php" class="btn">Regresar</a>
