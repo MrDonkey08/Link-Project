@@ -185,11 +185,6 @@ INSERT INTO integrante (
     (1, 1),
     (2, 1);
 
-INSERT INTO lider (
-    id_estudiante,
-    id_proyecto
-) VALUES (2, 1);
-
 INSERT INTO proyecto_asesor (
     id_asesor,
     id_proyecto
@@ -202,7 +197,6 @@ SELECT * FROM estudiante;
 SELECT * FROM asesor;
 SELECT * FROM proyecto;
 SELECT * FROM integrante;
-SELECT * FROM lider;
 SELECT * FROM proyecto_asesor;
 SELECT * FROM reunion;
 SELECT * FROM reunion_participante;
