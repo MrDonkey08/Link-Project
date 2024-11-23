@@ -19,9 +19,9 @@ $con = conecta();
         var Pass = $('[name="pass"]').val().trim() // Corregido: debe ser 'pass'
 
         if (Correo === "" || Pass === "") {
-          $("#mensaje").html("Faltan campos por llenar")
+          //$("#mensaje").html("Faltan campos por llenar") se acompaña de un div, no es necesario aqui
           setTimeout(function () {
-            $("#mensaje").html("")
+            //$("#mensaje").html("")
           }, 5000)
         } else {
           // Realizar la solicitud AJAX
@@ -35,15 +35,15 @@ $con = conecta();
               if (res === "1") {
                 window.location.replace("pages/inicio.php")
               } else {
-                $("#mensaje").html("El usuario o la contraseña son incorrectos")
+                //$("#mensaje").html("El usuario o la contraseña son incorrectos")
                 console.log("Respuesta:", res)
                 setTimeout(function () {
-                  $("#mensaje").html("")
+                //  $("#mensaje").html("")
                 }, 5000)
               }
             },
             error: function () {
-              $("#mensaje").html("Error en la solicitud AJAX.")
+              //$("#mensaje").html("Error en la solicitud AJAX.") esto es con un div, pero no tenemos eso
               setTimeout(function () {
                 $("#mensaje").html("")
               }, 5000)

@@ -150,3 +150,10 @@ footer {
     color: var(--color1);
     font-size: 12px;
 }
+/* -------------------------------------------------------------------------------------------------mensaje */
+#mensaje {
+    color: #191970;
+    font-weight: bold;
+    font-family: "lato", sans-serif;
+    font-size: 12px;
+}

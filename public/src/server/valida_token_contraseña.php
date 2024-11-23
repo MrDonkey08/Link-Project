@@ -16,7 +16,7 @@ use PHPMailer\PHPMailer\Exception;
 
 session_start();
 $con = conecta();
-
+//<<<---------------------------------- Recibe variables
 if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['submit'])) {
     switch ($_POST['submit']) {
         case 'generarToken':
@@ -34,14 +34,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['submit'])) {
             echo "Acción Inválida";
     }
 }
-/**
- * Verifica que el correo le pertenece a algun usuario
- *
- * @param object $con    Conexión a la BD
- * @param string $correo Correo ingresado por el usuario
- *
- * @return object|null Objeto del usuario si existe, null si no
- */
+//<<------------------------------------ Verifica el correo intitucional
 function verificarCorreo($con, $correo)
 {
     $query = "SELECT id_usuario, correo, token" .
@@ -57,12 +50,13 @@ function verificarCorreo($con, $correo)
 
     return null;
 }
-
+//<<------------------------------------------------------------------------------------------------------------ envia token al correo
 function enviarCorreo($correo, $token)
 {
     $mail = new PHPMailer(true);
 
     try {
+        $mail->CharSet = 'UTF-8';
         // Configuración para el envio del correo
         $mail->isSMTP();
         $mail->Host = 'smtp.gmail.com'; // Se cambia en el video del kike
@@ -79,9 +73,10 @@ function enviarCorreo($correo, $token)
                 'allow_self_signed' => true
             )
         );
+        $mail->CharSet = 'UTF-8';
 
-        $mail->setFrom('juanendiaz07@gmail.com', 'Link-project'); // Remitente
-        $mail->addAddress($correo); // Destinatario
+        $mail->setFrom('juanendiaz07@gmail.com', 'Link-project');
+        $mail->addAddress($correo); 
 
         $mail->isHTML(true);
         $mail->Subject = 'Token de recuperación';
@@ -94,20 +89,12 @@ function enviarCorreo($correo, $token)
 
         $mail->send();
         echo "Correo enviado exitosamente.";
+        exit;
     } catch (Exception $e) {
         echo "Error al enviar el correo: {$mail->ErrorInfo}";
     }
 }
-/**
- * Genera un token y se le envia al correo ingresado
- *
- * @param object $con    Conexión a la BD
- * @param string $correo Correo ingresado por el usuario
- *
- * @return object|null Objeto del usuario si existe, null si no
- *
- * TODO: Enviar el correo al usuario
- */
+//<<------------------------------------------------------------------------------------------------------------ Genera el Token
 function generarToken($con, $correo)
 {
     $usuario_registrado = verificarCorreo($con, $correo);
@@ -130,40 +117,36 @@ function generarToken($con, $correo)
         echo "Error al generar el token.";
     }
 }
-/**
- * Vefirifica que el token ingresado pertenezca a un usuario
- *
- * @param object $con   Conexión a la BD
- * @param string $token ingresado por el usuario
- *
- * @return void
- */
+//<<------------------------------------------------------------------------------------------------------------ Verifica el token (validez)
+if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['token'])) {
+    // recive la variable token
+    $token = $_POST['token'];
+
+    // Llamamos a la funcion para verificar
+    if (verificarToken($con, $token)) {
+        echo "válido"; 
+    } else {
+        echo "inválido"; 
+    }
+}
+//<<------------------------------------------------------------------------------------------------------------ Funcion para validar el token
 function verificarToken($con, $token)
 {
-    $query = "SELECT token" .
-            " FROM usuario" .
-            " WHERE token = $1 AND activo = True" .
-            " LIMIT 1";
-
+    $query = "SELECT token FROM usuario WHERE token = $1 AND activo = True LIMIT 1";
     $result = pg_query_params($con, $query, [$token]);
 
     if ($result && pg_num_rows($result) > 0) {
         $usuario = pg_fetch_object($result);
+
+        // Verificar si el token coincide
+        if ($usuario && $token === $usuario->token) {
+            return true; // Token válido
+        }
     }
 
-    return ($token === $usuario->token);
+    return false; // Token inválido
 }
-/**
- * Valida que ambas contraseñas ingresadas sean iguales y si lo son, actualiza
- * la contraseña del usuario
- *
- * @param object $con    Conexión a la BD
- * @param string $token  ingresado por el usuario
- * @param string $pass_1 ingresado por el usuario
- * @param string $pass_2 ingresado por el usuario
- *
- * @return void
- */
+//<<------------------------------------ Verifica el restablecimiento de contraseñas
 function restablecerClave($con, $token, $pass_1, $pass_2)
 {
     if (!verificarToken($con, $token)) {
@@ -176,17 +159,19 @@ function restablecerClave($con, $token, $pass_1, $pass_2)
         return;
     }
 
+    // Encriptar la nueva contraseña antes de guardarla
+    $hashed_password = password_hash($pass_1, PASSWORD_BCRYPT);
+
     $query = "UPDATE usuario" .
         " SET clave = $1" .
         " WHERE token = $2 AND activo = True";
 
-    if (pg_query_params($con, $query, [$pass_1, $token])) {
-        echo "Contraseña reestablecida con éxito";
+    if (pg_query_params($con, $query, [$hashed_password, $token])) {
+        header("Location: ../../pages/inicio.php");
+        exit;
+    } else {
+        echo "Hubo un error al actualizar la contraseña. Inténtalo de nuevo.";
     }
 }
-
-desconecta($con);
-// TODO: Regresar a la página sin recargar, sin borrar los datos del formulario
-//header("Location: ../../pages/RecuperarContra.html");
-
+pg_close($con);
 ?>

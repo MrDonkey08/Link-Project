@@ -17,3 +17,10 @@ input {
     background-color: var(--color2);
     width: 350px;
 }
+/* -------------------------------------------------------------------------------------------------mensaje */
+#mensaje {
+    color: #191970;
+    font-weight: bold;
+    font-family: "lato", sans-serif;
+    font-size: 12px;
+}
