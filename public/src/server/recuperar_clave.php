@@ -34,7 +34,14 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['submit'])) {
             echo "Acción Inválida";
     }
 }
-
+/**
+ * Verifica que el correo le pertenece a algun usuario
+ *
+ * @param object $con    Conexión a la BD
+ * @param string $correo Correo ingresado por el usuario
+ *
+ * @return object|null Objeto del usuario si existe, null si no
+ */
 function verificarCorreo($con, $correo)
 {
     $query = "SELECT id_usuario, correo, token" .
@@ -91,7 +98,16 @@ function enviarCorreo($correo, $token)
         echo "Error al enviar el correo: {$mail->ErrorInfo}";
     }
 }
-
+/**
+ * Genera un token y se le envia al correo ingresado
+ *
+ * @param object $con    Conexión a la BD
+ * @param string $correo Correo ingresado por el usuario
+ *
+ * @return object|null Objeto del usuario si existe, null si no
+ *
+ * TODO: Enviar el correo al usuario
+ */
 function generarToken($con, $correo)
 {
     $usuario_registrado = verificarCorreo($con, $correo);
@@ -114,7 +130,14 @@ function generarToken($con, $correo)
         echo "Error al generar el token.";
     }
 }
-
+/**
+ * Vefirifica que el token ingresado pertenezca a un usuario
+ *
+ * @param object $con   Conexión a la BD
+ * @param string $token ingresado por el usuario
+ *
+ * @return void
+ */
 function verificarToken($con, $token)
 {
     $query = "SELECT token" .
@@ -130,7 +153,17 @@ function verificarToken($con, $token)
 
     return ($token === $usuario->token);
 }
-
+/**
+ * Valida que ambas contraseñas ingresadas sean iguales y si lo son, actualiza
+ * la contraseña del usuario
+ *
+ * @param object $con    Conexión a la BD
+ * @param string $token  ingresado por el usuario
+ * @param string $pass_1 ingresado por el usuario
+ * @param string $pass_2 ingresado por el usuario
+ *
+ * @return void
+ */
 function restablecerClave($con, $token, $pass_1, $pass_2)
 {
     if (!verificarToken($con, $token)) {
@@ -153,4 +186,7 @@ function restablecerClave($con, $token, $pass_1, $pass_2)
 }
 
 desconecta($con);
+// TODO: Regresar a la página sin recargar, sin borrar los datos del formulario
+//header("Location: ../../pages/RecuperarContra.html");
+
 ?>
