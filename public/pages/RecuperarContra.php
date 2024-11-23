@@ -11,113 +11,66 @@ $con = conecta();
     <link rel="stylesheet" href="../assets/styles/normalize.css" />
     <link rel="stylesheet" href="../assets/styles/style.css" />
     <link rel="stylesheet" href="../assets/styles/small_form.css" />
-
   </head>
   <body>
-    <div class="container">
+    <section class="container">
       <h1>Recuperar Contraseña</h1>
-      <form id="recover-form">
-        <div id="email-section">
-          <input
-            type="email"
-            id="email"
-            placeholder="Introduce tu correo"
-            required
-          />
-          <button type="button" onclick="sendCode()">Enviar Código</button>
-        </div>
-        <div id="code-section" class="hidden">
-          <input
-            type="text"
-            id="code"
-            placeholder="Introduce el código"
-            maxlength="4"
-            required
-          />
-          <button type="button" onclick="verifyCode()">Verificar Código</button>
-        </div>
-        <div id="password-section" class="hidden">
-          <input
-            type="password"
-            id="new-password"
-            placeholder="Nueva Contraseña"
-            disabled
-            required
-          />
-          <input
-            type="password"
-            id="confirm-password"
-            placeholder="Confirmar Contraseña"
-            disabled
-            required
-          />
-          <button
-            type="button"
-            onclick="updatePassword()"
-            disabled
-            id="update-btn"
-          >
-            Actualizar Contraseña
-          </button>
-        </div>
+      <form method="POST" action="../src/server/recuperar_clave.php">
+        <input
+          type="email"
+          id="email-input"
+          name="email"
+          placeholder="Introduce tu correo"
+          pattern="\w[\w\.]{0,30}@(alumnos|academicos)\.udg\.mx"
+          title="El correo debe ser institucional, perteneciente a la UDG"
+          autocomplete="on"
+          required
+        />
+
+        <button type="submit" name="submit" value="generarToken">
+          Enviar Código
+        </button>
       </form>
-    </div>
+      <form method="POST" action="../src/server/recuperar_clave.php">
+        <input
+          type="text"
+          id="token-input"
+          name="token"
+          placeholder="Introduce el código"
+          maxlength="6"
+          required
+        />
 
-    <script>
-      let verificationCode = ""
+        <input
+          type="password"
+          id="password-input"
+          name="password"
+          placeholder="Nueva Contraseña"
+          pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[\W_]).{8,40}"
+          title='La contraseña debe ser de una longitud de 8-40 caracteres
+                y contener al menos un dígito, una mayúscula, una minúscula y un
+                carácter especial "/*+&..."'
+          required
+        />
 
-      function sendCode() {
-        const email = document.getElementById("email").value
-        if (!email) {
-          alert("Por favor, introduce un correo electrónico válido.")
-          return
-        }
+        <input
+          type="password"
+          id="password-input-2"
+          name="password-2"
+          placeholder="Confirmar Contraseña"
+          pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[\W_]).{8,40}"
+          title='La contraseña debe ser de una longitud de 8-40 caracteres
+                y contener al menos un dígito, una mayúscula, una minúscula y un
+                carácter especial "/*+&..."'
+          required
+        />
 
-        verificationCode = Math.floor(1000 + Math.random() * 9000).toString()
-        alert(`Código enviado a ${email}: ${verificationCode}`) // Simulación del envío del correo
-        document.getElementById("email-section").classList.add("hidden")
-        document.getElementById("code-section").classList.remove("hidden")
-      }
-
-      function verifyCode() {
-        const userCode = document.getElementById("code").value
-        const newPasswordField = document.getElementById("new-password")
-        const confirmPasswordField = document.getElementById("confirm-password")
-        const updateButton = document.getElementById("update-btn")
-
-        if (userCode === verificationCode) {
-          alert("Código verificado correctamente.")
-          document.getElementById("password-section").classList.remove("hidden")
-          newPasswordField.disabled = false
-          confirmPasswordField.disabled = false
-          updateButton.disabled = false
-        } else {
-          alert("El código es incorrecto.")
-          newPasswordField.disabled = true
-          confirmPasswordField.disabled = true
-          updateButton.disabled = true
-        }
-      }
-
-      function updatePassword() {
-        const newPassword = document.getElementById("new-password").value
-        const confirmPassword =
-          document.getElementById("confirm-password").value
-
-        if (!newPassword || !confirmPassword) {
-          alert("Por favor, rellena todos los campos.")
-          return
-        }
-
-        if (newPassword !== confirmPassword) {
-          alert("Las contraseñas no coinciden.")
-          return
-        }
-
-        alert("Contraseña actualizada con éxito.")
-        // Aquí puedes enviar la contraseña actualizada al servidor.
-      }
-    </script>
+        <button type="submit" name="submit" value="restablecerClave">
+          Actualizar Contraseña
+        </button>
+      </form>
+    </section>
   </body>
 </html>
+
 
