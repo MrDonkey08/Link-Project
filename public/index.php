@@ -33,7 +33,7 @@ $con = conecta();
             success: function (res) {
               console.log("Correo: ", Correo)
               if (res === "1") {
-                window.location.replace("pages/inicio.php")
+                window.location.replace("pages/verificacion_2pasos.php")
               } else {
                 //$("#mensaje").html("El usuario o la contraseña son incorrectos")
                 console.log("Respuesta:", res)
@@ -111,6 +111,12 @@ $con = conecta();
               <p>
                 ¿No tienes cuenta?
                 <a href="pages/registro_usuario.php">Regístrate</a>
+              </p>
+            </div>
+            <div>
+              <p>
+                ¿Has olvidado tu contraseña?
+                <a href="pages/registro_usuario.php"></a>
               </p>
             </div>
             <button
