@@ -1,9 +1,13 @@
 <?php
-/*$Nombre = $_SESSION['NombreUser'];
+session_start();
+
+$Nombre = $_SESSION['NombreUser'];
 if (!isset($_SESSION['NombreUser'])) {
     header("Location: ../index.php");
     exit();
-} */
+} 
+$id_usuario = $_SESSION['IDUser'];
+
 require '../src/server/conecta.php';
 $con = conecta();
 
@@ -38,11 +42,20 @@ if ($result_proyectos) {
       <a href="crear_proyecto.php" class="btn">Crear Proyecto</a>
     </div>
 
+    <div class="navigation-bar">
+      <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@tabler/icons-webfont@latest/dist/tabler-icons.min.css" />
+      <a href="perfil_usuario.php<?php echo $_SESSION['IDUser']; ?>" class="user">
+      <i  class="ti ti-user-circle" ></i>
+      </a>
+      
+    </div>
+
     <!-- Barra de búsqueda -->
     <div class="search-container">
       <input type="text" id="search" placeholder="Buscar proyectos..." />
       <button id="search-btn">Buscar</button>
     </div>
+
 
     <!-- Mostrar los proyectos -->
     <div class="projects-list">
