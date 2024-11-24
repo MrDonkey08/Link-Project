@@ -8,10 +8,10 @@ if (!isset($_SESSION['NombreUser'])) {
 require '../src/server/conecta.php';
 // Obtiene el ID que se envia desde el icono de "user"
 if (isset($_GET['id'])) {
-  $id_usuario = $_GET['id'];
+    $id_usuario = $_GET['id'];
 } else {
-  echo "ID de usuario no proporcionado.";
-  exit();
+    echo "ID de usuario no proporcionado.";
+    exit();
 }
 $con = conecta();
 
@@ -56,7 +56,7 @@ if ($res_estudiante && pg_num_rows($res_estudiante) > 0) {
 
 // <<<------------------------------------------------------------------- Consulta para obtener proyectos asociados al usuario (estudiante o asesor)
 $sql_proyectos = "
-    SELECT p.* 
+    SELECT p.*
     FROM proyecto p
     JOIN integrante i ON p.id = i.id_proyecto
     WHERE i.id_estudiante = $1
@@ -67,7 +67,7 @@ $res_proyectos = pg_execute($con, "query_select_proyectos", array($id_estudiante
 
 if ($res_proyectos && pg_num_rows($res_proyectos) > 0) {
     while ($row = pg_fetch_assoc($res_proyectos)) {
-      // <<----- Se obtienen los datos de la tabla proyecto
+        // <<----- Se obtienen los datos de la tabla proyecto
         $id_proyecto          = $row["id"];
         $nombre_proyecto      = $row["nombre"];
         $descripcion_proyecto = $row["descripcion"];
@@ -83,7 +83,7 @@ if ($res_proyectos && pg_num_rows($res_proyectos) > 0) {
 
 // <<------------------------------ Consulta para obtener integrantes del proyecto
 $sql_integrantes = "
-    SELECT i.*, e.nombres, e.apellido_pat, e.apellido_mat 
+    SELECT i.*, e.nombres, e.apellido_pat, e.apellido_mat
     FROM integrante i
     JOIN estudiante e ON i.id_estudiante = e.id_usuario
     WHERE i.id_proyecto = $1
@@ -116,95 +116,112 @@ $result_integrantes = pg_prepare($con, "query_select_integrantes", $sql_integran
       <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@tabler/icons-webfont@latest/dist/tabler-icons.min.css" />
       <a href="perfil_usuario.php?id=<?php echo $_SESSION['IDUser']; ?>" class="user">
         <i  class="ti ti-user-circle" ></i>
-      </a> -->
-      
-    </div>
-      <!-- ------------------------------------------------------------------------- Contenido de la pagina -->
-      <div class="Contenido">
-        <div class="contenedor">
-          <div class="Header">
-            <form action="../src/server/subir_foto.php" method="POST" enctype="multipart/form-data">
-                <div class="avatar">
-                  <?php 
-                  if (isset($foto)) {
-                      echo "<img src='data:image/jpeg;base64," . base64_encode($foto) . "' alt='Avatar' />";
-                  } else {
-                    
-                  }
-                  ?>
-                  <input type="file" name="foto" id="foto" accept="image/*" style="display: none;" onchange="this.form.submit();">
-                  <label for="foto" style="cursor: pointer;">
-                      <img src="icono_subir.png" />
-                  </label>
-                </div>
-            </form>
-            
-              <h1><?php echo $nombre . ' ' . $apellidos; ?></h1>
-            </div>
-                
-            <div class="contact-info">
-                    
-              <p> <?php echo $telefono; ?> </p>
-              <p> <?php echo $correo; ?> </p>
-              <p> <?php echo $codigo; ?> </p>
-              <p> <?php echo $carrera; ?></p>  
-            </div>
-            <div class="section-title">Habilidades</div>  
-            <div class="pr-item">
-                <form action="../src/server/habilidades_salva.php" method="POST">
-                    <textarea name="habilidades" id="habilidades" rows="4" cols="50" required><?php echo htmlspecialchars($habilidades); ?></textarea>
-                    <input type="hidden" name="id_estudiante" value="<?php echo $id_estudiante; ?>">
-                    <button type="submit">Guardar Habilidades</button>
-                </form>
-            </div>
-            
-            <div class="section-title">Proyecto</div>
-            <div class="pr-item">
-              <!------------------------------------------- Logica para saber si esta en proyecto o no -------------------- <img src="'icono_pr.png'" alt="Pr Icon">-->
-              <p class="section-title" > Nombre del proyecto: </p>
-              <p> <?php echo $nombre_proyecto; ?></p> 
-              <p> --------------------------------------------</p>  
-              <p class="section-title" > Descripcion: </p> 
-              <p> <?php echo $descripcion_proyecto; ?></p> 
-              <p> --------------------------------------------</p> 
-              <p class="section-title" > Area del proyecto: </p> 
-              <p> <?php echo $area_preoyecto; ?></p> 
-              <p> --------------------------------------------</p>
-              <p class="section-title" > Status del proyecto: </p> 
-              <p> <?php echo $status; ?></p> 
-              <p> --------------------------------------------</p>
-              <p class="section-title" > Conocimientos requeridos: </p> 
-              <p> <?php echo $conoc_req; ?></p> 
-              <p> --------------------------------------------</p>
-              <p class="section-title" > Nivel de innovacion: </p> 
-              <p> <?php echo $niv_innova; ?></p> 
-              <p> --------------------------------------------</p>
-              <p class="section-title" > Integrantes: </p> 
-              <?php
-              // Ejecuta la consulta para obtener los integrantes
-              $res_integrantes = pg_execute($con, "query_select_integrantes", array($id_proyecto));
+      </a>
 
-              if ($res_integrantes && pg_num_rows($res_integrantes) > 0) {
-                  while ($row = pg_fetch_assoc($res_integrantes)) {
-                      // Obtén los datos del integrante
-                      $nombre_integrante = $row['nombres'];
-                      $apellidos_integrante = $row['apellido_pat'] . ' ' . $row['apellido_mat'];
-                      
-                      // Muestra la información del integrante
-                      echo "<p>$nombre_integrante $apellidos_integrante</p>";
-                      echo "<p>--------------------------------------------</p>";
-                  }
+    </div> -->
+    <!-- ------------------------------------------------------------------------- Contenido de la pagina -->
+    <div class="Contenido">
+      <div class="contenedor">
+        <div class="Header">
+          <form
+            action="../src/server/subir_foto.php"
+            method="POST"
+            enctype="multipart/form-data"
+          >
+          <div class="avatar">
+              <?php
+              if (isset($foto)) {
+                  echo "<img src='data:image/jpeg;base64," . base64_encode($foto) . "' alt='Avatar' />";
               } else {
-                  echo "<p>No se encontraron integrantes para el proyecto.</p>";
+
               }
-              ?>     
-              <div>
-                
-              </div>
+              ?>
+              <input
+                type="file"
+                name="foto"
+                id="foto"
+                accept="image/*"
+                style="display: none"
+                onchange="this.form.submit();"
+              />
+              <label for="foto" style="cursor: pointer">
+                <img src="icono_subir.png" />
+              </label>
             </div>
-                
-            </div>
+          </form>
+
+          <h1><?php echo $nombre . ' ' . $apellidos; ?></h1>
         </div>
+
+        <div class="contact-info">
+          <p><?php echo $telefono; ?></p>
+          <p><?php echo $correo; ?></p>
+          <p><?php echo $codigo; ?></p>
+          <p><?php echo $carrera; ?></p>
+        </div>
+        <div class="section-title">Habilidades</div>
+        <div class="pr-item">
+          <form action="../src/server/habilidades_salva.php" method="POST">
+            <textarea
+              name="habilidades"
+              id="habilidades"
+              rows="4"
+              cols="50"
+              required
+            >
+              <?php echo htmlspecialchars($habilidades); ?>
+            </textarea>
+            <input
+              type="hidden"
+              name="id_estudiante"
+              value="<?php echo $id_estudiante; ?>"
+            />
+            <button type="submit">Guardar Habilidades</button>
+          </form>
+        </div>
+
+        <div class="section-title">Proyecto</div>
+        <div class="pr-item">
+          <!------------------------------------------- Logica para saber si esta en proyecto o no -------------------- <img src="'icono_pr.png'" alt="Pr Icon">-->
+          <p class="section-title">Nombre del proyecto:</p>
+          <p><?php echo $nombre_proyecto; ?></p>
+          <p>--------------------------------------------</p>
+          <p class="section-title">Descripcion:</p>
+          <p><?php echo $descripcion_proyecto; ?></p>
+          <p>--------------------------------------------</p>
+          <p class="section-title">Area del proyecto:</p>
+          <p><?php echo $area_preoyecto; ?></p>
+          <p>--------------------------------------------</p>
+          <p class="section-title">Status del proyecto:</p>
+          <p><?php echo $status; ?></p>
+          <p>--------------------------------------------</p>
+          <p class="section-title">Conocimientos requeridos:</p>
+          <p><?php echo $conoc_req; ?></p>
+          <p>--------------------------------------------</p>
+          <p class="section-title">Nivel de innovacion:</p>
+          <p><?php echo $niv_innova; ?></p>
+          <p>--------------------------------------------</p>
+          <p class="section-title">Integrantes:</p>
+          <?php
+          // Ejecuta la consulta para obtener los integrantes
+          $res_integrantes = pg_execute($con, "query_select_integrantes", array($id_proyecto));
+
+          if ($res_integrantes && pg_num_rows($res_integrantes) > 0) {
+              while ($row = pg_fetch_assoc($res_integrantes)) {
+                  // Obtén los datos del integrante
+                  $nombre_integrante = $row['nombres'];
+                  $apellidos_integrante = $row['apellido_pat'] . ' ' . $row['apellido_mat'];
+
+                  // Muestra la información del integrante
+                  echo "<p>$nombre_integrante $apellidos_integrante</p>";
+                  echo "<p>--------------------------------------------</p>";
+              }
+          } else {
+              echo "<p>No se encontraron integrantes para el proyecto.</p>";
+          }
+          ?>
+        </div>
+      </div>
     </div>
   </body>
 </html>
