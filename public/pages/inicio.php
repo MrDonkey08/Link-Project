@@ -50,7 +50,7 @@ if ($result_proyectos) {
 
     <div class="navigation-bar">
       <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@tabler/icons-webfont@latest/dist/tabler-icons.min.css" />
-      <a href="perfil_usuario.php<?php echo $_SESSION['IDUser']; ?>" class="user">
+      <a href="perfil_usuario.php?id=<?php echo $_SESSION['IDUser']; ?>" class="user">
       <i  class="ti ti-user-circle" ></i>
       </a>
       
