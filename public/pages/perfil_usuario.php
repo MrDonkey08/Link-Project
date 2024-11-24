@@ -31,6 +31,7 @@ if ($res_estudiante && pg_num_rows($res_estudiante) > 0) {
     $correo         = $row["correo"];
     $codigo         = $row["codigo_escolar"];
     $foto           = $row["foto"];
+    $habilidades    = $row["habilidades"];
 } else {
     //<<----------------------------------------------- Verifica si el ID pertenece a un asesor
     $sql_asesor = "SELECT * FROM asesor WHERE id_usuario = $1";
@@ -80,30 +81,16 @@ if ($res_proyectos && pg_num_rows($res_proyectos) > 0) {
     echo "No se encontraron proyectos asociados al usuario.";
 }
 
-// Consulta para obtener integrantes del proyecto
+// <<------------------------------ Consulta para obtener integrantes del proyecto
 $sql_integrantes = "
-    SELECT i.*, u.nombres, u.apellido_pat, u.apellido_mat 
+    SELECT i.*, e.nombres, e.apellido_pat, e.apellido_mat 
     FROM integrante i
-    JOIN usuario u ON i.id_estudiante = u.id_usuario
+    JOIN estudiante e ON i.id_estudiante = e.id_usuario
     WHERE i.id_proyecto = $1
 ";
 
 $result_integrantes = pg_prepare($con, "query_select_integrantes", $sql_integrantes);
-$res_integrantes = pg_execute($con, "query_select_integrantes", array($id_proyecto));
 
-if ($res_integrantes && pg_num_rows($res_integrantes) > 0) {
-    while ($row = pg_fetch_assoc($res_integrantes)) {
-        // Aquí puedes obtener los datos del integrante
-        $nombre_integrante = $row["nombres"];
-        $apellidos_integrante = $row["apellido_pat"] . ' ' . $row["apellido_mat"];
-        // ... otros campos
-    }
-} else {
-    echo "No se encontraron integrantes para el proyecto.";
-}
-
-// Cerrar la conexión con la BD
-pg_close($con);
 ?>
 <!doctype html>
 <html lang="es">
@@ -136,23 +123,40 @@ pg_close($con);
       <div class="Contenido">
         <div class="contenedor">
           <div class="Header">
-            <div class="avatar"><?php echo $foto; ?></div>
+            <form action="../src/server/subir_foto.php" method="POST" enctype="multipart/form-data">
+                <div class="avatar">
+                  <?php 
+                  if (isset($foto)) {
+                      echo "<img src='data:image/jpeg;base64," . base64_encode($foto) . "' alt='Avatar' />";
+                  } else {
+                    
+                  }
+                  ?>
+                  <input type="file" name="foto" id="foto" accept="image/*" style="display: none;" onchange="this.form.submit();">
+                  <label for="foto" style="cursor: pointer;">
+                      <img src="icono_subir.png" />
+                  </label>
+                </div>
+            </form>
+            
               <h1><?php echo $nombre . ' ' . $apellidos; ?></h1>
             </div>
                 
             <div class="contact-info">
                     
-              <p> <?php echo $id_estudiante; ?> </p>
               <p> <?php echo $telefono; ?> </p>
               <p> <?php echo $correo; ?> </p>
               <p> <?php echo $codigo; ?> </p>
               <p> <?php echo $carrera; ?></p>  
             </div>
             <div class="section-title">Habilidades</div>  
-            
-            <p> --------------------------------------------</p>  
-            
-            
+            <div class="pr-item">
+                <form action="../src/server/habilidades_salva.php" method="POST">
+                    <textarea name="habilidades" id="habilidades" rows="4" cols="50" required><?php echo htmlspecialchars($habilidades); ?></textarea>
+                    <input type="hidden" name="id_estudiante" value="<?php echo $id_estudiante; ?>">
+                    <button type="submit">Guardar Habilidades</button>
+                </form>
+            </div>
             
             <div class="section-title">Proyecto</div>
             <div class="pr-item">
@@ -176,10 +180,24 @@ pg_close($con);
               <p> <?php echo $niv_innova; ?></p> 
               <p> --------------------------------------------</p>
               <p class="section-title" > Integrantes: </p> 
-              <p> <?php echo $nombre_integrante . ' ' . $apellidos_integrante; ?></p> 
-              <p> --------------------------------------------</p>
+              <?php
+              // Ejecuta la consulta para obtener los integrantes
+              $res_integrantes = pg_execute($con, "query_select_integrantes", array($id_proyecto));
 
-                
+              if ($res_integrantes && pg_num_rows($res_integrantes) > 0) {
+                  while ($row = pg_fetch_assoc($res_integrantes)) {
+                      // Obtén los datos del integrante
+                      $nombre_integrante = $row['nombres'];
+                      $apellidos_integrante = $row['apellido_pat'] . ' ' . $row['apellido_mat'];
+                      
+                      // Muestra la información del integrante
+                      echo "<p>$nombre_integrante $apellidos_integrante</p>";
+                      echo "<p>--------------------------------------------</p>";
+                  }
+              } else {
+                  echo "<p>No se encontraron integrantes para el proyecto.</p>";
+              }
+              ?>     
               <div>
                 
               </div>
