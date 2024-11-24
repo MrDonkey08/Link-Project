@@ -1,67 +1,4 @@
-/* --------------------------------------Modificaciones para el fondo de la pagina o cuerpo*/
-body {
-    /*background-size: 100%;/* Ancho del patrón---------------------ESTO ES PARA PONERLE FONDO DE COLOR A LA PAGINA
-    background-image: url('imagenes-Diseño/fondo-8.jpg'); /* Imagen de fondo */
-    height: 100%;
-    background-size: cover; /* Lograr expandir la imagen a toda la pagina */
-    background-attachment: fixed; /* esto fija la imagen de fondo */
-    justify-content: center;
-    margin: 0;
-}
-/* -------------------------------------- Se refiere a la base del sitio*/
-.wrapper {
-    display: flex;
-    flex-direction: column;
-    min-height: 100vh; /* 100% de la altura del viewport */
-}
-/* -------------------------------------- Se refiere al cuadro del menu o encabezado de pagina inicial*/
-header {
-    background-color: #91b0d5;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 10px;
-}
-/* -------------------------------------- Espacio para el logo */
-.logo {
-    flex: 0 1 100px; /* Toma solo el espacio necesario para el logo */
-    background-color: lightgray;
-    padding: 10px;
-    text-align: center;
-}
-/* -------------------------------------- Espacio central de la barra de opciones */
-.Central {
-    flex: 2; /* Este div es el más grande */
-    padding: 10px;
-    text-align: center;
-    /*border: solid #000 1px; /*Opcion que suo para revisar diseño de espacio*/
-}
-/* -------------------------------------- Tabla de navegacion */
-.TablaNav {
-    display: flex;
-    gap: 10px; /* Espacio entre los divs */
-    /*border: solid #000 1px; /*Opcion que suo para revisar diseño de espacio*/
-}
-/* -------------------------------------- Cada uno de los 3 divs alineados a la derecha */
-.TablaNav div {
-    flex: 0 1 100px; /* Tamaño de cada div a la derecha */
-    padding: 10px;
-    text-align: center;
-}
-/* -------------------------------------- opcines de navegacion */
-.OpNav {
-    max-width: 100%;
-    /*border: solid #000 1px;*/
-}
-/* -------------------------------------- Opciones de navegacion (a) esto hace toda la chamba */
-.OpNav img {
-    font-family: "lato", sans-serif;
-    max-width: 100%;
-    height: 30px;
-    color: #000;
-    /* border: solid #000 1px; */
-    transition: 0.3s;
-}
+
 /* -------------------------------------- Diseño de tabla central para la informacion de usuario*/
 .Contenido {
     font-family: Arial, sans-serif;
@@ -81,16 +18,10 @@ header {
     border-radius: 8px;
     margin-top: 20px;
 }
-/* -------------------------------------- Header secundario, para el espaciado del inicio */
-.Header {
-    display: flex;
-    align-items: center;
-    margin-bottom: 20px;
-}
 /* -------------------------------------- parte de foto */
 .avatar {
-    width: 60px;
-    height: 60px;
+    width: 90px;
+    height: 90px;
     border-radius: 50%;
     background-color: #333;
     color: white;
@@ -100,22 +31,17 @@ header {
     justify-content: center;
     margin-right: 20px;
 }
-/* -------------------------------------- Espacio para el logo */
-h1 {
-    margin: 0;
-    font-size: 24px;
-}
-/* -------------------------------------- Espacio para el logo */
+/* -------------------------------------- informacion del usuario */
 .contact-info {
-    font-size: 14px;
+    font-size: 16px;
     color: #555;
     margin-bottom: 20px;
 }
-/* -------------------------------------- Espacio para el logo */
+/* configuracion de los "p" */
 .contact-info p {
     margin: 5px 0;
 }
-/* -------------------------------------- Espacio para el logo */
+/* -------------------------------------- Seccion para sub-titulos */
 .section-title {
     font-weight: bold;
     font-size: 16px;
@@ -125,8 +51,7 @@ h1 {
 }
 /* -------------------------------------- Espacio para el logo */
 .pr-item {
-    display: flex;
-    align-items: center;
+
     padding: 15px;
     border: 1px solid #ddd;
     border-radius: 8px;
@@ -146,30 +71,4 @@ h1 {
 .pr-item span {
     color: #666;
     font-size: 12px;
-}
-/* -------------------------------------- Espacio para el logo */
-.settings-item {
-    padding: 15px;
-    border-top: 1px solid #ddd;
-    font-size: 14px;
-    display: flex;
-    justify-content: space-between;
-    color: #333;
-}
-/* -------------------------------------- Espacio para el logo */
-.settings-item:hover {
-    background-color: #f1f1f1;
-    cursor: pointer;
-}
-/* -------------------------------------- Se refiere al cuadro del menu o encabezado de pagina final*/
-footer {
-    background-color: #91b0d5;
-    color: #000;
-    text-align: center;
-    font-size: 18px;
-}
-.iconos {
-    width: 50px;
-    height: 50px;
-    filter: grayscale(100%);
 }

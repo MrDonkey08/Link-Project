@@ -7,8 +7,8 @@ if (!isset($_SESSION['NombreUser'])) {
 }
 require '../src/server/conecta.php';
 if (!isset($_GET['id']) || !is_numeric($_GET['id'])) {
-  echo "ID no válido";
-  exit;
+    echo "ID no válido";
+    exit;
 }
 $idUsuario = $_GET['id'];
 $con = conecta();
