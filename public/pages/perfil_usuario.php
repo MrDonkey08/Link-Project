@@ -64,6 +64,20 @@ if ($res_estudiante && pg_num_rows($res_estudiante) > 0) {
         exit();
     }
 }
+
+if (!empty($foto)) {
+    // Decodificamos el bytea
+    $unes_img = pg_unescape_bytea($foto);
+    // Nombre del archivo donde se guardará la imagen (en la misma carpeta)
+    $file_name = "profile.jpg";
+    // Guardamos la imagen en un archivo
+    $img = fopen($file_name, 'wb');// or die("No se pudo abrir la imagen");
+    fwrite($img, $unes_img);// or die("No se pudo escribir la imagen");
+    fclose($img);
+} else {
+    echo("No se encontró información de la imagen.\n");
+}
+
 // <<<------------------------------------------------------------------- Consulta para obtener proyectos asociados al usuario (estudiante o asesor)
 if($tipo_usuario === 'estudiante') {
     $sql_proyectos = "
@@ -155,19 +169,38 @@ if ($res_proyectos && pg_num_rows($res_proyectos) > 0) {
     <div class="Contenido">
       <div class="contenedor">
         <div class="Header">
-          <form action="../src/server/subir_foto.php" method="POST" enctype="multipart/form-data">
+          <form
+            action="../src/server/subir_foto.php"
+            method="POST"
+            enctype="multipart/form-data"
+          >
             <div class="avatar">
-              <?php if ($foto && file_exists($foto)): ?>
-                  <!-- Mostramos la imagen guardada -->
-                  <img src="<?php echo htmlspecialchars($foto); ?>" class="foto-usuario" alt="Foto del asesor">
-                  <input type="file" name="foto" id="foto" accept="image/*" onchange="this.form.submit();" />
-                  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@tabler/icons-webfont@latest/dist/tabler-icons.min.css" />
-                  <label for="foto" class="ti ti-pencil" style="cursor: pointer"></label>
-              <?php else: ?>
-                  <input type="file" name="foto" id="foto" accept="image/*" onchange="this.form.submit();" />
-                  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@tabler/icons-webfont@latest/dist/tabler-icons.min.css" />
-                  <label for="foto" class="ti ti-pencil" style="cursor: pointer"></label>
+              <?php if ($file_name && file_exists($file_name)): ?>
+              <!-- Mostramos la imagen guardada -->
+              <img
+                src="<?php echo htmlspecialchars($file_name); ?>"
+                class="foto-usuario"
+                alt="Foto del asesor"
+              />
               <?php endif; ?>
+              <input
+                type="file"
+                name="foto"
+                id="foto"
+                accept="image/*"
+                onchange="this.form.submit();"
+              />
+              <link
+                rel="stylesheet"
+                href="https://cdn.jsdelivr.net/npm/@tabler/icons-webfont@latest/dist/tabler-icons.min.css"
+              />
+              <label for="foto" class="ti ti-pencil" style="cursor: pointer"></label>
+              <input
+                type="hidden"
+                id="id-usuario-input"
+                name="id-usuario"
+                value="<?php echo htmlspecialchars($id_usuario); ?>"
+              />
             </div>
           </form>
           <h1><?php echo $nombre . ' ' . $apellidos; ?></h1>
