@@ -79,7 +79,7 @@ if (!empty($foto)) {
 }
 
 // <<<------------------------------------------------------------------- Consulta para obtener proyectos asociados al usuario (estudiante o asesor)
-if($tipo_usuario === 'estudiante') {
+if ($tipo_usuario === 'estudiante') {
     $sql_proyectos = "
     SELECT p.*
     FROM proyecto p
@@ -227,6 +227,19 @@ if ($res_proyectos && pg_num_rows($res_proyectos) > 0) {
             action="../src/server/usuario_update.php"
             enctype="multipart/form-data"
           >
+
+            <input
+              type="hidden"
+              id="id-usuario-input"
+              name="id-usuario"
+              value="<?php echo $id_usuario ?>"
+            />
+            <input
+              type="hidden"
+              id="tipo-de-usuario-input"
+              name="tipo-de-usuario"
+              value="<?php echo $tipo_usuario ?>"
+            />
             <div class="campos-2">
               <div class="campo">
                 <label for="nombre-input">Nombre(s)</label>
@@ -235,7 +248,6 @@ if ($res_proyectos && pg_num_rows($res_proyectos) > 0) {
                   id="nombre-input"
                   name="nombre"
                   value="<?php echo $nombre ?>"
-                  required
                 />
               </div>
 
@@ -246,7 +258,6 @@ if ($res_proyectos && pg_num_rows($res_proyectos) > 0) {
                   id="apellido-paterno-input"
                   name="apellido-paterno"
                   value="<?php echo $apellido_pat ?>"
-                  required
                 />
               </div>
 
@@ -257,7 +268,6 @@ if ($res_proyectos && pg_num_rows($res_proyectos) > 0) {
                   id="apellido-materno-input"
                   name="apellido-materno"
                   value="<?php echo $apellido_mat ?>"
-                  required
                 />
               </div>
 
@@ -272,7 +282,6 @@ if ($res_proyectos && pg_num_rows($res_proyectos) > 0) {
                   title='El número telefónico debe ser de 10 dígitos,
                     preferentemente separados con guiones "-" o espacios " ", tal
                     como se muestra en el ejemplo'
-                  required
                 />
               </div>
             </div>
@@ -380,7 +389,6 @@ if ($res_proyectos && pg_num_rows($res_proyectos) > 0) {
                 name="habilidades"
                 id="habilidades-textarea"
                 rows="5"
-                required
               ><?php echo htmlspecialchars($habilidades); ?></textarea
               >
             </div>
@@ -490,7 +498,7 @@ if ($res_proyectos && pg_num_rows($res_proyectos) > 0) {
                   pattern="\w[\w\.]{0,30}@(alumnos|academicos)\.udg\.mx"
                   title="El correo debe ser institucional, perteneciente a la UDG"
                   autocomplete="on"
-                  required
+                  disabled
                 />
               </div>
 
@@ -504,7 +512,7 @@ if ($res_proyectos && pg_num_rows($res_proyectos) > 0) {
                   title='La contraseña debe ser de una longitud de 8-40 caracteres
                     y contener al menos un dígito, una mayúscula, una minúscula y un
                     carácter especial "/*+&..."'
-                  required
+                  disabled
                 />
               </div>
 
@@ -518,11 +526,11 @@ if ($res_proyectos && pg_num_rows($res_proyectos) > 0) {
                   title='La contraseña debe ser de una longitud de 8-40 caracteres
                     y contener al menos un dígito, una mayúscula, una minúscula y un
                     carácter especial "/*+&..."'
-                  required
+                  disabled
                 />
               </div>
             </div>
-            <button type="submit">Gurdar Cambios</button>
+            <button type="submit">Guardar Cambios</button>
           </form>
 
           <!-- <<--------------------------------------------- condicionamos para el apartado de habilidades -->
@@ -569,7 +577,7 @@ if ($res_proyectos && pg_num_rows($res_proyectos) > 0) {
                 } else {
                     echo "<p>No se encontraron integrantes para el proyecto.</p>";
                 }
-                ?>
+?>
             <?php else: ?>
                 <p>No hay proyecto asociado.</p>
             <?php endif; ?>
