@@ -149,12 +149,16 @@ if ($res_proyectos && pg_num_rows($res_proyectos) > 0) {
     </header>
     <!-- ################################################################ panel de navegacion ############################################### -->
     <div id="sidebar" class="sidebar">
-        <h2>Opciones</h2>
-        <ul>
-            <li><a href="perfil_usuario.php?id=<?php echo $_SESSION['IDUser']; ?>">Perfil usuario</a></li>
-            <li><a href="../src/server/cerrar_sesion.php">Cerrar sesion</a></li>
-            <li><a href="#">Opción 3</a></li>
-        </ul>
+      <h2>Opciones</h2>
+      <ul>
+        <li>
+          <a href="perfil_usuario.php?id=<?php echo $_SESSION['IDUser']; ?>"
+            >Perfil usuario</a
+          >
+        </li>
+        <li><a href="../src/server/cerrar_sesion.php">Cerrar sesion</a></li>
+        <li><a href="#">Opción 3</a></li>
+      </ul>
     </div>
     <div id="overlay" class="overlay" onclick="closeSidebar()"></div>
     <div class="button-container">
@@ -162,8 +166,15 @@ if ($res_proyectos && pg_num_rows($res_proyectos) > 0) {
     </div>
 
     <div class="navigation-bar">
-      <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@tabler/icons-webfont@latest/dist/tabler-icons.min.css" />
-      <i class="ti ti-baseline-density-small" id="menu" onclick="toggleSidebar()"></i>
+      <link
+        rel="stylesheet"
+        href="https://cdn.jsdelivr.net/npm/@tabler/icons-webfont@latest/dist/tabler-icons.min.css"
+      />
+      <i
+        class="ti ti-baseline-density-small"
+        id="menu"
+        onclick="toggleSidebar()"
+      ></i>
     </div>
     <!-- ------------------------------------------------------------------------- Contenido de la pagina -->
     <div class="Contenido">
@@ -194,7 +205,11 @@ if ($res_proyectos && pg_num_rows($res_proyectos) > 0) {
                 rel="stylesheet"
                 href="https://cdn.jsdelivr.net/npm/@tabler/icons-webfont@latest/dist/tabler-icons.min.css"
               />
-              <label for="foto" class="ti ti-pencil" style="cursor: pointer"></label>
+              <label
+                for="foto"
+                class="ti ti-pencil"
+                style="cursor: pointer"
+              ></label>
               <input
                 type="hidden"
                 id="id-usuario-input"
@@ -207,70 +222,71 @@ if ($res_proyectos && pg_num_rows($res_proyectos) > 0) {
         </div>
 
         <div class="contact-info">
-      <form
-        method="post"
-        action="../src/server/usuario_update.php"
-        enctype="multipart/form-data"
-      >          <div class="campos-2">
-            <div class="campo">
-              <label for="nombre-input">Nombre(s)</label>
-              <input
-                type="text"
-                id="nombre-input"
-                name="nombre"
-                value="<?php echo $nombre ?>"
-                required
-              />
+          <form
+            method="post"
+            action="../src/server/usuario_update.php"
+            enctype="multipart/form-data"
+          >
+            <div class="campos-2">
+              <div class="campo">
+                <label for="nombre-input">Nombre(s)</label>
+                <input
+                  type="text"
+                  id="nombre-input"
+                  name="nombre"
+                  value="<?php echo $nombre ?>"
+                  required
+                />
+              </div>
+
+              <div class="campo">
+                <label for="apellido-paterno-input">Apellido Paterno</label>
+                <input
+                  type="text"
+                  id="apellido-paterno-input"
+                  name="apellido-paterno"
+                  value="<?php echo $apellido_pat ?>"
+                  required
+                />
+              </div>
+
+              <div class="campo">
+                <label for="apellido-materno-input">Apellido Materno</label>
+                <input
+                  type="text"
+                  id="apellido-materno-input"
+                  name="apellido-materno"
+                  value="<?php echo $apellido_mat ?>"
+                  required
+                />
+              </div>
+
+              <div class="campo">
+                <label for="contacto-input">Télefono</label>
+                <input
+                  type="tel"
+                  id="contacto-input"
+                  name="contacto"
+                  value="<?php echo $telefono ?>"
+                  pattern="(\d{2}([\- ]?\d{4}){2}|(\d{3}[\- ]){2}\d{4})"
+                  title='El número telefónico debe ser de 10 dígitos,
+                    preferentemente separados con guiones "-" o espacios " ", tal
+                    como se muestra en el ejemplo'
+                  required
+                />
+              </div>
             </div>
 
-            <div class="campo">
-              <label for="apellido-paterno-input">Apellido Paterno</label>
-              <input
-                type="text"
-                id="apellido-paterno-input"
-                name="apellido-paterno"
-                value="<?php echo $apellido_pat ?>"
-                required
-              />
-            </div>
+            <h2>Datos de Escolares</h2>
 
-            <div class="campo">
-              <label for="apellido-materno-input">Apellido Materno</label>
-              <input
-                type="text"
-                id="apellido-materno-input"
-                name="apellido-materno"
-                value="<?php echo $apellido_mat ?>"
-                required
-              />
-            </div>
-
-            <div class="campo">
-              <label for="contacto-input">Télefono</label>
-              <input
-                type="tel"
-                id="contacto-input"
-                name="contacto"
-                value="<?php echo $telefono ?>"
-                pattern="(\d{2}([\- ]?\d{4}){2}|(\d{3}[\- ]){2}\d{4})"
-                title='El número telefónico debe ser de 10 dígitos,
-                preferentemente separados con guiones "-" o espacios " ", tal
-                como se muestra en el ejemplo'
-                required
-              />
-            </div>
-                        </div>
-
-          <h2>Datos de Escolares</h2>
-
-          <?php if ($tipo_usuario === 'estudiante') : ?>
+            <?php if ($tipo_usuario === 'estudiante') : ?>
 
             <div class="campos-2" id="datos-alumno-div">
               <div class="campo">
                 <label for="carrera-select">Carrera</label>
                 <select name="carrera" id="carrera-select">
                   <option value="<?php echo $carrera ?>">
-                      <?php echo $carrera ?>
+                    <?php echo $carrera ?>
                   </option>
 
                   <hr />
@@ -309,7 +325,9 @@ if ($res_proyectos && pg_num_rows($res_proyectos) > 0) {
                     <option value="Ingeniería Mecánica Eléctrica">
                       Ingeniería Mecánica Eléctrica
                     </option>
-                    <option value="Ingeniería Química">Ingeniería Química</option>
+                    <option value="Ingeniería Química">
+                      Ingeniería Química
+                    </option>
                     <option value="12">
                       Ingeniería en Logística y Transporte
                     </option>
@@ -342,7 +360,9 @@ if ($res_proyectos && pg_num_rows($res_proyectos) > 0) {
                 </select>
               </div>
               <div class="campo">
-                <label for="codigo-estudiante-input">Código de Estudiante</label>
+                <label for="codigo-estudiante-input"
+                  >Código de Estudiante</label
+                >
                 <input
                   type="text"
                   id="codigo-estudiante-input"
@@ -356,23 +376,23 @@ if ($res_proyectos && pg_num_rows($res_proyectos) > 0) {
 
             <div class="campo">
               <label for="habilidades-textarea">Habilidades</label>
-                <textarea
-                  name="habilidades"
-                  id="habilidades-textarea"
-                  rows="5"
-                  required
-                ><?php echo htmlspecialchars($habilidades); ?></textarea>
+              <textarea
+                name="habilidades"
+                id="habilidades-textarea"
+                rows="5"
+                required
+              ><?php echo htmlspecialchars($habilidades); ?></textarea
+              >
             </div>
 
-          <?php else: ?>
+            <?php else: ?>
 
             <div class="campos-2" id="datos-asesor-div">
               <div class="campo">
                 <label for="departamento-select">Departamento</label>
                 <select name="departamento" id="departamento-select">
-
                   <option value="<?php echo $departamento ?>">
-                      <?php echo $departamento ?>
+                    <?php echo $departamento ?>
                   </option>
 
                   <optgroup label="División de Ciencias Básicas">
@@ -393,13 +413,17 @@ if ($res_proyectos && pg_num_rows($res_proyectos) > 0) {
                   <hr />
 
                   <optgroup label="División de Ingenierías">
-                    <option value="Departamento de Ingeniería Civil y Topografía">
+                    <option
+                      value="Departamento de Ingeniería Civil y Topografía"
+                    >
                       Departamento de Ingeniería Civil y Topografía
                     </option>
                     <option value="Departamento de Ingeniería Industrial">
                       Departamento de Ingeniería Industrial
                     </option>
-                    <option value="Departamento de Ingeniería Mecánica Eléctrica">
+                    <option
+                      value="Departamento de Ingeniería Mecánica Eléctrica"
+                    >
                       Departamento de Ingeniería Mecánica Eléctrica
                     </option>
                     <option value="Departamento de Ingeniería de Proyectos">
@@ -451,84 +475,84 @@ if ($res_proyectos && pg_num_rows($res_proyectos) > 0) {
               </div>
             </div>
 
+            <?php endif; ?>
+
+            <h2>Datos de Inicio de Sesión</h2>
+
+            <div class="campos-2">
+              <div class="campo">
+                <label for="email-input">Correo Electrónico</label>
+                <input
+                  type="email"
+                  id="email-input"
+                  name="email"
+                  value="<?php echo $correo ?>"
+                  pattern="\w[\w\.]{0,30}@(alumnos|academicos)\.udg\.mx"
+                  title="El correo debe ser institucional, perteneciente a la UDG"
+                  autocomplete="on"
+                  required
+                />
+              </div>
+
+              <div class="campo">
+                <label for="password-input">Contraseña</label>
+                <input
+                  type="password"
+                  id="password-input"
+                  name="password"
+                  pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[\W_]).{8,40}"
+                  title='La contraseña debe ser de una longitud de 8-40 caracteres
+                    y contener al menos un dígito, una mayúscula, una minúscula y un
+                    carácter especial "/*+&..."'
+                  required
+                />
+              </div>
+
+              <div class="campo">
+                <label for="password-input-2">Confirmar Contraseña</label>
+                <input
+                  type="password"
+                  id="password-input-2"
+                  name="password-2"
+                  pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[\W_]).{8,40}"
+                  title='La contraseña debe ser de una longitud de 8-40 caracteres
+                    y contener al menos un dígito, una mayúscula, una minúscula y un
+                    carácter especial "/*+&..."'
+                  required
+                />
+              </div>
+            </div>
+            <button type="submit">Gurdar Cambios</button>
+          </form>
+
+          <!-- <<--------------------------------------------- condicionamos para el apartado de habilidades -->
+          <?php if ($tipo_usuario === 'estudiante'): ?>
+          <p><?php echo htmlspecialchars($departamento); ?></p>
           <?php endif; ?>
 
-          <h2>Datos de Inicio de Sesión</h2>
-
-          <div class="campos-2">
-            <div class="campo">
-              <label for="email-input">Correo Electrónico</label>
-              <input
-                type="email"
-                id="email-input"
-                name="email"
-                value="<?php echo $correo ?>"
-                pattern="\w[\w\.]{0,30}@(alumnos|academicos)\.udg\.mx"
-                title="El correo debe ser institucional, perteneciente a la UDG"
-                autocomplete="on"
-                required
-              />
-            </div>
-
-            <div class="campo">
-              <label for="password-input">Contraseña</label>
-              <input
-                type="password"
-                id="password-input"
-                name="password"
-                pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[\W_]).{8,40}"
-                title='La contraseña debe ser de una longitud de 8-40 caracteres
-                y contener al menos un dígito, una mayúscula, una minúscula y un
-                carácter especial "/*+&..."'
-                required
-              />
-            </div>
-
-            <div class="campo">
-              <label for="password-input-2">Confirmar Contraseña</label>
-              <input
-                type="password"
-                id="password-input-2"
-                name="password-2"
-                pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[\W_]).{8,40}"
-                title='La contraseña debe ser de una longitud de 8-40 caracteres
-                y contener al menos un dígito, una mayúscula, una minúscula y un
-                carácter especial "/*+&..."'
-                required
-              />
-            </div>
-          </div>
-          <button type="submit">Gurdar Cambios</button>
-      </form>
-
-        <!-- <<--------------------------------------------- condicionamos para el apartado de habilidades -->
-        <?php if ($tipo_usuario === 'estudiante'): ?>
-          <p><?php echo htmlspecialchars($departamento); ?></p>
-      <?php endif; ?>
-
-        <div class="section-title">Proyecto</div>
-        <div class="pr-item">
+          <div class="section-title">Proyecto</div>
+          <div class="pr-item">
             <?php if (!empty($nombre_proyecto)): ?>
-                <p class="section-title">Nombre del proyecto:</p>
-                <p><?php echo $nombre_proyecto; ?></p>
-                <p>--------------------------------------------</p>
-                <p class="section-title">Descripción:</p>
-                <p><?php echo $descripcion_proyecto; ?></p>
-                <p>--------------------------------------------</p>
-                <p class="section-title">Área del proyecto:</p>
-                <p><?php echo $area_proyecto; ?></p>
-                <p>--------------------------------------------</p>
-                <p class="section-title">Estado del proyecto:</p>
-                <p><?php echo $status; ?></p>
-                <p>--------------------------------------------</p>
-                <p class="section-title">Conocimientos requeridos:</p>
-                <p><?php echo $conoc_req; ?></p>
-                <p>--------------------------------------------</p>
-                <p class="section-title">Nivel de innovación:</p>
-                <p><?php echo $niv_innova; ?></p>
-                <p>--------------------------------------------</p>
-                <p class="section-title">Integrantes:</p>
-                <?php
+            <p class="section-title">Nombre del proyecto:</p>
+            <p><?php echo $nombre_proyecto; ?></p>
+            <p>--------------------------------------------</p>
+            <p class="section-title">Descripción:</p>
+            <p><?php echo $descripcion_proyecto; ?></p>
+            <p>--------------------------------------------</p>
+            <p class="section-title">Área del proyecto:</p>
+            <p><?php echo $area_proyecto; ?></p>
+            <p>--------------------------------------------</p>
+            <p class="section-title">Estado del proyecto:</p>
+            <p><?php echo $status; ?></p>
+            <p>--------------------------------------------</p>
+            <p class="section-title">Conocimientos requeridos:</p>
+            <p><?php echo $conoc_req; ?></p>
+            <p>--------------------------------------------</p>
+            <p class="section-title">Nivel de innovación:</p>
+            <p><?php echo $niv_innova; ?></p>
+            <p>--------------------------------------------</p>
+            <p class="section-title">Integrantes:</p>
+            <?php
 
                 // Ejecuta la consulta para obtener los integrantes
                 $res_integrantes = pg_execute($con, "query_select_integrantes", array($id_proyecto));
@@ -549,30 +573,31 @@ if ($res_proyectos && pg_num_rows($res_proyectos) > 0) {
             <?php else: ?>
                 <p>No hay proyecto asociado.</p>
             <?php endif; ?>
+          </div>
         </div>
       </div>
     </div>
     <script>
-        function openSidebar() {
-            document.getElementById("sidebar").style.right = "0"; // Abre la barra lateral
-            document.getElementById("overlay").style.display = "block"; // Muestra el panel opaco
-        }
+      function openSidebar() {
+        document.getElementById("sidebar").style.right = "0" // Abre la barra lateral
+        document.getElementById("overlay").style.display = "block" // Muestra el panel opaco
+      }
 
-        function closeSidebar() {
-            document.getElementById("sidebar").style.right = "-250px"; // Cierra la barra lateral
-            document.getElementById("overlay").style.display = "none"; // Oculta el panel opaco
-        }
+      function closeSidebar() {
+        document.getElementById("sidebar").style.right = "-250px" // Cierra la barra lateral
+        document.getElementById("overlay").style.display = "none" // Oculta el panel opaco
+      }
 
-        function toggleSidebar() {
-            const sidebar = document.getElementById("sidebar");
-            const overlay = document.getElementById("overlay");
+      function toggleSidebar() {
+        const sidebar = document.getElementById("sidebar")
+        const overlay = document.getElementById("overlay")
 
-            if (sidebar.style.right === "0px") {
-                closeSidebar(); // Si está abierta, cierra
-            } else {
-                openSidebar(); // Si está cerrada, abre
-            }
+        if (sidebar.style.right === "0px") {
+          closeSidebar() // Si está abierta, cierra
+        } else {
+          openSidebar() // Si está cerrada, abre
         }
+      }
     </script>
   </body>
 </html>
