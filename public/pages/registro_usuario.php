@@ -100,6 +100,7 @@ $con = conecta();
             </select>
           </div>
 
+          <div id="datos-alumno-div">
           <div class="campos-2" id="datos-alumno-div">
             <div class="campo">
               <label for="carrera-select">Carrera</label>
@@ -109,11 +110,19 @@ $con = conecta();
                 <hr />
 
                 <optgroup label="División de Ciencias Básicas">
-                  <option value="1">Licenciatura en Física</option>
-                  <option value="2">Licenciatura en Matemáticas</option>
-                  <option value="3">Licenciatura en Química</option>
-                  <option value="4">Químico Farmacéutico Biólogo</option>
-                  <option value="5">
+                  <option value="Licenciatura en Física">
+                    Licenciatura en Física
+                  </option>
+                  <option value="Licenciatura en Matemáticas">
+                    Licenciatura en Matemáticas
+                  </option>
+                  <option value="Licenciatura en Química">
+                    Licenciatura en Química
+                  </option>
+                  <option value="Químico Farmacéutico Biólogo">
+                    Químico Farmacéutico Biólogo
+                  </option>
+                  <option value="Licenciatura en Ciencia de Materiales">
                     Licenciatura en Ciencia de Materiales
                   </option>
                 </optgroup>
@@ -121,14 +130,20 @@ $con = conecta();
                 <hr />
 
                 <optgroup label="División de Ingenierías">
-                  <option value="6">Ingeniería Civil</option>
-                  <option value="7">
+                  <option value="Ingeniería Civil">Ingeniería Civil</option>
+                  <option value="Ingeniería en Alimentos y Biotecnología">
                     Ingeniería en Alimentos y Biotecnología
                   </option>
-                  <option value="8">Ingeniería en Topografía Geomática</option>
-                  <option value="9">Ingeniería Industrial</option>
-                  <option value="10">Ingeniería Mecánica Eléctrica</option>
-                  <option value="11">Ingeniería Química</option>
+                  <option value="Ingeniería en Topografía Geomática">
+                    Ingeniería en Topografía Geomática
+                  </option>
+                  <option value="Ingeniería Industrial">
+                    Ingeniería Industrial
+                  </option>
+                  <option value="Ingeniería Mecánica Eléctrica">
+                    Ingeniería Mecánica Eléctrica
+                  </option>
+                  <option value="Ingeniería Química">Ingeniería Química</option>
                   <option value="12">
                     Ingeniería en Logística y Transporte
                   </option>
@@ -139,14 +154,24 @@ $con = conecta();
                 <optgroup
                   label="División de Tecnologías para la Integración Ciber-Humana"
                 >
-                  <option value="13">Ingeniería Informática</option>
-                  <option value="14">Ingeniería Biomédica</option>
-                  <option value="15">Ingeniería en Computación</option>
-                  <option value="16">
+                  <option value="Ingeniería Informática">
+                    Ingeniería Informática
+                  </option>
+                  <option value="Ingeniería Biomédica">
+                    Ingeniería Biomédica
+                  </option>
+                  <option value="Ingeniería en Computación">
+                    Ingeniería en Computación
+                  </option>
+                  <option value="Ingeniería en Comunicaciones y Electrónica">
                     Ingeniería en Comunicaciones y Electrónica
                   </option>
-                  <option value="17">Ingeniería Fotónica</option>
-                  <option value="18">Ingeniería Robótica</option>
+                  <option value="Ingeniería Fotónica">
+                    Ingeniería Fotónica
+                  </option>
+                  <option value="Ingeniería Robótica">
+                    Ingeniería Robótica
+                  </option>
                 </optgroup>
               </select>
             </div>
@@ -160,6 +185,16 @@ $con = conecta();
                 pattern="\d{9}"
                 title="El código debe contener 9 dígitos"
               />
+                        </div>
+                        </div>
+
+            <div class="campo">
+              <label for="habilidades-textarea">Habilidades</label>
+                <textarea
+                  name="habilidades"
+                  id="habilidades-textarea"
+                  rows="5"
+                ></textarea>
             </div>
           </div>
 
@@ -172,29 +207,39 @@ $con = conecta();
                 </option>
 
                 <optgroup label="División de Ciencias Básicas">
-                  <option value="1">Departamento de Farmacobiología</option>
-                  <option value="2">Departamento de Física</option>
-                  <option value="3">Departamento de Matemáticas</option>
-                  <option value="4">Departamento de Química</option>
+                  <option value="Departamento de Farmacobiología">
+                    Departamento de Farmacobiología
+                  </option>
+                  <option value="Departamento de Física">
+                    Departamento de Física
+                  </option>
+                  <option value="Departamento de Matemáticas">
+                    Departamento de Matemáticas
+                  </option>
+                  <option value="Departamento de Química">
+                    Departamento de Química
+                  </option>
                 </optgroup>
 
                 <hr />
 
                 <optgroup label="División de Ingenierías">
-                  <option value="5">
+                  <option value="Departamento de Ingeniería Civil y Topografía">
                     Departamento de Ingeniería Civil y Topografía
                   </option>
-                  <option value="6">
+                  <option value="Departamento de Ingeniería Industrial">
                     Departamento de Ingeniería Industrial
                   </option>
-                  <option value="7">
+                  <option value="Departamento de Ingeniería Mecánica Eléctrica">
                     Departamento de Ingeniería Mecánica Eléctrica
                   </option>
-                  <option value="8">
+                  <option value="Departamento de Ingeniería de Proyectos">
                     Departamento de Ingeniería de Proyectos
                   </option>
-                  <option value="9">Departamento de Ingeniería Química</option>
-                  <option value="10">
+                  <option value="Departamento de Ingeniería Química">
+                    Departamento de Ingeniería Química
+                  </option>
+                  <option value="Departamento de Madera, Celulosa y Papel">
                     Departamento de Madera, Celulosa y Papel
                   </option>
                 </optgroup>
@@ -204,18 +249,20 @@ $con = conecta();
                 <optgroup
                   label="División de Tecnologías para la Integración Ciber-Humana"
                 >
-                  <option value="11">
+                  <option value="Departamento de Bioingeniería Traslacional">
                     Departamento de Bioingeniería Traslacional
                   </option>
-                  <option value="12">
+                  <option value="Departamento de Ciencias Computacionales">
                     Departamento de Ciencias Computacionales
                   </option>
-                  <option value="13">
+                  <option value="Departamento de Ingeniería Electro-Fotónica">
                     Departamento de Ingeniería Electro-Fotónica
                   </option>
-                  <option value="14">
-                    Departamento de Innovación Basada en la Información y el
-                    Conocimiento
+                  <option
+                    value="Departamento de Innovación Basada en la Información y elConocimiento"
+                  >
+                    Departamento de Innovación Basada en la Información y
+                    elConocimiento
                   </option>
                 </optgroup>
               </select>

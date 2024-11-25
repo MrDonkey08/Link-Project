@@ -1,11 +1,14 @@
 <?php
 session_start();
 $Nombre = $_SESSION['NombreUser'];
+
 if (!isset($_SESSION['NombreUser'])) {
     header("Location: ../index.php");
     exit();
 }
+
 require '../src/server/conecta.php';
+
 // Obtiene el ID que se envia desde el icono de "user"
 if (isset($_GET['id'])) {
     $id_usuario = $_GET['id'];
@@ -13,6 +16,7 @@ if (isset($_GET['id'])) {
     echo "ID de usuario no proporcionado.";
     exit();
 }
+
 $con = conecta();
 
 //<<----------------------------------------------- Verifica si el ID pertenece a un estudiante
@@ -23,16 +27,18 @@ $res_estudiante = pg_execute($con, "query_select_estudiante", array($id_usuario)
 if ($res_estudiante && pg_num_rows($res_estudiante) > 0) {
     $row = pg_fetch_assoc($res_estudiante);
     // <<----- Se obtienen los datos de la tabla estudiante
-    $id_estudiante  = $row["id_estudiante"];
-    $nombre         = $row["nombres"];
-    $apellidos      = $row["apellido_pat"] . ' ' . $row["apellido_mat"];
-    $carrera        = $row["carrera"];
-    $telefono       = $row["num_tel"];
-    $correo         = $row["correo"];
-    $codigo         = $row["codigo_escolar"];
-    $foto           = $row["foto"];
-    $habilidades    = $row["habilidades"];
-    $tipo_usuario = 'estudiante';
+    $id_estudiante = $row["id_estudiante"];
+    $nombre        = $row["nombres"];
+    $apellido_pat  = $row["apellido_pat"];
+    $apellido_mat  = $row["apellido_mat"];
+    $apellidos     = $row["apellido_pat"] . ' ' . $row["apellido_mat"];
+    $carrera       = $row["carrera"];
+    $telefono      = $row["num_tel"];
+    $correo        = $row["correo"];
+    $codigo        = $row["codigo_escolar"];
+    $foto          = $row["foto"];
+    $habilidades   = $row["habilidades"];
+    $tipo_usuario  = 'estudiante';
 } else {
     //<<----------------------------------------------- Verifica si el ID pertenece a un asesor
     $sql_asesor = "SELECT * FROM asesor WHERE id_usuario = $1";
@@ -44,6 +50,8 @@ if ($res_estudiante && pg_num_rows($res_estudiante) > 0) {
         // <<----- Se obtienen los datos de la tabla asesor
         $id_asesor    = $row["id_asesor"];
         $nombre       = $row["nombres"];
+        $apellido_pat = $row["apellido_pat"];
+        $apellido_mat = $row["apellido_mat"];
         $apellidos    = $row["apellido_pat"] . ' ' . $row["apellido_mat"];
         $departamento = $row["departamento"];
         $telefono     = $row["num_tel"];
@@ -58,27 +66,27 @@ if ($res_estudiante && pg_num_rows($res_estudiante) > 0) {
 }
 // <<<------------------------------------------------------------------- Consulta para obtener proyectos asociados al usuario (estudiante o asesor)
 if($tipo_usuario === 'estudiante') {
-  $sql_proyectos = "
-  SELECT p.*
-  FROM proyecto p
-  JOIN integrante i ON p.id = i.id_proyecto
-  WHERE i.id_estudiante = $1
+    $sql_proyectos = "
+    SELECT p.*
+    FROM proyecto p
+    JOIN integrante i ON p.id = i.id_proyecto
+    WHERE i.id_estudiante = $1
 ";
 } elseif ($tipo_usuario === 'asesor') {
-  $sql_proyectos = "
+    $sql_proyectos = "
     SELECT p.*
     FROM proyecto p
     JOIN proyecto_asesor pa ON p.id = pa.id_proyecto
     WHERE pa.id_asesor = $1
   ";
-} 
-  
+}
+
 
 $result_proyectos = pg_prepare($con, "query_select_proyectos", $sql_proyectos);
 if ($tipo_usuario === 'estudiante') {
-  $res_proyectos = pg_execute($con, "query_select_proyectos", array($id_estudiante));
+    $res_proyectos = pg_execute($con, "query_select_proyectos", array($id_estudiante));
 } elseif ($tipo_usuario === 'asesor') {
-  $res_proyectos = pg_execute($con, "query_select_proyectos", array($id_asesor));
+    $res_proyectos = pg_execute($con, "query_select_proyectos", array($id_asesor));
 }
 
 if ($res_proyectos && pg_num_rows($res_proyectos) > 0) {
@@ -87,7 +95,7 @@ if ($res_proyectos && pg_num_rows($res_proyectos) > 0) {
         $id_proyecto          = $row["id"];
         $nombre_proyecto      = $row["nombre"];
         $descripcion_proyecto = $row["descripcion"];
-        $area_proyecto       = $row["area"];
+        $area_proyecto        = $row["area"];
         $status               = $row["activo"];
         $conoc_req            = $row["conocimientos_requeridos"];
         $niv_innova           = $row["nivel_de_innovacion"];
@@ -159,7 +167,6 @@ if ($res_proyectos && pg_num_rows($res_proyectos) > 0) {
                   <input type="file" name="foto" id="foto" accept="image/*" onchange="this.form.submit();" />
                   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@tabler/icons-webfont@latest/dist/tabler-icons.min.css" />
                   <label for="foto" class="ti ti-pencil" style="cursor: pointer"></label>
-                  </label>
               <?php endif; ?>
             </div>
           </form>
@@ -167,42 +174,302 @@ if ($res_proyectos && pg_num_rows($res_proyectos) > 0) {
         </div>
 
         <div class="contact-info">
-          <p><?php echo $foto; ?></p>
-          <p><?php echo $telefono; ?></p>
-          <p><?php echo $correo; ?></p>
-          <p><?php echo $codigo; ?></p>
-          <!-- <<--------------------------------------------- condicionamos para el apartado de departamento -->
-          <?php
-              if ($tipo_usuario === 'asesor') {
-                  echo "<p>Departamento: {$departamento}</p>"; 
-              } else {
-                  echo "<p>Carrera: {$carrera}</p>"; 
-              }
-          ?>
+      <form
+        method="post"
+        action="../src/server/usuario_update.php"
+        enctype="multipart/form-data"
+      >          <div class="campos-2">
+            <div class="campo">
+              <label for="nombre-input">Nombre(s)</label>
+              <input
+                type="text"
+                id="nombre-input"
+                name="nombre"
+                value="<?php echo $nombre ?>"
+                required
+              />
+            </div>
+
+            <div class="campo">
+              <label for="apellido-paterno-input">Apellido Paterno</label>
+              <input
+                type="text"
+                id="apellido-paterno-input"
+                name="apellido-paterno"
+                value="<?php echo $apellido_pat ?>"
+                required
+              />
+            </div>
+
+            <div class="campo">
+              <label for="apellido-materno-input">Apellido Materno</label>
+              <input
+                type="text"
+                id="apellido-materno-input"
+                name="apellido-materno"
+                value="<?php echo $apellido_mat ?>"
+                required
+              />
+            </div>
+
+            <div class="campo">
+              <label for="contacto-input">Télefono</label>
+              <input
+                type="tel"
+                id="contacto-input"
+                name="contacto"
+                value="<?php echo $telefono ?>"
+                pattern="(\d{2}([\- ]?\d{4}){2}|(\d{3}[\- ]){2}\d{4})"
+                title='El número telefónico debe ser de 10 dígitos,
+                preferentemente separados con guiones "-" o espacios " ", tal
+                como se muestra en el ejemplo'
+                required
+              />
+            </div>
+                        </div>
+
+          <h2>Datos de Escolares</h2>
+
+          <?php if ($tipo_usuario === 'estudiante') : ?>
+
+            <div class="campos-2" id="datos-alumno-div">
+              <div class="campo">
+                <label for="carrera-select">Carrera</label>
+                <select name="carrera" id="carrera-select">
+                  <option value="<?php echo $carrera ?>">
+                      <?php echo $carrera ?>
+                  </option>
+
+                  <hr />
+
+                  <optgroup label="División de Ciencias Básicas">
+                    <option value="Licenciatura en Física">
+                      Licenciatura en Física
+                    </option>
+                    <option value="Licenciatura en Matemáticas">
+                      Licenciatura en Matemáticas
+                    </option>
+                    <option value="Licenciatura en Química">
+                      Licenciatura en Química
+                    </option>
+                    <option value="Químico Farmacéutico Biólogo">
+                      Químico Farmacéutico Biólogo
+                    </option>
+                    <option value="Licenciatura en Ciencia de Materiales">
+                      Licenciatura en Ciencia de Materiales
+                    </option>
+                  </optgroup>
+
+                  <hr />
+
+                  <optgroup label="División de Ingenierías">
+                    <option value="Ingeniería Civil">Ingeniería Civil</option>
+                    <option value="Ingeniería en Alimentos y Biotecnología">
+                      Ingeniería en Alimentos y Biotecnología
+                    </option>
+                    <option value="Ingeniería en Topografía Geomática">
+                      Ingeniería en Topografía Geomática
+                    </option>
+                    <option value="Ingeniería Industrial">
+                      Ingeniería Industrial
+                    </option>
+                    <option value="Ingeniería Mecánica Eléctrica">
+                      Ingeniería Mecánica Eléctrica
+                    </option>
+                    <option value="Ingeniería Química">Ingeniería Química</option>
+                    <option value="12">
+                      Ingeniería en Logística y Transporte
+                    </option>
+                  </optgroup>
+
+                  <hr />
+
+                  <optgroup
+                    label="División de Tecnologías para la Integración Ciber-Humana"
+                  >
+                    <option value="Ingeniería Informática">
+                      Ingeniería Informática
+                    </option>
+                    <option value="Ingeniería Biomédica">
+                      Ingeniería Biomédica
+                    </option>
+                    <option value="Ingeniería en Computación">
+                      Ingeniería en Computación
+                    </option>
+                    <option value="Ingeniería en Comunicaciones y Electrónica">
+                      Ingeniería en Comunicaciones y Electrónica
+                    </option>
+                    <option value="Ingeniería Fotónica">
+                      Ingeniería Fotónica
+                    </option>
+                    <option value="Ingeniería Robótica">
+                      Ingeniería Robótica
+                    </option>
+                  </optgroup>
+                </select>
+              </div>
+              <div class="campo">
+                <label for="codigo-estudiante-input">Código de Estudiante</label>
+                <input
+                  type="text"
+                  id="codigo-estudiante-input"
+                  name="codigo-estudiante"
+                  value="<?php echo $codigo; ?>"
+                  pattern="\d{9}"
+                  title="El código debe contener 9 dígitos"
+                />
+              </div>
+            </div>
+
+            <div class="campo">
+              <label for="habilidades-textarea">Habilidades</label>
+                <textarea
+                  name="habilidades"
+                  id="habilidades-textarea"
+                  rows="5"
+                  required
+                ><?php echo htmlspecialchars($habilidades); ?></textarea>
+            </div>
+
+          <?php else: ?>
+
+            <div class="campos-2" id="datos-asesor-div">
+              <div class="campo">
+                <label for="departamento-select">Departamento</label>
+                <select name="departamento" id="departamento-select">
+
+                  <option value="<?php echo $departamento ?>">
+                      <?php echo $departamento ?>
+                  </option>
+
+                  <optgroup label="División de Ciencias Básicas">
+                    <option value="Departamento de Farmacobiología">
+                      Departamento de Farmacobiología
+                    </option>
+                    <option value="Departamento de Física">
+                      Departamento de Física
+                    </option>
+                    <option value="Departamento de Matemáticas">
+                      Departamento de Matemáticas
+                    </option>
+                    <option value="Departamento de Química">
+                      Departamento de Química
+                    </option>
+                  </optgroup>
+
+                  <hr />
+
+                  <optgroup label="División de Ingenierías">
+                    <option value="Departamento de Ingeniería Civil y Topografía">
+                      Departamento de Ingeniería Civil y Topografía
+                    </option>
+                    <option value="Departamento de Ingeniería Industrial">
+                      Departamento de Ingeniería Industrial
+                    </option>
+                    <option value="Departamento de Ingeniería Mecánica Eléctrica">
+                      Departamento de Ingeniería Mecánica Eléctrica
+                    </option>
+                    <option value="Departamento de Ingeniería de Proyectos">
+                      Departamento de Ingeniería de Proyectos
+                    </option>
+                    <option value="Departamento de Ingeniería Química">
+                      Departamento de Ingeniería Química
+                    </option>
+                    <option value="Departamento de Madera, Celulosa y Papel">
+                      Departamento de Madera, Celulosa y Papel
+                    </option>
+                  </optgroup>
+
+                  <hr />
+
+                  <optgroup
+                    label="División de Tecnologías para la Integración Ciber-Humana"
+                  >
+                    <option value="Departamento de Bioingeniería Traslacional">
+                      Departamento de Bioingeniería Traslacional
+                    </option>
+                    <option value="Departamento de Ciencias Computacionales">
+                      Departamento de Ciencias Computacionales
+                    </option>
+                    <option value="Departamento de Ingeniería Electro-Fotónica">
+                      Departamento de Ingeniería Electro-Fotónica
+                    </option>
+                    <option
+                      value="Departamento de Innovación Basada en la Información y elConocimiento"
+                    >
+                      Departamento de Innovación Basada en la Información y
+                      elConocimiento
+                    </option>
+                  </optgroup>
+                </select>
+              </div>
+              <div class="campo">
+                <label for="codigo-asesor-input">Código de Asesor</label>
+                <input
+                  type="text"
+                  id="codigo-asesor-input"
+                  name="codigo-asesor"
+                  value="<?php echo $codigo ?>"
+                  minlength="9"
+                  maxlength="9"
+                  pattern="\d{5,9}"
+                  title="El código debe contener entre 5 y 9 dígitos"
+                />
+              </div>
+            </div>
+
+          <?php endif; ?>
+
+          <h2>Datos de Inicio de Sesión</h2>
+
+          <div class="campos-2">
+            <div class="campo">
+              <label for="email-input">Correo Electrónico</label>
+              <input
+                type="email"
+                id="email-input"
+                name="email"
+                value="<?php echo $correo ?>"
+                pattern="\w[\w\.]{0,30}@(alumnos|academicos)\.udg\.mx"
+                title="El correo debe ser institucional, perteneciente a la UDG"
+                autocomplete="on"
+                required
+              />
+            </div>
+
+            <div class="campo">
+              <label for="password-input">Contraseña</label>
+              <input
+                type="password"
+                id="password-input"
+                name="password"
+                pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[\W_]).{8,40}"
+                title='La contraseña debe ser de una longitud de 8-40 caracteres
+                y contener al menos un dígito, una mayúscula, una minúscula y un
+                carácter especial "/*+&..."'
+                required
+              />
+            </div>
+
+            <div class="campo">
+              <label for="password-input-2">Confirmar Contraseña</label>
+              <input
+                type="password"
+                id="password-input-2"
+                name="password-2"
+                pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[\W_]).{8,40}"
+                title='La contraseña debe ser de una longitud de 8-40 caracteres
+                y contener al menos un dígito, una mayúscula, una minúscula y un
+                carácter especial "/*+&..."'
+                required
+              />
+            </div>
+          </div>
+          <button type="submit">Gurdar Cambios</button>
+      </form>
+
         <!-- <<--------------------------------------------- condicionamos para el apartado de habilidades -->
         <?php if ($tipo_usuario === 'estudiante'): ?>
-          <div class="section-title">Habilidades</div>
-          <div class="pr-item">
-              <form action="../src/server/habilidades_salva.php" method="POST">
-                  <textarea
-                      name="habilidades"
-                      id="habilidades"
-                      rows="30"
-                      cols="50"
-                      required
-                  >
-                      <?php echo htmlspecialchars($habilidades); ?>
-                  </textarea>
-                  <input
-                      type="hidden"
-                      name="id_estudiante"
-                      value="<?php echo $id_estudiante; ?>"
-                  />
-                  <button type="submit">Guardar Habilidades</button>
-              </form>
-          </div>
-      <?php else: ?>
-          <div class="section-title">Departamento</div>
           <p><?php echo htmlspecialchars($departamento); ?></p>
       <?php endif; ?>
 
@@ -229,6 +496,7 @@ if ($res_proyectos && pg_num_rows($res_proyectos) > 0) {
                 <p>--------------------------------------------</p>
                 <p class="section-title">Integrantes:</p>
                 <?php
+
                 // Ejecuta la consulta para obtener los integrantes
                 $res_integrantes = pg_execute($con, "query_select_integrantes", array($id_proyecto));
 
@@ -265,7 +533,7 @@ if ($res_proyectos && pg_num_rows($res_proyectos) > 0) {
         function toggleSidebar() {
             const sidebar = document.getElementById("sidebar");
             const overlay = document.getElementById("overlay");
-            
+
             if (sidebar.style.right === "0px") {
                 closeSidebar(); // Si está abierta, cierra
             } else {
