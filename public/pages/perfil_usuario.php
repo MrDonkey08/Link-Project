@@ -54,6 +54,21 @@ if ($res_estudiante && pg_num_rows($res_estudiante) > 0) {
     }
 }
 
+if (!empty($foto)) {
+    // Decodificamos el bytea
+    $unes_img = pg_unescape_bytea($foto);
+
+    // Nombre del archivo donde se guardará la imagen (en la misma carpeta)
+    $file_name = "profile.jpg";
+
+    // Guardamos la imagen en un archivo
+    $img = fopen($file_name, 'wb');// or die("No se pudo abrir la imagen");
+    fwrite($img, $unes_img);// or die("No se pudo escribir la imagen");
+    fclose($img);
+} else {
+    echo("No se encontró información de la imagen.\n");
+}
+
 // <<<------------------------------------------------------------------- Consulta para obtener proyectos asociados al usuario (estudiante o asesor)
 $sql_proyectos = "
     SELECT p.*
@@ -128,14 +143,12 @@ $result_integrantes = pg_prepare($con, "query_select_integrantes", $sql_integran
             method="POST"
             enctype="multipart/form-data"
           >
-          <div class="avatar">
-              <?php
-              if (isset($foto)) {
-                  echo "<img src='data:image/jpeg;base64," . base64_encode($foto) . "' alt='Avatar' />";
-              } else {
+            <div class="avatar">
 
-              }
-              ?>
+            <?php if ($file_name && file_exists($file_name)): ?>
+              <!-- Mostramos la imagen guardada -->
+              <img src="<?= $file_name ?>" width="90px" height="90px" alt="Foto del usuario">
+            <?php else: ?>
               <input
                 type="file"
                 name="foto"
@@ -144,9 +157,10 @@ $result_integrantes = pg_prepare($con, "query_select_integrantes", $sql_integran
                 style="display: none"
                 onchange="this.form.submit();"
               />
-              <label for="foto" style="cursor: pointer">
-                <img src="icono_subir.png" />
-              </label>
+                <label for="foto" style="cursor: pointer">
+                  <img src="icono_subir.png" />
+                </label>
+            <?php endif; ?>
             </div>
           </form>
 
