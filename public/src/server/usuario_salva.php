@@ -17,7 +17,7 @@ $contacto          = $_POST["contacto"];
 $email             = $_POST["email"];
 $password          = $_POST["password"];
 $password_2        = $_POST["password-2"];
-$file_name         = $_POST["image"];
+$file_name         = $_FILES["image"]["tmp_name"];
 $tipo_de_usuario   = $_POST["tipo-de-usuario"];
 
 // Validación de contraseñas
