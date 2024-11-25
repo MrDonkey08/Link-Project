@@ -20,7 +20,11 @@ $con = conecta();
   <body class="center">
     <section class="container">
       <h1>Registro de Usuario</h1>
-      <form method="post" action="../src/server/usuario_salva.php">
+      <form
+        method="post"
+        action="../src/server/usuario_salva.php"
+        enctype="multipart/form-data"
+      >
         <fieldset>
           <h2>Datos Personales</h2>
 
@@ -70,6 +74,15 @@ $con = conecta();
                 preferentemente separados con guiones "-" o espacios " ", tal
                 como se muestra en el ejemplo'
                 required
+              />
+            </div>
+            <div class="campo">
+              <label for="image-input">Foto de Perfil</label>
+              <input
+                type="file"
+                id="image-input"
+                name="image"
+                accept="image/*"
               />
             </div>
           </div>
