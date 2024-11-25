@@ -44,16 +44,24 @@ if ($result_proyectos) {
       <h1>Link-Project</h1>
       <p>Bienvenido, <?php echo htmlspecialchars($nombre_usuario); ?>!</p>
     </header>
+    <!-- ################################################################ panel de navegacion ############################################### -->
+    <div id="sidebar" class="sidebar">
+        <h2>Opciones</h2>
+        <ul>
+            <li><a href="perfil_usuario.php?id=<?php echo $_SESSION['IDUser']; ?>">Perfil usuario</a></li>
+            <li><a href="../src/server/cerrar_sesion.php">Cerrar sesion</a></li>
+            <li><a href="#">Opción 3</a></li>
+        </ul>
+    </div>
+    <div id="overlay" class="overlay" onclick="closeSidebar()"></div>
+    
     <div class="button-container">
       <a href="crear_proyecto.php" class="btn">Crear Proyecto</a>
     </div>
 
     <div class="navigation-bar">
       <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@tabler/icons-webfont@latest/dist/tabler-icons.min.css" />
-      <a href="perfil_usuario.php?id=<?php echo $_SESSION['IDUser']; ?>" class="user">
-      <i  class="ti ti-user-circle" ></i>
-      </a>
-      
+      <i class="ti ti-baseline-density-small" id="menu" onclick="toggleSidebar()"></i>
     </div>
 
     <!-- Barra de búsqueda -->

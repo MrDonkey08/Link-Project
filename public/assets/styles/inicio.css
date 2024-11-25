@@ -144,3 +144,19 @@ header {
 .project-card a:hover h3 {
     color: #0056b3;
 }
+
+.ti {
+    font-size: 24px; /* Tamaño del ícono */
+    color: rgb(0, 0, 0); /* Color del ícono */
+    background-color: rgba(174, 178, 182, 0.8); /* Fondo opaco */
+    border-radius: 50%; /* Bordes redondeados */
+    padding: 10px; /* Espaciado interno */
+    position: absolute; /* Posiciona el ícono sobre la imagen */
+    top: 5px; /* Ajusta la posición vertical */
+    right: 5px; /* Ajusta la posición horizontal */
+    transition: background-color 0.3s, transform 0.3s; /* Transiciones suaves */
+}
+.ti:hover {
+    background-color: rgba(0, 100, 200, 1); /* Color al pasar el mouse */
+    transform: scale(1.1); /* Aumentar tamaño al pasar el mouse */
+}

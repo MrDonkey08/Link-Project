@@ -1,5 +1,4 @@
 <?php
-// VerificaCorreo.php
 session_start();
 require "conecta.php";
 $con = conecta();
