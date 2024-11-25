@@ -20,16 +20,34 @@
 }
 /* -------------------------------------- parte de foto */
 .avatar {
-    width: 90px;
-    height: 90px;
-    border-radius: 50%;
-    background-color: #333;
-    color: white;
-    font-size: 24px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    margin-right: 20px;
+    position: relative;
+    display: inline-block;
+}
+/* -------------------------------------- parte de foto */
+.foto-usuario {
+    width: 150px; /* Ajusta el tamaño según sea necesario */
+    height: 150px; /* Ajusta el tamaño según sea necesario */
+    border-radius: 50%; /* Hace que la imagen sea redonda */
+}
+.ti {
+    font-size: 24px; /* Tamaño del ícono */
+    color: rgb(0, 0, 0); /* Color del ícono */
+    background-color: rgba(174, 178, 182, 0.8); /* Fondo opaco */
+    border-radius: 50%; /* Bordes redondeados */
+    padding: 10px; /* Espaciado interno */
+    position: absolute; /* Posiciona el ícono sobre la imagen */
+    top: 5px; /* Ajusta la posición vertical */
+    right: 5px; /* Ajusta la posición horizontal */
+    transition: background-color 0.3s, transform 0.3s; /* Transiciones suaves */
+}
+.ti:hover {
+    background-color: rgba(0, 100, 200, 1); /* Color al pasar el mouse */
+    transform: scale(1.1); /* Aumentar tamaño al pasar el mouse */
+}
+
+/* Ocultar el input de archivo */
+#foto {
+    display: none;
 }
 /* -------------------------------------- informacion del usuario */
 .contact-info {

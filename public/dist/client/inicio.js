@@ -39,4 +39,25 @@ function filtrarProyectos() {
       card.style.boxShadow = "none";
     });
   });
-  
+
+
+function openSidebar() {
+    document.getElementById("sidebar").style.right = "0"; // Abre la barra lateral
+    document.getElementById("overlay").style.display = "block"; // Muestra el panel opaco
+}
+
+function closeSidebar() {
+    document.getElementById("sidebar").style.right = "-250px"; // Cierra la barra lateral
+    document.getElementById("overlay").style.display = "none"; // Oculta el panel opaco
+}
+
+function toggleSidebar() {
+    const sidebar = document.getElementById("sidebar");
+    const overlay = document.getElementById("overlay");
+    
+    if (sidebar.style.right === "0px") {
+        closeSidebar(); // Si está abierta, cierra
+    } else {
+        openSidebar(); // Si está cerrada, abre
+    }
+}
