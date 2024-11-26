@@ -103,6 +103,26 @@ CREATE TABLE tarea_integrantes (
     id_tarea INT REFERENCES tarea (id) ON DELETE CASCADE
 );
 
+CREATE TABLE solicitudes (
+    id SERIAL PRIMARY KEY,  -- Identificador único de la solicitud
+    id_proyecto INT NOT NULL REFERENCES proyecto(id) ON DELETE CASCADE,  -- Relación con el proyecto
+    id_solicitante INT NOT NULL,  -- ID del solicitante (referencia a id_estudiante)
+    id_lider INT NOT NULL,  -- ID del líder que recibe la solicitud (referencia a id_estudiante)
+    estado VARCHAR(20) NOT NULL DEFAULT 'pendiente',  -- Estado de la solicitud
+    fecha_solicitud TIMESTAMP DEFAULT CURRENT_TIMESTAMP,  -- Fecha y hora de la solicitud
+    UNIQUE (id_proyecto, id_solicitante)  -- Restringe duplicados
+);
+
+CREATE TABLE notificaciones (
+    id SERIAL PRIMARY KEY,
+    id_usuario INT NOT NULL,  -- Referencia al estudiante o líder
+    mensaje TEXT NOT NULL,  -- Mensaje de la notificación
+    estado VARCHAR(20) DEFAULT 'pendiente',  -- Estado de la notificación (pendiente, leída, etc.)
+    fecha TIMESTAMP DEFAULT CURRENT_TIMESTAMP  -- Fecha de la notificación
+);
+
+
+
 -- # Inserción de Datos
 
 INSERT INTO estudiante (
