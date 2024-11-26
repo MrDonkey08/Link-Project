@@ -1,73 +1,16 @@
 /* --------------------------------------Modificaciones para el fondo de la pagina o cuerpo*/
 body {
-    /*background-size: 100%;/* Ancho del patrón---------------------ESTO ES PARA PONERLE FONDO DE COLOR A LA PAGINA
-    background-image: url('imagenes-Diseño/fondo-8.jpg'); /* Imagen de fondo */
-    background-size: cover; /* Lograr expandir la imagen a toda la pagina */
-    background-attachment: fixed; /* esto fija la imagen de fondo */
-    justify-content: center;
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #f0f0f0;
 }
-
-/* -------------------------------------- Se refiere a la base del sitio*/
-.wrapper {
-    display: flex;
-    flex-direction: column;
-    min-height: 100vh; /* 100% de la altura del viewport */
-}
-
-/* -------------------------------------- Se refiere al cuadro del menu o encabezado de pagina inicial*/
 header {
-    background-color: #91b0d5;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 10px;
-}
-
-/* -------------------------------------- Espacio para el logo */
-.logo {
-    flex: 0 1 100px; /* Toma solo el espacio necesario para el logo */
-    background-color: lightgray;
-    padding: 10px;
+    background-color: #007bff;
+    color: white;
+    padding: 20px;
     text-align: center;
 }
-
-/* -------------------------------------- Espacio central de la barra de opciones */
-.Central {
-    flex: 2;
-    padding: 10px;
-    text-align: center;
-    /*border: solid #000 1px; /*Opcion que suo para revisar diseño de espacio*/
-}
-
-/* -------------------------------------- Tabla de navegacion */
-.TablaNav {
-    display: flex;
-    gap: 10px;
-    /*border: solid #000 1px; /*Opcion que suo para revisar diseño de espacio*/
-}
-
-/* -------------------------------------- Cada uno de los 3 divs alineados a la derecha */
-.TablaNav div {
-    flex: 0 1 100px;
-    padding: 10px;
-    text-align: center;
-}
-
-/* -------------------------------------- opcines de navegacion */
-.OpNav {
-    max-width: 100%;
-    /*border: solid #000 1px;*/
-}
-
-/* -------------------------------------- Opciones de navegacion (a) esto hace toda la chamba */
-.OpNav img {
-    max-width: 100%;
-    height: 30px;
-    color: #000;
-    /* border: solid #000 1px; */
-    transition: 0.3s;
-}
-
 /* -------------------------------------- Diseño de tabla central para la informacion de usuario*/
 .Contenido {
     display: flex;
@@ -76,27 +19,6 @@ header {
     min-height: calc(100vh - 60px);
     background-color: #f8f9fa;
 }
-
-/* -------------------------------------- Se refiere al cuadro del menu o encabezado de pagina final*/
-footer {
-    position: fixed;
-    bottom: 0;
-    left: 0;
-    width: 100%;
-    background-color: #91b0d5;
-    color: #000;
-    text-align: center;
-    font-size: 18px;
-    padding: 10px;
-    box-shadow: 0 -2px 5px rgba(0, 0, 0, 0.1);
-}
-
-.iconos {
-    width: 50px;
-    height: 50px;
-    filter: grayscale(100%);
-}
-
 /* Container for login form */
 .login-container {
     background-color: white;
