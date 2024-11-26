@@ -16,7 +16,19 @@ $nombre_usuario = $_SESSION['NombreUser'];
 require '../src/server/conecta.php';
 $con = conecta();
 
-$query_proyectos = "SELECT id, nombre, cupos, descripcion FROM proyecto WHERE activo = TRUE";
+$query_proyectos = "
+    SELECT 
+        p.id AS id_proyecto,
+        p.nombre,
+        p.cupos,
+        p.descripcion,
+        i.id_estudiante AS id_lider -- Obtenemos el ID del líder desde id_estudiante
+    FROM proyecto p
+    JOIN integrante i ON i.id_proyecto = p.id
+    WHERE p.activo = TRUE AND i.lider = TRUE -- Usamos i.lider en lugar de i.es_lider
+";
+
+
 $result_proyectos = pg_query($con, $query_proyectos);
 
 $proyectos = [];
@@ -66,12 +78,13 @@ if ($result_proyectos) {
       <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@tabler/icons-webfont@latest/dist/tabler-icons.min.css" />
       <i class="ti ti-baseline-density-small" id="menu" onclick="toggleSidebar()"></i>
     </div>
-
+¡
     <!-- Barra de búsqueda -->
     <div class="search-container">
       <input type="text" id="search" placeholder="Buscar proyectos..." />
       <button id="search-btn">Buscar</button>
     </div>
+
 
 
     <!-- Mostrar los proyectos -->
@@ -80,7 +93,7 @@ if ($result_proyectos) {
       <?php if (!empty($proyectos)): ?>
         <?php foreach ($proyectos as $proyecto): ?>
           <div class="project-card">
-            <a href="detalles_proyecto.php?id=<?php echo $proyecto['id']; ?>">
+            <a href="detalles_proyecto.php?id=<?php echo $proyecto['id_proyecto']; ?>">
               <h3><?php echo htmlspecialchars($proyecto['nombre']); ?></h3>
               <p>
                 Descripción: 
@@ -99,7 +112,13 @@ if ($result_proyectos) {
             <!-- Contenedor para el botón -->
             <div class="send-request-btn-container" style="display: flex; justify-content: flex-end;">
               <?php if ($proyecto['cupos'] > 0): ?>
-                <button class="send-request-btn">Enviar Solicitud</button>
+                <div class="send-request-btn-container" style="display: flex; justify-content: flex-end;">
+                  <form action="../src/server/enviar_solicitud.php" method="POST">
+                      <input type="hidden" name="id_proyecto" value="<?php echo $proyecto['id_proyecto']; ?>">
+                      <input type="hidden" name="id_lider" value="<?php echo htmlspecialchars($proyecto['id_lider']); ?>">
+                      <button type="submit" class="send-request-btn">Enviar Solicitud</button>
+                   </form>
+</div>
               <?php endif; ?>
             </div>
           </div>
