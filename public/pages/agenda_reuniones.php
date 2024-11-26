@@ -14,13 +14,30 @@ if (isset($_GET['id'])) {
 }
 $con = conecta();
 // <<------------------------------------------------------------------ Esto es para mostrar las reuniones
-$query = "  SELECT r.id, r.titulo, r.fecha, r.hora, 
-            STRING_AGG(DISTINCT p.nombres, ', ' ORDER BY p.nombres) AS participantes
-            FROM reunion r
-            LEFT JOIN reunion_participante rp ON r.id = rp.id_reunion
-            LEFT JOIN integrante i ON rp.id_integrante = i.id
-            LEFT JOIN usuario p ON i.id_estudiante = p.id_usuario
-            GROUP BY r.id, r.titulo, r.fecha, r.hora";
+$query = "SELECT 
+    r.id, 
+    r.titulo, 
+    r.fecha, 
+    r.hora, 
+    COALESCE(
+        STRING_AGG(DISTINCT CASE 
+            WHEN p.id_usuario IS NOT NULL THEN p.nombres || ' ' || p.apellido_pat 
+        END, ', '), 
+        'Ninguno'
+    ) AS participantes,
+    COALESCE(
+        STRING_AGG(DISTINCT CASE 
+            WHEN a.id_usuario IS NOT NULL THEN a.nombres || ' ' || a.apellido_pat 
+        END, ', '), 
+        'Sin asesor'
+    ) AS asesor
+FROM reunion r
+LEFT JOIN reunion_participante rp ON r.id = rp.id_reunion
+LEFT JOIN integrante i ON rp.id_integrante = i.id
+LEFT JOIN usuario p ON i.id_estudiante = p.id_usuario
+LEFT JOIN usuario a ON rp.id_asesor = a.id_usuario
+GROUP BY r.id, r.titulo, r.fecha, r.hora;
+";
 
 $result = pg_query($con, $query);
 
@@ -37,7 +54,7 @@ $res_estudiante = pg_execute($con, "query_select_estudiante", array($id_usuario)
 $row = pg_fetch_assoc($res_estudiante);
     // <<----- Se obtienen los datos de la tabla estudiante
     $id_estudiante = $row["id_estudiante"];
-// <<------------------------------------------------------------------ Esto es para mostrar a los integrantes
+// <<------------------------------------------------------------------ Esto es para mostrar al proyecto
 $sql_proyectos = "
     SELECT p.*
     FROM proyecto p
@@ -50,7 +67,7 @@ while ($row = pg_fetch_assoc($res_proyectos)) {
     // <<----- Se obtienen los datos de la tabla proyecto
     $id_proyecto          = $row["id"];
 }
-$mood_pr = 2;
+// <<------------------------------------------------------------------ Esto es para mostrar a los integrantes
 $sql_integrantes = "
 SELECT i.*, e.nombres, e.apellido_pat, e.apellido_mat
 FROM integrante i
@@ -58,6 +75,30 @@ JOIN estudiante e ON i.id_estudiante = e.id_usuario
 WHERE i.id_proyecto = $1
 ";
 $result_integrantes = pg_prepare($con, "query_select_integrantes", $sql_integrantes);
+// <<------------------------------------------------------------------ Esto es para mostrar al asesor del proyecto
+$sql_asesor = "
+    SELECT a.id_asesor, a.nombres, a.apellido_pat, a.apellido_mat
+    FROM proyecto_asesor pa
+    JOIN asesor a ON pa.id_asesor = a.id_asesor
+    WHERE pa.id_proyecto = $1
+";
+
+$result_asesor = pg_prepare($con, "query_select_asesor", $sql_asesor);
+$res_asesor = pg_execute($con, "query_select_asesor", array($id_proyecto));
+
+// Verifica si la consulta fue exitosa
+if ($res_asesor) {
+    $asesor = pg_fetch_assoc($res_asesor);
+
+    if ($asesor) {
+        // Accede al id_asesor
+        $id_asesor = $asesor['id_asesor'];
+    } else {
+    }
+} else {
+    echo "Error en la consulta: " . pg_last_error($con);
+}
+    
 ?>
 
 <!DOCTYPE html>
@@ -101,7 +142,7 @@ $result_integrantes = pg_prepare($con, "query_select_integrantes", $sql_integran
         <div class="contenedor">
             <div class="form-container">
                 <h2>Agendar Reunión</h2>
-                <form action="procesar.php" method="post">
+                <form action="../src/server/procesar_reuniones.php" method="post">
                     <label for="title">Título:</label><br>
                     <input type="text" id="title" name="title" required><br>
                     <label for="date">Fecha:</label><br>
@@ -115,23 +156,34 @@ $result_integrantes = pg_prepare($con, "query_select_integrantes", $sql_integran
 
                         if ($res_integrantes && pg_num_rows($res_integrantes) > 0) {
                             echo '<form action="procesar_reunion.php" method="post">'; // Formulario para enviar los seleccionados
-                            while ($row = pg_fetch_assoc($res_integrantes)) {
-                                // Obtén los datos del integrante
-                                $nombre_integrante = htmlspecialchars($row['nombres']);
-                                $apellidos_integrante = htmlspecialchars($row['apellido_pat'] . ' ' . $row['apellido_mat']);
-                                $id_integrante = htmlspecialchars($row['id_integrante']); // Asegúrate de que este campo esté en la consulta
-
-                                // Muestra la información del integrante con un checkbox
-                                echo "<div>
-                                        <input type='checkbox' name='integrantes[]' value='$id_integrante' id='integrante_$id_integrante'>
-                                        <label for='integrante_$id_integrante'>$nombre_integrante $apellidos_integrante</label>
-                                    </div>";
+                                while ($row = pg_fetch_assoc($res_integrantes)) {
+                                    // Obtén los datos del integrante
+                                        $nombre_integrante = htmlspecialchars($row['nombres']);
+                                        $apellidos_integrante = htmlspecialchars($row['apellido_pat'] . ' ' . $row['apellido_mat']);
+                                        $id_integrante = htmlspecialchars($row['id_estudiante']); 
+                                        
+                                        // Muestra la información del integrante con un checkbox
+                                        echo "<div class='caja'>
+                                                <input type='checkbox' name='integrantes[]' value='$id_integrante' id='integrante_$id_integrante' class='check' >
+                                                <label for='integrante_$id_integrante' >$nombre_integrante $apellidos_integrante</label>
+                                            </div>";
+                                }
+                            } else {
+                                echo "<p>No se encontraron integrantes para el proyecto.</p>";
                             }
-                            echo '<button type="submit">Añadir a la Reunión</button>'; // Botón para enviar el formulario
-                            echo '</form>';
-                        } else {
-                            echo "<p>No se encontraron integrantes para el proyecto.</p>";
-                        }
+                            echo "<p class='section-title'>Asesor:</p>";
+                            // Mostrar el asesor
+                            if ($asesor) {
+                                $nombre_asesor = htmlspecialchars($asesor['nombres']);
+                                $apellidos_asesor = htmlspecialchars($asesor['apellido_pat'] . ' ' . $asesor['apellido_mat']);
+                                echo "<div class='caja'>
+                                            <input type='checkbox' name='asesor' value='$id_asesor' id='asesor_$id_asesor' class='check'>
+                                            <label for='asesor_$id_asesor'>$nombre_asesor $apellidos_asesor</label>
+                                            
+                                    </div>";
+                            } else {
+                                echo "<p>No se encontró asesor para este proyecto.</p>";
+                            }
                     ?>
                     <button type="submit">Añadir Reunión</button>
                 </form>
@@ -145,8 +197,8 @@ $result_integrantes = pg_prepare($con, "query_select_integrantes", $sql_integran
                             <strong><?php echo htmlspecialchars($reunion['titulo']); ?></strong><br>
                             Fecha: <?php echo htmlspecialchars($reunion['fecha']); ?><br>
                             Hora: <?php echo htmlspecialchars($reunion['hora']); ?><br>
-                            Participantes: <?php echo htmlspecialchars($reunion['participantes']); ?><br>
-                            <a href="procesar.php?download=1&id=<?php echo $reunion['id']; ?>">Añadir al Calendario</a>
+                            Participantes: <?php echo htmlspecialchars($reunion['participantes']) . ', ' . htmlspecialchars($reunion['asesor']); ?><br>
+                            <a href="../src/server/procesar_reuniones.php?download=1&id=<?php echo $reunion['id']; ?>" class="btn">Añadir al Calendario</a>
                         </div>
                     <?php endforeach; ?>
                 <?php else: ?>
@@ -155,5 +207,27 @@ $result_integrantes = pg_prepare($con, "query_select_integrantes", $sql_integran
             </div>
         </div>
     </div>
+    <script>
+        function openSidebar() {
+            document.getElementById("sidebar").style.right = "0" // Abre la barra lateral
+            document.getElementById("overlay").style.display = "block" // Muestra el panel opaco
+        }
+
+        function closeSidebar() {
+            document.getElementById("sidebar").style.right = "-250px" // Cierra la barra lateral
+            document.getElementById("overlay").style.display = "none" // Oculta el panel opaco
+        }
+
+        function toggleSidebar() {
+            const sidebar = document.getElementById("sidebar")
+            const overlay = document.getElementById("overlay")
+
+            if (sidebar.style.right === "0px") {
+            closeSidebar() // Si está abierta, cierra
+            } else {
+            openSidebar() // Si está cerrada, abre
+            }
+        }
+    </script>
 </body>
 </html>
