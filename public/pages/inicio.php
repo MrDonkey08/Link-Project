@@ -77,32 +77,35 @@ if ($result_proyectos) {
     <!-- Mostrar los proyectos -->
     <div class="projects-list">
       <h2>Proyectos Disponibles</h2>
-        <?php if (!empty($proyectos)): ?>
+      <?php if (!empty($proyectos)): ?>
         <?php foreach ($proyectos as $proyecto): ?>
-      <div class="project-card">
-        <a href="detalles_proyecto.php?id=<?php echo $proyecto['id']; ?>">
-            <h3><?php echo htmlspecialchars($proyecto['nombre']); ?></h3>
-            <p>
-              Descripción: 
-              <?php 
-                $descripcion_larga = isset($proyecto['descripcion']) ? $proyecto['descripcion'] : '';
-                $descripcion_recortada = substr($descripcion_larga, 0, 40);
-                if (strlen($descripcion_larga) > 40) {
-                  $descripcion_recortada .= '...';
-                }
-                echo htmlspecialchars($descripcion_recortada);
-              ?>
-            </p>
+          <div class="project-card">
+            <a href="detalles_proyecto.php?id=<?php echo $proyecto['id']; ?>">
+              <h3><?php echo htmlspecialchars($proyecto['nombre']); ?></h3>
+              <p>
+                Descripción: 
+                <?php 
+                  $descripcion_larga = isset($proyecto['descripcion']) ? $proyecto['descripcion'] : '';
+                  $descripcion_recortada = substr($descripcion_larga, 0, 40);
+                  if (strlen($descripcion_larga) > 40) {
+                    $descripcion_recortada .= '...';
+                  }
+                  echo htmlspecialchars($descripcion_recortada);
+                ?>
+              </p>
+              <p>Cupos disponibles: <?php echo htmlspecialchars($proyecto['cupos']); ?></p>
+            </a>
             
-            <p>Cupos disponibles: <?php echo htmlspecialchars($proyecto['cupos']); ?></p>
-          </a>
-          <!-- Contenedor para el botón -->
-          <div class="send-request-btn-container" style="display: flex; justify-content: flex-end;">
-          <button class="send-request-btn">Enviar Solicitud</button>
+            <!-- Contenedor para el botón -->
+            <div class="send-request-btn-container" style="display: flex; justify-content: flex-end;">
+              <?php if ($proyecto['cupos'] > 0): ?>
+                <button class="send-request-btn">Enviar Solicitud</button>
+              <?php endif; ?>
+            </div>
           </div>
-      </div>
-      <?php endforeach; ?> <?php else: ?>
-      <p>No hay proyectos disponibles.</p>
+        <?php endforeach; ?>
+      <?php else: ?>
+        <p>No hay proyectos disponibles.</p>
       <?php endif; ?>
     </div>
     <script src="../dist/client/inicio.js"></script>
