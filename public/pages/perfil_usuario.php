@@ -582,6 +582,9 @@ if ($res_proyectos && pg_num_rows($res_proyectos) > 0) {
                 <p>No hay proyecto asociado.</p>
             <?php endif; ?>
           </div>
+          <div class="button-containe">
+            <a href="inicio.php" class="btn">Regresar</a>
+            </div>
         </div>
       </div>
     </div>
