@@ -132,10 +132,6 @@ if ($res_asesor) {
     </div>
     <div id="overlay" class="overlay" onclick="closeSidebar()"></div>
     
-    <div class="button-container">
-        <a href="crear_proyecto.php" class="btn">Crear Proyecto</a>
-    </div>
-
     <div class="navigation-bar">
         <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@tabler/icons-webfont@latest/dist/tabler-icons.min.css" />
         <i class="ti ti-baseline-density-small" id="menu" onclick="toggleSidebar()"></i>

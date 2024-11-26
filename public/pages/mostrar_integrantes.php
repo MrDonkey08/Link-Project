@@ -41,7 +41,7 @@ if (!$result) {
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Mostrar Integrantes</title>
+    <title>Integrantes</title>
     <link rel="stylesheet" href="../assets/styles/normalize.css" />
     <link rel="stylesheet" href="../assets/styles/style.css" />
     <link rel="stylesheet" href="../assets/styles/inicio.css" />
@@ -49,7 +49,7 @@ if (!$result) {
 </head>
 <body>
     <header>
-    <h1>Link-Project</h1>
+        <h1>Link-Project</h1>
     </header>
     <!-- ################################################################ panel de navegacion ############################################### -->
     <div id="sidebar" class="sidebar">
@@ -69,7 +69,7 @@ if (!$result) {
         <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@tabler/icons-webfont@latest/dist/tabler-icons.min.css" />
         <i class="ti ti-baseline-density-small" id="menu" onclick="toggleSidebar()"></i>
     </div>
-    <h1>Integrantes del Proyecto</h1>
+    <h1 class="titulo">Integrantes del Proyecto</h1>
     <table>
         <thead>
             <tr>
