@@ -49,6 +49,7 @@ if ($result_proyectos) {
         <h2>Opciones</h2>
         <ul>
             <li><a href="perfil_usuario.php?id=<?php echo $_SESSION['IDUser']; ?>">Perfil usuario</a></li>
+            <li><a href="kanban.php">Kanban</a></li>
             <li><a href="../src/server/cerrar_sesion.php">Cerrar sesion</a></li>
             <li><a href="agenda_reuniones.php?id=<?php echo $_SESSION['IDUser']; ?>">Reuniones</a></li>
         </ul>

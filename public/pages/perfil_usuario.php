@@ -534,7 +534,7 @@ if ($res_proyectos && pg_num_rows($res_proyectos) > 0) {
 
           <!-- <<--------------------------------------------- condicionamos para el apartado de habilidades -->
           <?php if ($tipo_usuario === 'estudiante'): ?>
-          <p><?php echo htmlspecialchars($departamento); ?></p>
+          <p><?php// echo htmlspecialchars($departamento); ?></p>
           <?php endif; ?>
 
           <div class="section-title">Proyecto</div>
@@ -581,6 +581,9 @@ if ($res_proyectos && pg_num_rows($res_proyectos) > 0) {
                 <p>No hay proyecto asociado.</p>
             <?php endif; ?>
           </div>
+          <div class="button-containe">
+            <a href="inicio.php" class="btn">Regresar</a>
+            </div>
         </div>
       </div>
     </div>
