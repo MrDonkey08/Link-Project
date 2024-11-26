@@ -57,43 +57,7 @@ $con = conecta();
     <div class="wrapper">
       <!-- Encabezado de página Inicial -->
       <header>
-        <div class="Logo">
-          <a href="#"> Logotipo</a>
-          <!-- Corregido el href -->
-        </div>
-        <div class="Central"></div>
-        <div class="TablaNav">
-          <div class="OpNav">
-            <a href="#">
-              <img
-                class="icono"
-                src="assets/pictures/chat_icon-icons.com_67748.png"
-              />
-            </a>
-          </div>
-          <div class="OpNav">
-            <a href="#">
-              <img
-                class="icono"
-                src="assets/pictures/notifications_icon_124898.png"
-              />
-            </a>
-          </div>
-          <div class="OpNav">
-            <a href="#">
-              <img
-                class="icono"
-                src="assets/pictures/profile_icon_183860.png"
-              />
-            </a>
-          </div>
-          <div class="OpNav">
-            <a href="#"
-              ><img class="icono" src="assets/pictures/other_icon.png"
-            /></a>
-            <!-- Actualiza la ruta -->
-          </div>
-        </div>
+      <h1>Link-Project</h1>
       </header>
       <div class="Contenido">
         <div class="login-container">
@@ -131,21 +95,6 @@ $con = conecta();
           <!-- Agregamos un div para mostrar mensajes -->
         </div>
       </div>
-      <footer>
-        Todos los derechos reservados 2024 | términos y condiciones | <br />
-        | Política de privacidad | Redes sociales | <br />
-        <a href="#"
-          ><img class="iconos" src="assets/images/email_icon.png"
-        /></a>
-        <!-- Actualiza las rutas -->
-        <a href="#"
-          ><img class="iconos" src="assets/images/facebook_icon.png"
-        /></a>
-        <a href="#"
-          ><img class="iconos" src="assets/images/instagram_icon.png"
-        /></a>
-        <a href="#"><img class="iconos" src="assets/images/x_icon.png" /></a>
-      </footer>
     </div>
   </body>
 </html>
