@@ -16,6 +16,7 @@ $con = conecta();
 
     <script async src="../dist/client/kanban/drag_task.js"></script>
     <script async src="../dist/client/kanban/add_task.js"></script>
+    <script async src="../dist/client/kanban/kanban.js"></script>
   </head>
   <body>
     <div id="board">

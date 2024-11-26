@@ -1,51 +1,106 @@
 ;(() => {
-	const lists = document.querySelectorAll<HTMLElement>(".list")
+    const lists = document.querySelectorAll<HTMLElement>(".list");
 
-	for (const list of lists) {
-		const form = list.querySelector(".add-task-form")
-		const task_container = list.querySelector(".tasks")
+    for (const list of lists) {
+        const form = list.querySelector(".add-task-form");
+        const taskContainer = list.querySelector(".tasks");
+        const listId = list.id; // Obtiene el ID del estado actual (todo, in-progress, done)
 
-		if (form) {
-			form.addEventListener("submit", (e) => {
-				e.preventDefault()
+        if (form) {
+            form.addEventListener("submit", async (e) => {
+                e.preventDefault();
 
-				const input = form.querySelector<HTMLInputElement>(".new-task-input")
+                const input = form.querySelector<HTMLInputElement>(".new-task-input");
 
-				if (input instanceof HTMLInputElement) {
-					const task_box = document.createElement("div")
-					task_box.classList.add("task-box")
+                if (input instanceof HTMLInputElement && input.value.trim() !== "") {
+                    const taskDescription = input.value;
 
-					const new_task = document.createElement("p")
-					new_task.classList.add("task")
-					new_task.setAttribute("draggable", "true")
-					new_task.innerText = input.value
+                    // Enviar tarea al backend
+                    const response = await fetch("../src/server/kanban_BACK.php", {
+                        method: "POST",
+                        headers: { "Content-Type": "application/json" },
+                        body: JSON.stringify({
+                            action: "add",
+                            description: taskDescription,
+                            phase: getPhaseFromListId(listId),
+                        }),
+                    });
 
-					task_box.addEventListener("dragstart", () => {
-						task_box.classList.add("is-dragging")
-					})
+                    const result = await response.json();
+                    if (result.success) {
+                        const taskId = result.taskId;
 
-					task_box.addEventListener("dragend", () => {
-						task_box.classList.remove("is-dragging")
-					})
+                        // Crear la tarea en el DOM
+                        const taskBox = createTaskBox(taskDescription, taskId);
 
-					const delete_button = document.createElement("button")
-					delete_button.innerText = "Eliminar"
+                        // Agregar la nueva tarea al contenedor
+                        taskContainer?.appendChild(taskBox);
 
-					delete_button.addEventListener("click", () => {
-						task_box.remove()
-					})
+                        // Limpiar el campo de entrada
+                        input.value = "";
+                    } else {
+                        console.error("Error al agregar la tarea:", result.message);
+                    }
+                }
+            });
+        }
+    }
 
-					// Append elements to the task-box
-					task_box.appendChild(new_task)
-					task_box.appendChild(delete_button)
+    const createTaskBox = (description: string, id: number): HTMLElement => {
+        const taskBox = document.createElement("div");
+        taskBox.classList.add("task-box");
+        taskBox.dataset.id = id.toString(); // ID de la tarea en la base de datos
 
-					// Append the new task-box to the task container
-					task_container?.appendChild(task_box)
+        const taskElement = document.createElement("p");
+        taskElement.classList.add("task");
+        taskElement.setAttribute("draggable", "true");
+        taskElement.innerText = description;
 
-					// Clear input field
-					input.value = ""
-				}
-			})
-		}
-	}
-})()
+        taskBox.addEventListener("dragstart", () => {
+            taskBox.classList.add("is-dragging");
+        });
+
+        taskBox.addEventListener("dragend", () => {
+            taskBox.classList.remove("is-dragging");
+        });
+
+        const deleteButton = document.createElement("button");
+        deleteButton.innerText = "Eliminar";
+
+        deleteButton.addEventListener("click", async () => {
+            const taskId = taskBox.dataset.id;
+
+            // Enviar solicitud para eliminar la tarea
+            const response = await fetch("../src/server/kanban_BACK.php", {
+                method: "POST",
+                headers: { "Content-Type": "application/json" },
+                body: JSON.stringify({ action: "delete", id: taskId }),
+            });
+
+            const result = await response.json();
+            if (result.success) {
+                taskBox.remove();
+            } else {
+                console.error("Error al eliminar la tarea:", result.message);
+            }
+        });
+
+        taskBox.appendChild(taskElement);
+        taskBox.appendChild(deleteButton);
+
+        return taskBox;
+    };
+
+    const getPhaseFromListId = (listId: string): number => {
+        switch (listId) {
+            case "todo-list":
+                return 1;
+            case "in-progress-list":
+                return 2;
+            case "done-list":
+                return 3;
+            default:
+                return 1;
+        }
+    };
+})();

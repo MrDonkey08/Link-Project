@@ -10,22 +10,52 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     $conocimientos_requeridos = $_POST['conocimientos_requeridos'];
     $nivel_de_innovacion = $_POST['nivel_de_innovacion'];
 
-    $logo = null;
+    session_start(); 
+    $id_estudiante = $_SESSION['IDUser']; 
 
-    $query = "INSERT INTO proyecto (nombre, descripcion, area, cupos, activo, conocimientos_requeridos, nivel_de_innovacion)
-              VALUES ($1, $2, $3, $4, TRUE, $5, $6)";
+    $check_estudiante_query = "SELECT 1 FROM estudiante WHERE id_estudiante = $1";
+    $check_result = pg_query_params($con, $check_estudiante_query, array($id_estudiante));
 
-    $result = pg_query_params($con, $query, array($nombre, $descripcion, $area, $cupos, $conocimientos_requeridos, $nivel_de_innovacion));
-
-    if ($result) {
-        $mensaje = "Proyecto creado con éxito.";
-        $clase = "success";
-    } else {
-        $mensaje = "Error al crear el proyecto.";
+    if (pg_num_rows($check_result) == 0) {
+        // Si el estudiante no existe, mostrar un mensaje de error
+        $mensaje = "El estudiante con id_estudiante = $id_estudiante no existe en la base de datos.";
         $clase = "error";
+    } else {
+        // El id_estudiante existe, proceder con la creación del proyecto
+        $logo = null;
+
+        // Ingreso del nuevo proyecto
+        $query = "INSERT INTO proyecto (nombre, descripcion, area, cupos, activo, conocimientos_requeridos, nivel_de_innovacion)
+                  VALUES ($1, $2, $3, $4, TRUE, $5, $6) RETURNING id";
+        
+        $result = pg_query_params($con, $query, array($nombre, $descripcion, $area, $cupos, $conocimientos_requeridos, $nivel_de_innovacion));
+
+        if ($result) {
+            // Obtener el id del nuevo proyecto insertado
+            $row = pg_fetch_assoc($result);
+            $id_proyecto = $row['id'];
+
+            // Insertar en la tabla integrante con id_estudiante
+            $insert_integrante = "INSERT INTO integrante (id_estudiante, id_proyecto, lider) 
+                                  VALUES ($1, $2, TRUE)"; // Suponiendo que el estudiante es el líder por defecto
+            $insert_result = pg_query_params($con, $insert_integrante, array($id_estudiante, $id_proyecto));
+
+            if ($insert_result) {
+                $mensaje = "Proyecto creado con éxito y asignado al estudiante.";
+                $clase = "success";
+            } else {
+                $mensaje = "Proyecto creado, pero hubo un error al asignarlo al estudiante.";
+                $clase = "error";
+            }
+        } else {
+            $mensaje = "Error al crear el proyecto.";
+            $clase = "error";
+        }
     }
 }
 ?>
+
+
 
 <!doctype html>
 <html lang="es">
