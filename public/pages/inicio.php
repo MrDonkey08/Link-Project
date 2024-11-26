@@ -65,6 +65,7 @@ if ($result_proyectos) {
             <li><a href="agenda_reuniones.php?id=<?php echo $_SESSION['IDUser']; ?>">Reuniones</a></li>
             <li><a href="mostrar_integrantes.php?id=<?php echo $_SESSION['IDUser']; ?>">Integrantes</a></li>
             <li><a href="kanban.php">Kanban</a></li>
+            <li><a href="../src/server/recibir_solicitudes.php">Solicitudes</a></li>
             <li><a href="../src/server/cerrar_sesion.php">Cerrar sesion</a></li>
         </ul>
     </div>
