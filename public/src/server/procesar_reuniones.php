@@ -6,71 +6,78 @@ if (!isset($_SESSION['NombreUser'])) {
     exit();
 }
 require 'conecta.php';
-// Obtiene el ID que se envia desde el icono de "user"
-if (!isset($_GET['id']) || !is_numeric($_GET['id'])) {
-    echo "ID no válido";
-    exit;
-}
-$idUsuario = $_GET['id'];
 $con = conecta();
 
-try {
-    $pdo = new PDO("pgsql:host=$host;dbname=$dbname", $user, $password);
-    $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-} catch (PDOException $e) {
-    die("Error de conexión: " . $e->getMessage());
-}
-
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-    // Insertar una nueva reunión
     $title = $_POST['title'];
     $date = $_POST['date'];
     $time = $_POST['time'];
-    $participants = $_POST['participants'];
+    $integrantes = $_POST['integrantes']; 
+    $asesorId = isset($_POST['asesor']) ? $_POST['asesor'] : null; // ID del asesor
 
-    $stmt = $pdo->prepare("INSERT INTO reuniones (titulo, fecha, hora, participantes) VALUES (:titulo, :fecha, :hora, :participantes)");
-    $stmt->execute([
-        ':titulo' => $title,
-        ':fecha' => $date,
-        ':hora' => $time,
-        ':participantes' => $participants,
-    ]);
+    $con = conecta(); // Conexión a la base de datos
 
-    header('Location: index.php');
+    // Insertar en la tabla de reuniones
+    $query = "INSERT INTO reunion (titulo, fecha, hora) VALUES ($1, $2, $3) RETURNING id";
+    $result = pg_query_params($con, $query, array($title, $date, $time));
+
+    if (!$result) {
+        die("Error en la inserción de la reunión: " . pg_last_error($con));
+    }
+
+    $reunionId = pg_fetch_result($result, 0, 0); // Obtener el ID de la reunión recién creada
+
+    // Insertar en la tabla de participantes de la reunión
+    foreach ($integrantes as $integranteId) {
+        $query = "INSERT INTO reunion_participante (id_reunion, id_integrante) VALUES ($1, $2)";
+        $result = pg_query_params($con, $query, array($reunionId, $integranteId));
+
+        if (!$result) {
+            die("Error en la inserción del integrante: " . pg_last_error($con));
+        }
+    }
+
+    // Si se seleccionó un asesor, insertarlo en la tabla correspondiente
+    if ($asesorId) {
+        $query = "INSERT INTO reunion_participante (id_reunion, id_asesor) VALUES ($1, $2)";
+        $result = pg_query_params($con, $query, array($reunionId, $asesorId));
+
+        if (!$result) {
+            die("Error en la inserción del asesor: " . pg_last_error($con));
+        }
+    }
+
+    // Redirigir después de la inserción
+    header('Location: ../../pages/agenda_reuniones.php');
     exit();
 }
+if (isset($_GET['download']) && $_GET['download'] == 1 && isset($_GET['id'])) {
+    $reunionId = $_GET['id'];
 
-if (isset($_GET['download']) && isset($_GET['id'])) {
-    // Generar archivo .ics para una reunión específica
-    $id = $_GET['id'];
-    $stmt = $pdo->prepare("SELECT * FROM reuniones WHERE id = :id");
-    $stmt->execute([':id' => $id]);
-    $reunion = $stmt->fetch(PDO::FETCH_ASSOC);
+    // Aquí deberías obtener los detalles de la reunión usando el ID
+    $query = "SELECT * FROM reunion WHERE id = $1";
+    $result = pg_query_params($con, $query, array($reunionId));
 
-    if ($reunion) {
+    if ($result && pg_num_rows($result) > 0) {
+        $reunion = pg_fetch_assoc($result);
+
+        // Generar el contenido del archivo .ics
         header('Content-Type: text/calendar');
         header('Content-Disposition: attachment; filename="reunion.ics"');
 
-        $icsContent = "BEGIN:VCALENDAR
-        VERSION:2.0
-        CALSCALE:GREGORIAN
-        BEGIN:VEVENT
-        SUMMARY:" . $reunion['titulo'] . "
-        DTSTART:" . formatDateToICS($reunion['fecha'], $reunion['hora']) . "
-        DTEND:" . formatDateToICS($reunion['fecha'], $reunion['hora'], true) . "
-        END:VEVENT
-        END:VCALENDAR";
+        $icsContent = "BEGIN:VCALENDAR\n";
+        $icsContent .= "VERSION:2.0\n";
+        $icsContent .= "BEGIN:VEVENT\n";
+        $icsContent .= "SUMMARY:" . htmlspecialchars($reunion['titulo']) . "\n";
+        $icsContent .= "DTSTART:" . formatDateToICS($reunion['fecha'], $reunion['hora']) . "\n";
+        $icsContent .= "DTEND:" . formatDateToICS($reunion['fecha'], $reunion['hora'], true) . "\n";
+        $icsContent .= "END:VEVENT\n";
+        $icsContent .= "END:VCALENDAR";
 
         echo $icsContent;
+        exit();
+    } else {
+        echo "Reunión no encontrada.";
     }
-    exit();
-}
-
-function formatDateToICS($date, $time, $isEnd = false) {
-    $datetime = new DateTime("$date $time");
-    if ($isEnd) {
-        $datetime->modify('+1 hour');
-    }
-    return $datetime->format('Ymd\THis\Z');
 }
 ?>

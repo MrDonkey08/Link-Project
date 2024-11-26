@@ -23,11 +23,6 @@
     display: inline-block;
 }
 /* -------------------------------------- parte de foto */
-.foto-usuario {
-    width: 150px; /* Ajusta el tamaño según sea necesario */
-    height: 150px; /* Ajusta el tamaño según sea necesario */
-    border-radius: 50%; /* Hace que la imagen sea redonda */
-}
 .ti {
     font-size: 24px; /* Tamaño del ícono */
     color: rgb(0, 0, 0); /* Color del ícono */
@@ -42,4 +37,69 @@
 .ti:hover {
     background-color: rgba(0, 100, 200, 1); /* Color al pasar el mouse */
     transform: scale(1.1); /* Aumentar tamaño al pasar el mouse */
+}
+
+.caja {
+    display: flex;
+    justify-content: space-between; /* Alinea los elementos a los extremos */
+    align-items: center; /* Centra verticalmente */
+    padding: 10px; /* Espaciado alrededor */
+}
+
+.check {
+    position: absolute;
+    opacity: 0; /* Oculta el checkbox original */
+    cursor: pointer; /* Cambia el cursor al pasar sobre el checkbox */
+}
+
+.check + label {
+    position: relative;
+    padding-left: 30px; /* Espacio para el nuevo checkbox */
+    cursor: pointer; /* Cambia el cursor al pasar sobre el label */
+}
+
+.check + label:before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 20px; /* Ajusta el tamaño aquí */
+    height: 20px; /* Ajusta el tamaño aquí */
+    border: 2px solid #000; /* Color del borde */
+    border-radius: 3px; /* Esquinas redondeadas */
+    background: white; /* Color de fondo */
+    transition: background 0.3s, border-color 0.3s; /* Transición suave */
+}
+
+.check:checked + label:before {
+    background: #007BFF; /* Color de fondo cuando está seleccionado */
+    border-color: #007BFF; /* Color del borde cuando está seleccionado */
+    content: '✔'; /* Muestra la palomita */
+    color: white; /* Color de la palomita */
+    text-align: center; /* Centra la palomita */
+    line-height: 20px; /* Centra verticalmente la palomita */
+}
+.meeting-item {
+    max-width: 700px;
+    width: 100%;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    border-radius: 8px;
+    padding: 20px;
+}
+
+.btn {
+    margin-top: 10px;
+    display: inline-block;
+    padding: 10px 20px;
+    background-color: #007BFF; /* Color de fondo */
+    color: white; /* Color del texto */
+    text-align: center;
+    text-decoration: none; /* Sin subrayado */
+    border-radius: 5px; /* Bordes redondeados */
+    transition: background-color 0.3s; /* Efecto de transición */
+}
+
+.btn:hover {
+    background-color: #0056b3; /* Color al pasar el mouse */
 }
