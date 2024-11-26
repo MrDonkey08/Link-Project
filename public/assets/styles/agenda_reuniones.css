@@ -1,0 +1,45 @@
+/* -------------------------------------- Diseño de tabla central para la informacion de usuario*/
+.Contenido {
+    font-family: Arial, sans-serif;
+    display: flex;
+    justify-content: center;
+    margin: 0;
+    padding: 0;
+    background-color: #f8f9fa;
+}
+/* -------------------------------------- Diseño de contenedor central para la informacion de usuario*/
+.contenedor {
+    max-width: 800px;
+    width: 100%;
+    padding: 20px;
+    background-color: #ffffff;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    border-radius: 8px;
+    margin-top: 20px;
+}
+/* -------------------------------------- parte de foto */
+.avatar {
+    position: relative;
+    display: inline-block;
+}
+/* -------------------------------------- parte de foto */
+.foto-usuario {
+    width: 150px; /* Ajusta el tamaño según sea necesario */
+    height: 150px; /* Ajusta el tamaño según sea necesario */
+    border-radius: 50%; /* Hace que la imagen sea redonda */
+}
+.ti {
+    font-size: 24px; /* Tamaño del ícono */
+    color: rgb(0, 0, 0); /* Color del ícono */
+    background-color: rgba(174, 178, 182, 0.8); /* Fondo opaco */
+    border-radius: 50%; /* Bordes redondeados */
+    padding: 10px; /* Espaciado interno */
+    position: absolute; /* Posiciona el ícono sobre la imagen */
+    top: 5px; /* Ajusta la posición vertical */
+    right: 5px; /* Ajusta la posición horizontal */
+    transition: background-color 0.3s, transform 0.3s; /* Transiciones suaves */
+}
+.ti:hover {
+    background-color: rgba(0, 100, 200, 1); /* Color al pasar el mouse */
+    transform: scale(1.1); /* Aumentar tamaño al pasar el mouse */
+}
