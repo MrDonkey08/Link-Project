@@ -1,0 +1,72 @@
+/* -------------------------------------- Diseño de tabla central para la información de usuario */
+.Contenido {
+    font-family: Arial, sans-serif;
+    display: flex;
+    justify-content: center;
+    margin: 0;
+    padding: 0;
+    background-color: #f8f9fa;
+}
+
+/* -------------------------------------- Diseño de contenedor central para la información de usuario */
+.contenedor {
+    max-width: 900px;
+    width: 100%;
+    padding: 20px;
+    background-color: #ffffff;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    border-radius: 8px;
+    margin-top: 20px;
+}
+
+/* -------------------------------------- Estilo de la tabla */
+table {
+    width: 80%; /* Hace que la tabla no ocupe toda la pantalla, ajustada al 80% */
+    margin: 20px auto; /* Centra la tabla en la página */
+    border-collapse: collapse; /* Para eliminar espacios entre las celdas */
+    font-family: 'Arial', sans-serif; /* Tipografía de la tabla */
+}
+
+th {
+    background-color: #ddd; /* Azul de fondo para los encabezados */
+    color: black; /* Color blanco para el texto */
+    font-size: 14px; /* Tamaño de fuente más pequeño */
+    padding: 8px 12px; /* Ajuste de padding para hacer las celdas más compactas */
+    text-align: center; /* Centrar los encabezados */
+    border-radius: 8px; /* Bordes redondeados en los encabezados */
+}
+
+/* -------------------------------------- Estilo para las celdas de la tabla */
+td {
+    font-size: 12px; /* Tamaño de fuente pequeño para los datos */
+    padding: 8px 12px; /* Espaciado dentro de las celdas */
+    text-align: center; /* Centrado del texto */
+    border: 1px solid #ddd; /* Borde suave alrededor de las celdas */
+    border-radius: 8px; /* Bordes redondeados */
+}
+
+/* -------------------------------------- Estilo para las filas alternadas */
+tr:nth-child(even) {
+    background-color: #f9f9f9; /* Fondo más claro para filas alternas */
+}
+
+/* -------------------------------------- Estilo para el título de la tabla */
+h1 {
+    text-align: center;
+    color: #ffffff;
+    font-size: 20px;
+    margin: 20px auto;
+    background-color: #007bff;
+    padding: 10px 20px;
+    border-radius: 30px;
+    width: fit-content;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+/* -------------------------------------- Estilo para el pie de página */
+footer {
+    text-align: center;
+    margin-top: 20px;
+    font-size: 14px;
+    color: #888;
+}
