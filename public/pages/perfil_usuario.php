@@ -150,13 +150,12 @@ if ($res_proyectos && pg_num_rows($res_proyectos) > 0) {
     <div id="sidebar" class="sidebar">
       <h2>Opciones</h2>
       <ul>
-        <li>
-          <a href="perfil_usuario.php?id=<?php echo $_SESSION['IDUser']; ?>"
-            >Perfil usuario</a
-          >
-        </li>
-        <li><a href="../src/server/cerrar_sesion.php">Cerrar sesion</a></li>
-        <li><a href="#">Opción 3</a></li>
+            <li><a href="perfil_usuario.php?id=<?php echo $_SESSION['IDUser']; ?>">Perfil usuario</a></li>
+            <li><a href="inicio.php?id=<?php echo $_SESSION['IDUser']; ?>">Inicio</a></li>
+            <li><a href="agenda_reuniones.php?id=<?php echo $_SESSION['IDUser']; ?>">Reuniones</a></li>
+            <li><a href="mostrar_integrantes.php?id=<?php echo $_SESSION['IDUser']; ?>">Integrantes</a></li>
+            <li><a href="kanban.php">Kanban</a></li>
+            <li><a href="../src/server/cerrar_sesion.php">Cerrar sesion</a></li>
       </ul>
     </div>
     <div id="overlay" class="overlay" onclick="closeSidebar()"></div>
