@@ -116,7 +116,7 @@ $con = conecta();
             <div>
               <p>
                 ¿Has olvidado tu contraseña?
-                <a href="pages/registro_usuario.php"></a>
+                <a href="pages/recuperar_clave.php">Recuperar</a>
               </p>
             </div>
             <button
