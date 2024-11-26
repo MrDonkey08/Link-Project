@@ -6,10 +6,9 @@ if (!isset($_SESSION['NombreUser'])) {
     header("Location: ../index.php");
     exit();
 }
-
 require '../src/server/conecta.php';
 
-// Obtiene el ID que se envia desde el icono de "user"
+
 if (isset($_GET['id'])) {
     $id_usuario = $_GET['id'];
 } else {

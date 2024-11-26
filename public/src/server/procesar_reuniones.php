@@ -2,10 +2,10 @@
 session_start();
 $Nombre = $_SESSION['NombreUser'];
 if (!isset($_SESSION['NombreUser'])) {
-    header("Location: ../index.php");
+    header("Location: ../../index.php");
     exit();
 }
-require '../src/server/conecta.php';
+require 'conecta.php';
 // Obtiene el ID que se envia desde el icono de "user"
 if (!isset($_GET['id']) || !is_numeric($_GET['id'])) {
     echo "ID no válido";

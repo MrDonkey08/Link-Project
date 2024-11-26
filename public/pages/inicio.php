@@ -34,7 +34,7 @@ if ($result_proyectos) {
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Link-Project</title>
-    <link rel="stylesheet" href="../assets/styles/normalize.css" />
+  
     <link rel="stylesheet" href="../assets/styles/style.css" />
     <link rel="stylesheet" href="../assets/styles/inicio.css" />
   </head>
@@ -51,7 +51,7 @@ if ($result_proyectos) {
             <li><a href="perfil_usuario.php?id=<?php echo $_SESSION['IDUser']; ?>">Perfil usuario</a></li>
             <li><a href="kanban.php">Kanban</a></li>
             <li><a href="../src/server/cerrar_sesion.php">Cerrar sesion</a></li>
-            <li><a href="#">Opción 3</a></li>
+            <li><a href="agenda_reuniones.php?id=<?php echo $_SESSION['IDUser']; ?>">Reuniones</a></li>
         </ul>
     </div>
     <div id="overlay" class="overlay" onclick="closeSidebar()"></div>

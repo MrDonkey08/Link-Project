@@ -6,26 +6,58 @@ if (!isset($_SESSION['NombreUser'])) {
     exit();
 }
 require '../src/server/conecta.php';
-if (!isset($_GET['id']) || !is_numeric($_GET['id'])) {
-    echo "ID no válido";
-    exit;
+if (isset($_GET['id'])) {
+    $id_usuario = $_GET['id'];
+} else {
+    echo "ID de usuario no proporcionado.";
+    exit();
 }
-$idUsuario = $_GET['id'];
 $con = conecta();
-/*$con = conecta();
+// <<------------------------------------------------------------------ Esto es para mostrar las reuniones
+$query = "  SELECT r.id, r.titulo, r.fecha, r.hora, 
+            STRING_AGG(DISTINCT p.nombres, ', ' ORDER BY p.nombres) AS participantes
+            FROM reunion r
+            LEFT JOIN reunion_participante rp ON r.id = rp.id_reunion
+            LEFT JOIN integrante i ON rp.id_integrante = i.id
+            LEFT JOIN usuario p ON i.id_estudiante = p.id_usuario
+            GROUP BY r.id, r.titulo, r.fecha, r.hora";
 
-// <<-------------------------------------------------------- Esto de momento no se toca.
-try {
-    $pdo = new PDO("pgsql:host=$host;dbname=$dbname", $user, $password);
-    $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-} catch (PDOException $e) {
-    die("Error de conexión: " . $e->getMessage());
+$result = pg_query($con, $query);
+
+if (!$result) {
+    die("Error en la consulta: " . pg_last_error($con));
 }
 
-// Recuperar reuniones
-$stmt = $pdo->query("SELECT * FROM reuniones ORDER BY fecha, hora");
-$reuniones = $stmt->fetchAll(PDO::FETCH_ASSOC);
-*/
+$reuniones = pg_fetch_all($result);
+
+// <<------------------------------------------------------------------ Esto es para mostrar id estudiante
+$sql_estudiante = "SELECT * FROM estudiante WHERE id_usuario = $1";
+$result_estudiante = pg_prepare($con, "query_select_estudiante", $sql_estudiante);
+$res_estudiante = pg_execute($con, "query_select_estudiante", array($id_usuario));
+$row = pg_fetch_assoc($res_estudiante);
+    // <<----- Se obtienen los datos de la tabla estudiante
+    $id_estudiante = $row["id_estudiante"];
+// <<------------------------------------------------------------------ Esto es para mostrar a los integrantes
+$sql_proyectos = "
+    SELECT p.*
+    FROM proyecto p
+    JOIN integrante i ON p.id = i.id_proyecto
+    WHERE i.id_estudiante = $1
+";
+$result_proyectos = pg_prepare($con, "query_select_proyectos", $sql_proyectos);
+$res_proyectos = pg_execute($con, "query_select_proyectos", array($id_estudiante));
+while ($row = pg_fetch_assoc($res_proyectos)) {
+    // <<----- Se obtienen los datos de la tabla proyecto
+    $id_proyecto          = $row["id"];
+}
+$mood_pr = 2;
+$sql_integrantes = "
+SELECT i.*, e.nombres, e.apellido_pat, e.apellido_mat
+FROM integrante i
+JOIN estudiante e ON i.id_estudiante = e.id_usuario
+WHERE i.id_proyecto = $1
+";
+$result_integrantes = pg_prepare($con, "query_select_integrantes", $sql_integrantes);
 ?>
 
 <!DOCTYPE html>
@@ -34,58 +66,94 @@ $reuniones = $stmt->fetchAll(PDO::FETCH_ASSOC);
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Agenda de Reuniones</title>
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-            margin: 20px;
-        }
-        .form-container, .meeting-list {
-            margin-bottom: 20px;
-        }
-        .form-container input, .form-container button {
-            margin: 5px 0;
-        }
-        .meeting-item {
-            padding: 10px;
-            margin-bottom: 10px;
-            border: 1px solid #ccc;
-            border-radius: 5px;
-        }
-    </style>
+    <link rel="stylesheet" href="../assets/styles/normalize.css" />
+    <link rel="stylesheet" href="../assets/styles/style.css" />
+    <link rel="stylesheet" href="../assets/styles/inicio.css" />
+    <link rel="stylesheet" href="../assets/styles/agenda_reuniones.css" />
+    
 </head>
 <body>
-    <h1>Agenda de Reuniones</h1>
 
-    <div class="form-container">
-        <h2>Agendar Reunión</h2>
-        <form action="procesar.php" method="post">
-            <label for="title">Título:</label><br>
-            <input type="text" id="title" name="title" required><br>
-            <label for="date">Fecha:</label><br>
-            <input type="date" id="date" name="date" required><br>
-            <label for="time">Hora:</label><br>
-            <input type="time" id="time" name="time" required><br>
-            <label for="participants">Participantes (separados por comas):</label><br>
-            <input type="text" id="participants" name="participants" required><br>
-            <button type="submit">Añadir Reunión</button>
-        </form>
+<header>
+    <h1>Link-Project</h1>
+    </header>
+    <!-- ################################################################ panel de navegacion ############################################### -->
+    <div id="sidebar" class="sidebar">
+        <h2>Opciones</h2>
+        <ul>
+            <li><a href="perfil_usuario.php?id=<?php echo $_SESSION['IDUser']; ?>">Perfil usuario</a></li>
+            <li><a href="../src/server/cerrar_sesion.php">Cerrar sesion</a></li>
+            <li><a href="agenda_reuniones.php?id=<?php echo $_SESSION['IDUser']; ?>">Reuniones</a></li>
+        </ul>
+    </div>
+    <div id="overlay" class="overlay" onclick="closeSidebar()"></div>
+    
+    <div class="button-container">
+        <a href="crear_proyecto.php" class="btn">Crear Proyecto</a>
     </div>
 
-    <div class="meeting-list">
-        <h2>Reuniones Programadas</h2>
-        <?php if ($reuniones): ?>
-            <?php foreach ($reuniones as $reunion): ?>
-                <div class="meeting-item">
-                    <strong><?php echo htmlspecialchars($reunion['titulo']); ?></strong><br>
-                    Fecha: <?php echo htmlspecialchars($reunion['fecha']); ?><br>
-                    Hora: <?php echo htmlspecialchars($reunion['hora']); ?><br>
-                    Participantes: <?php echo htmlspecialchars($reunion['participantes']); ?><br>
-                    <a href="procesar.php?download=1&id=<?php echo $reunion['id']; ?>">Añadir al Calendario</a>
-                </div>
-            <?php endforeach; ?>
-        <?php else: ?>
-            <p>No hay reuniones programadas.</p>
-        <?php endif; ?>
+    <div class="navigation-bar">
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@tabler/icons-webfont@latest/dist/tabler-icons.min.css" />
+        <i class="ti ti-baseline-density-small" id="menu" onclick="toggleSidebar()"></i>
+    </div>
+    <h1>Agenda de Reuniones</h1>
+    <div class="Contenido">
+        <div class="contenedor">
+            <div class="form-container">
+                <h2>Agendar Reunión</h2>
+                <form action="procesar.php" method="post">
+                    <label for="title">Título:</label><br>
+                    <input type="text" id="title" name="title" required><br>
+                    <label for="date">Fecha:</label><br>
+                    <input type="date" id="date" name="date" required><br>
+                    <label for="time">Hora:</label><br>
+                    <input type="time" id="time" name="time" required><br>
+                    <p class="section-title">Integrantes:</p>
+                    <?php
+                        // Ejecuta la consulta para obtener los integrantes
+                        $res_integrantes = pg_execute($con, "query_select_integrantes", array($id_proyecto));
+
+                        if ($res_integrantes && pg_num_rows($res_integrantes) > 0) {
+                            echo '<form action="procesar_reunion.php" method="post">'; // Formulario para enviar los seleccionados
+                            while ($row = pg_fetch_assoc($res_integrantes)) {
+                                // Obtén los datos del integrante
+                                $nombre_integrante = htmlspecialchars($row['nombres']);
+                                $apellidos_integrante = htmlspecialchars($row['apellido_pat'] . ' ' . $row['apellido_mat']);
+                                $id_integrante = htmlspecialchars($row['id_integrante']); // Asegúrate de que este campo esté en la consulta
+
+                                // Muestra la información del integrante con un checkbox
+                                echo "<div>
+                                        <input type='checkbox' name='integrantes[]' value='$id_integrante' id='integrante_$id_integrante'>
+                                        <label for='integrante_$id_integrante'>$nombre_integrante $apellidos_integrante</label>
+                                    </div>";
+                            }
+                            echo '<button type="submit">Añadir a la Reunión</button>'; // Botón para enviar el formulario
+                            echo '</form>';
+                        } else {
+                            echo "<p>No se encontraron integrantes para el proyecto.</p>";
+                        }
+                    ?>
+                    <button type="submit">Añadir Reunión</button>
+                </form>
+            </div>
+
+            <div class="meeting-list">
+                <h2>Reuniones Programadas</h2>
+                <?php if ($reuniones): ?>
+                    <?php foreach ($reuniones as $reunion): ?>
+                        <div class="meeting-item">
+                            <strong><?php echo htmlspecialchars($reunion['titulo']); ?></strong><br>
+                            Fecha: <?php echo htmlspecialchars($reunion['fecha']); ?><br>
+                            Hora: <?php echo htmlspecialchars($reunion['hora']); ?><br>
+                            Participantes: <?php echo htmlspecialchars($reunion['participantes']); ?><br>
+                            <a href="procesar.php?download=1&id=<?php echo $reunion['id']; ?>">Añadir al Calendario</a>
+                        </div>
+                    <?php endforeach; ?>
+                <?php else: ?>
+                    <p>No hay reuniones programadas.</p>
+                <?php endif; ?>
+            </div>
+        </div>
     </div>
 </body>
 </html>
