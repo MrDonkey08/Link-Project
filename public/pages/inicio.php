@@ -94,6 +94,10 @@ if ($result_proyectos) {
             
             <p>Cupos disponibles: <?php echo htmlspecialchars($proyecto['cupos']); ?></p>
           </a>
+          <!-- Contenedor para el botón -->
+          <div class="send-request-btn-container" style="display: flex; justify-content: flex-end;">
+          <button class="send-request-btn">Enviar Solicitud</button>
+          </div>
       </div>
       <?php endforeach; ?> <?php else: ?>
       <p>No hay proyectos disponibles.</p>

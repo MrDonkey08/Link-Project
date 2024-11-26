@@ -160,3 +160,29 @@ header {
     background-color: rgba(0, 100, 200, 1); /* Color al pasar el mouse */
     transform: scale(1.1); /* Aumentar tamaño al pasar el mouse */
 }
+/* Estilo para el botón "Enviar Solicitud" */
+.send-request-btn-container {
+    display: flex;
+    justify-content: flex-end; /* Alinea el botón a la derecha */
+    margin-top: 10px;
+}
+
+.send-request-btn {
+    background-color: #007bff; /* Color azul */
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 16px;
+    transition: background-color 0.3s ease, transform 0.3s ease;
+}
+
+.send-request-btn:hover {
+    background-color: #0056b3; /* Azul más oscuro cuando se pasa el mouse */
+    transform: scale(1.05); /* Aumenta el tamaño del botón al pasar el mouse */
+}
+
+.send-request-btn:focus {
+    outline: none; /* Elimina el borde de enfoque */
+}
