@@ -222,7 +222,7 @@ if ($res_proyectos && pg_num_rows($res_proyectos) > 0) {
         <div class="contact-info">
           <form
             method="post"
-            action="../src/server/usuario_update.php"
+            action="../src/server/usuario_update.php?id=<?php echo $_SESSION['IDUser']; ?>" method="post"
             enctype="multipart/form-data"
           >
 
@@ -503,40 +503,37 @@ if ($res_proyectos && pg_num_rows($res_proyectos) > 0) {
               <div class="campo">
                 <label for="password-input">Contraseña</label>
                 <input
-                  type="password"
-                  id="password-input"
-                  name="password"
-                  pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[\W_]).{8,40}"
-                  title='La contraseña debe ser de una longitud de 8-40 caracteres
-                    y contener al menos un dígito, una mayúscula, una minúscula y un
-                    carácter especial "/*+&..."'
-                  disabled
+                    type="password"
+                    id="password-input"
+                    name="password"
+                    pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[\W_]).{8,40}"
+                    title='La contraseña debe ser de una longitud de 8-40 caracteres
+                        y contener al menos un dígito, una mayúscula, una minúscula y un
+                        carácter especial "/*+&..."'
                 />
-              </div>
+            </div>
 
-              <div class="campo">
+            <div class="campo">
                 <label for="password-input-2">Confirmar Contraseña</label>
                 <input
-                  type="password"
-                  id="password-input-2"
-                  name="password-2"
-                  pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[\W_]).{8,40}"
-                  title='La contraseña debe ser de una longitud de 8-40 caracteres
-                    y contener al menos un dígito, una mayúscula, una minúscula y un
-                    carácter especial "/*+&..."'
-                  disabled
+                    type="password"
+                    id="password-input-2"
+                    name="password-2"
+                    pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[\W_]).{8,40}"
+                    title='La contraseña debe ser de una longitud de 8-40 caracteres
+                        y contener al menos un dígito, una mayúscula, una minúscula y un
+                        carácter especial "/*+&..."'
                 />
-              </div>
             </div>
-            <button type="submit">Guardar Cambios</button>
+            
+<button type="submit">Guardar Cambios</button>
           </form>
-
+          <div class="section-title">Proyecto</div>
           <!-- <<--------------------------------------------- condicionamos para el apartado de habilidades -->
           <?php if ($tipo_usuario === 'estudiante'): ?>
           <p><?php// echo htmlspecialchars($departamento); ?></p>
           <?php endif; ?>
 
-          <div class="section-title">Proyecto</div>
           <div class="pr-item">
             <?php if (!empty($nombre_proyecto)): ?>
             <p class="section-title">Nombre del proyecto:</p>
@@ -575,13 +572,11 @@ if ($res_proyectos && pg_num_rows($res_proyectos) > 0) {
                 } else {
                     echo "<p>No se encontraron integrantes para el proyecto.</p>";
                 }
-?>
+            ?>
             <?php else: ?>
                 <p>No hay proyecto asociado.</p>
             <?php endif; ?>
           </div>
-          <div class="button-containe">
-            <a href="inicio.php" class="btn">Regresar</a>
             </div>
         </div>
       </div>

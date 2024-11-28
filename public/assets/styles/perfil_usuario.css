@@ -69,7 +69,6 @@
 }
 /* -------------------------------------- Espacio para el logo */
 .pr-item {
-
     padding: 15px;
     border: 1px solid #ddd;
     border-radius: 8px;
@@ -83,6 +82,7 @@
 }
 /* -------------------------------------- Espacio para el logo */
 .pr-item div {
+    width: 500px;
     font-size: 14px;
 }
 /* -------------------------------------- Espacio para el logo */

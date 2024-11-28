@@ -1,13 +1,17 @@
-
 <?php
 /**
  * Archivo para la actualización de la información del usuario
  *
  * @category Registro
  */
-
 require_once 'conecta.php';
 session_start();
+if (isset($_GET['id'])) {
+    $id_usuario = $_GET['id'];
+} else {
+    echo "ID de usuario no proporcionado.";
+    exit();
+}
 $con = conecta();
 
 // Datos del formulario
@@ -55,16 +59,27 @@ $password_2 = $_POST["password-2"];
 
 if (!empty($password)) {
     if ($password === $password_2) {
-        $query = "UPDATE usuario
-            SET clave = $1
-            WHERE id_usuario = $2";
+        // Obtener la contraseña actual del usuario
+        $query = "SELECT clave FROM usuario WHERE id_usuario = $1";
+        $result = pg_query_params($con, $query, [$id_usuario]);
+        $row = pg_fetch_assoc($result);
+        $current_password = $row['clave'];
 
-        $result = pg_query_params($con, $query, [$password, $id_usuario]);
+        // Comparar la contraseña actual con la nueva
+        if ($current_password !== $password) {
+            $query = "UPDATE usuario
+                SET clave = $1
+                WHERE id_usuario = $2";
 
-        if ($result) {
-            echo "Contraseña actualizada con éxito.\n";
+            $result = pg_query_params($con, $query, [$password, $id_usuario]);
+
+            if ($result) {
+                echo "Contraseña actualizada con éxito.\n";
+            } else {
+                echo "Error al actualizar la contraseña.\n";
+            }
         } else {
-            echo "Error al actualizar la contraseña.\n";
+            echo "La nueva contraseña no puede ser igual a la actual.\n";
         }
     } else {
         echo "Las contraseñas no coinciden. Inténtalo de nuevo.\n";
@@ -84,7 +99,8 @@ if ($tipo_de_usuario === "estudiante") {
     $result = pg_query_params($con, $query, [$codigo, $carrera, $habilidades, $id_usuario]);
 
     if ($result) {
-        echo "Estudiante actualizado con éxito.\n";
+        header("Location: ../../pages/perfil_usuario.php?id=" . $_SESSION['IDUser']);
+        exit();
     } else {
         echo "Error al actualizar estudiante.\n";
     }
@@ -100,7 +116,8 @@ if ($tipo_de_usuario === "estudiante") {
     $result = pg_query_params($con, $query, [$codigo, $departamento, $id_usuario]);
 
     if ($result) {
-        echo "Asesor actualizado con éxito.\n";
+        header("Location: ../../pages/perfil_usuario.php?id=" . $_SESSION['IDUser']);
+        exit();
     } else {
         echo "Error al actualizar asesor.\n";
     }
@@ -108,3 +125,4 @@ if ($tipo_de_usuario === "estudiante") {
 
 // Cerrar conexión
 pg_close($con);
+?>
