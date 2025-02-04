@@ -1,0 +1,201 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>¿Quieres ser mi 14 de febrero?</title>
+  <style>
+    body {
+      font-family: 'Georgia', serif;
+      background: #e6f7ff; /* Fondo azul tenue */
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      margin: 0;
+      overflow: hidden;
+      position: relative;
+    }
+
+    .container {
+      text-align: center;
+      background: rgba(255, 255, 255, 0.9);
+      padding: 30px;
+      border-radius: 15px;
+      box-shadow: 0 8px 30px rgba(0, 0, 0, 0.2);
+      position: relative;
+      z-index: 2;
+      max-width: 500px;
+      width: 100%;
+      opacity: 0; /* Inicialmente invisible */
+      transform: translateY(20px); /* Inicia un poco más abajo */
+      animation: aparecer 1.5s ease-out forwards;
+      border: 2px solid #ff4d4d; /* Borde romántico */
+    }
+
+    @keyframes aparecer {
+      0% {
+        opacity: 0;
+        transform: translateY(20px);
+      }
+      100% {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    h1 {
+      font-size: 2.5rem;
+      color: #ff4d4d; /* Color rojo romántico */
+      margin-bottom: 20px;
+      font-family: 'Great Vibes', cursive; /* Fuente romántica */
+    }
+
+    p {
+      font-size: 1.2rem;
+      color: #555;
+      line-height: 1.6;
+      font-style: italic; /* Texto en cursiva */
+    }
+
+    .buttons {
+      margin-top: 20px;
+    }
+
+    button {
+      padding: 10px 20px;
+      font-size: 1rem;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+      margin: 0 10px;
+      transition: all 0.3s ease;
+    }
+
+    button.yes {
+      background: #4caf50;
+      color: white;
+    }
+
+    button.no {
+      background: #f44336;
+      color: white;
+    }
+
+    button:hover {
+      opacity: 0.8;
+    }
+
+    /* Animación de rosas y corazones cayendo */
+    .fondo-animado {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      overflow: hidden;
+      z-index: 1;
+    }
+
+    .elemento {
+      position: absolute;
+      top: -50px;
+      font-size: 24px;
+      animation: caer linear infinite;
+    }
+
+    @keyframes caer {
+      0% {
+        transform: translateY(-50px);
+      }
+      100% {
+        transform: translateY(100vh);
+      }
+    }
+
+    .hidden {
+      display: none;
+    }
+  </style>
+  <!-- Fuente romántica de Google Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&display=swap" rel="stylesheet">
+</head>
+<body>
+  <!-- Fondo animado de rosas y corazones -->
+  <div class="fondo-animado" id="fondo-animado">
+    <!-- Las rosas y corazones se generan dinámicamente con JavaScript -->
+  </div>
+
+  <div class="container" id="page1">
+    <h1>¿Quieres ser mi 14 de febrero?</h1>
+    <div class="buttons">
+      <button class="yes" onclick="mostrarPagina2()">Sí</button>
+      <button class="no" id="botonNo">No</button>
+    </div>
+  </div>
+
+  <div class="container hidden" id="page2">
+    <h1>Llevaremos ya 3 años seguidos festejando 14 de febrero...</h1>
+    <p>
+      Eres el amor de mi vida, cada momento es bello contigo. Desde que te conocí me flechaste como Cupido. Cada parte de tu cuerpo me fascina y tu personalidad me encanta. Mi vida, no puedo explicar el amor tan grande que te tengo. ¡Te amo 3 millones!
+    </p>
+  </div>
+
+  <script>
+    // Función para mover el botón "No" sin salir de la pantalla
+    function moverBotonNo() {
+      const botonNo = document.getElementById('botonNo');
+      const maxX = window.innerWidth - botonNo.offsetWidth;
+      const maxY = window.innerHeight - botonNo.offsetHeight;
+
+      const x = Math.random() * maxX;
+      const y = Math.random() * maxY;
+
+      botonNo.style.position = 'absolute';
+      botonNo.style.left = `${x}px`;
+      botonNo.style.top = `${y}px`;
+    }
+
+    // Asignar el evento onmouseover al botón "No"
+    document.getElementById('botonNo').onmouseover = moverBotonNo;
+
+    // Función para mostrar la segunda página
+    function mostrarPagina2() {
+      document.getElementById('page1').classList.add('hidden');
+      document.getElementById('page2').classList.remove('hidden');
+    }
+
+    // Función para crear rosas y corazones animados
+    function crearElementos() {
+      const fondoAnimado = document.getElementById('fondo-animado');
+      const numElementos = 30; // Número total de elementos (rosas y corazones)
+
+      for (let i = 0; i < numElementos; i++) {
+        const elemento = document.createElement('div');
+        elemento.classList.add('elemento');
+
+        // Alternar entre rosas y corazones
+        if (Math.random() > 0.5) {
+          elemento.innerHTML = '🌹'; // Emoji de rosa
+          elemento.style.color = '#ff4d4d'; // Color rojo para las rosas
+        } else {
+          elemento.innerHTML = '❤️'; // Emoji de corazón
+          elemento.style.color = '#ff4d4d'; // Color rojo para los corazones
+        }
+
+        // Posición horizontal aleatoria
+        elemento.style.left = `${Math.random() * 100}vw`;
+
+        // Duración y retraso aleatorio para la animación
+        elemento.style.animationDuration = `${Math.random() * 5 + 5}s`;
+        elemento.style.animationDelay = `${Math.random() * 5}s`;
+
+        fondoAnimado.appendChild(elemento);
+      }
+    }
+
+    // Iniciar la animación de rosas y corazones
+    crearElementos();
+  </script>
+</body>
+</html>
