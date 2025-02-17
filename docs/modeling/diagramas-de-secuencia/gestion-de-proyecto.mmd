@@ -1,0 +1,36 @@
+sequenceDiagram
+    actor Líder
+    actor Estudiante
+    actor App
+    actor BD
+
+    rect rgb(254, 236, 55)
+        Estudiante ->> App: Crear proyecto
+        App ->> App: Convertir en líder
+
+        App ->> BD: Crear proyecto
+        BD ->> BD: Actualizar BD
+    end
+    rect rgb(255, 162, 76)
+        Estudiante ->> App: Eliminar proyecto
+        App ->> App: Convertir en estudiante
+
+        App ->> BD: Eliminar proyecto
+        BD ->> BD: Actualizar BD
+    end
+
+    rect rgb(211, 238, 152)
+        Estudiante ->> App: Solitud de unirse a proyecto
+        App ->> Líder: Notificación
+
+        alt Líder acepta solicitud
+            App ->> App: Convertir estudiante en integrante del proyecto
+            BD ->> BD: Actualizar BD
+        end
+    end
+
+    rect rgb(255, 119, 183)
+        Líder ->> App: Eliminar integrante
+        App ->> BD: Eliminar integrante
+        BD ->> BD: Actualizar BD
+    end

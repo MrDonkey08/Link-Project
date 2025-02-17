@@ -1,0 +1,17 @@
+sequenceDiagram
+    actor Usuario
+    actor App
+    actor BD
+
+    Usuario ->>+ App: Crear cuenta
+
+    App ->> Usuario: Enviar correo de validación de e-mail
+    App ->> BD: Enviar Datos
+    BD ->> BD: Actualizar BD
+
+
+    alt Correo validado
+        BD ->> BD: Registrar Usuario
+        BD ->> App: Registro exitoso
+        App ->> Usuario: Cuenta creada exitosamente
+    end
