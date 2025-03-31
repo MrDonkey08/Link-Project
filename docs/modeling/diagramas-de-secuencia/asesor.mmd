@@ -1,0 +1,32 @@
+sequenceDiagram
+    actor Lider
+    actor Asesor
+    actor Integrante
+    actor App
+    actor BD
+
+    rect rgb(254, 236, 55)
+        Lider ->> App: Invitar asesor a proyecto
+        App ->> Asesor: Notificación
+
+        alt Aceptar invitación
+            App ->> BD: Agregar a proyecto
+            BD ->> BD: Actualizar BD
+        end
+    end
+
+    rect rgb(255, 162, 76)
+        Asesor ->> App: Agendar reunión
+        App ->> BD: Crear renión
+        BD ->> BD: Actualizar BD
+
+        App ->> Integrante: Notificación
+
+        alt Si todos los integrantes aceptan reunión
+            App ->> BD: Estado de reunión aceptada
+        else Si algún integrante rechaza reunión
+            App ->> BD: Estado de reunión cancelada
+        end
+
+        BD ->> BD: Actualizar BD
+    end
